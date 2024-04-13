@@ -17,9 +17,14 @@ namespace hsm_lab1.Database
 
         public DbSet<DoktoriModel> Doktori { get; set; }
 
+        public DbSet<InfermjeriModel> Infermjeri { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<InfermjeriModel>()
+                .HasKey(i => i.Id_i);
 
         }
     }
