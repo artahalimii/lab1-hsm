@@ -18,6 +18,7 @@ namespace hsm_lab1.Database
         public DbSet<DoktoriModel> Doktori { get; set; }
 
         public DbSet<InfermjeriModel> Infermjeri { get; set; }
+         public DbSet<PacientiModel> Pacienti { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,9 @@ namespace hsm_lab1.Database
 
             modelBuilder.Entity<InfermjeriModel>()
                 .HasKey(i => i.Id_i);
+
+            modelBuilder.Entity<PacientiModel>()
+               .HasKey(i => i.Id_P);
 
         }
     }
