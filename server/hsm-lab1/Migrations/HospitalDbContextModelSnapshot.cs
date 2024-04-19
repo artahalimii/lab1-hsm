@@ -291,6 +291,71 @@ namespace hsm_lab1.Migrations
                     b.ToTable("Infermjeri");
                 });
 
+            modelBuilder.Entity("hsm_lab1.Models.PacientiModel", b =>
+                {
+                    b.Property<int>("Id_P")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_P"));
+
+                    b.Property<string>("Ankesa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DataELindjes")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gjinia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NumriTel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_P");
+
+                    b.ToTable("Pacienti");
+                });
+
+            modelBuilder.Entity("hsm_lab1.Models.RecepsionistiModel", b =>
+                {
+                    b.Property<int>("Id_r")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_r"));
+
+                    b.Property<DateTime?>("DataELindjes")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrariP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VitetEksperienc")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_r");
+
+                    b.ToTable("Recepsionisti");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
