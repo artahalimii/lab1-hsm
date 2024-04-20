@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hsm_lab1.Database;
 
@@ -11,9 +12,11 @@ using hsm_lab1.Database;
 namespace hsm_lab1.Migrations
 {
     [DbContext(typeof(HospitalDbContext))]
-    partial class HospitalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240420000902_initial_pacienti")]
+    partial class initial_pacienti
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,49 +325,6 @@ namespace hsm_lab1.Migrations
                     b.ToTable("Pacienti");
                 });
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> fa6d6ded335b827360258aae5797213250deabb3
-            modelBuilder.Entity("hsm_lab1.Models.RecepsionistiModel", b =>
-                {
-                    b.Property<int>("Id_r")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_r"));
-
-                    b.Property<DateTime?>("DataELindjes")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Emri")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mbiemri")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrariP")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhotoFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("VitetEksperienc")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_r");
-
-                    b.ToTable("Recepsionisti");
-                });
-
-<<<<<<< HEAD
-=======
->>>>>>> 600c4a613ed4025f1ac24efd83c07f802112f253
->>>>>>> fa6d6ded335b827360258aae5797213250deabb3
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
