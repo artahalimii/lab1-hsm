@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\20240420000902_initial_pacienti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\20240420000902_initial_pacienti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\20240409143929_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\20240409143929_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\controllers\\doktorimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\doktorimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\controllers\\infermjerimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\infermjerimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -19,32 +43,12 @@
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\pacientimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\controllers\\infermjerimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\infermjerimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\20240409143929_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\20240409143929_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\controllers\\doktorimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\doktorimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\models\\infermjerimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\infermjerimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\20240413213139_initial migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\20240413213139_initial migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\migrations\\20240409143929_initialcreate.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,41 +70,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InfermjeriModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
-              "RelativeToolTip": "hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:36:54.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PacientiModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\PacientiModelsController.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\PacientiModelsController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\PacientiModelsController.cs",
-              "RelativeToolTip": "hsm-lab1\\Controllers\\PacientiModelsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:49:44.57Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "20240420000902_initial_pacienti.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240420000902_initial_pacienti.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240420000902_initial_pacienti.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240420000902_initial_pacienti.cs",
+              "RelativeToolTip": "hsm-lab1\\Migrations\\20240420000902_initial_pacienti.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-20T00:09:03.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PacientiModel.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\PacientiModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\PacientiModel.cs",
@@ -113,98 +100,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20240409143929_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
-              "RelativeToolTip": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAD4vz4AAABNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T14:39:30.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HospitalDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Database\\HospitalDbContext.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
-              "RelativeToolTip": "hsm-lab1\\Database\\HospitalDbContext.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwB4AAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T03:10:45.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "InfermjeriModel.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\InfermjeriModel.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Models\\InfermjeriModel.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\InfermjeriModel.cs",
-              "RelativeToolTip": "hsm-lab1\\Models\\InfermjeriModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T20:52:31.551Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.json",
-              "RelativeDocumentMoniker": "hsm-lab1\\appsettings.json",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.json",
-              "RelativeToolTip": "hsm-lab1\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-09T14:43:01.583Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "20240413213139_initial migration.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
-              "RelativeToolTip": "hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwCsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T21:31:49.064Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "DoktoriModelsController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\DoktoriModelsController.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\DoktoriModelsController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\DoktoriModelsController.cs",
+              "RelativeToolTip": "hsm-lab1\\Controllers\\DoktoriModelsController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T14:47:00.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DoktoriModel.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\DoktoriModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\DoktoriModel.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\DoktoriModel.cs",
               "RelativeToolTip": "hsm-lab1\\Models\\DoktoriModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-09T04:03:53.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DoktoriModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\DoktoriModelsController.cs",
-              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\DoktoriModelsController.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\DoktoriModelsController.cs",
-              "RelativeToolTip": "hsm-lab1\\Controllers\\DoktoriModelsController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAIBJwA8AAAAFAAAA",
+              "DocumentIndex": 3,
+              "Title": "20240409143929_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
+              "RelativeToolTip": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAtwD4AAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T14:47:00.631Z",
+              "WhenOpened": "2024-04-09T14:39:30.326Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
+              "Title": "PacientiModelsController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\PacientiModelsController.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\PacientiModelsController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\PacientiModelsController.cs",
+              "RelativeToolTip": "hsm-lab1\\Controllers\\PacientiModelsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T12:49:44.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "HospitalDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
@@ -217,7 +163,67 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "InfermjeriModelsController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
+              "RelativeToolTip": "hsm-lab1\\Controllers\\InfermjeriModelsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:36:54.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HospitalDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Database\\HospitalDbContext.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
+              "RelativeToolTip": "hsm-lab1\\Database\\HospitalDbContext.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwB4AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T03:10:45.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InfermjeriModel.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\InfermjeriModel.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Models\\InfermjeriModel.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Models\\InfermjeriModel.cs",
+              "RelativeToolTip": "hsm-lab1\\Models\\InfermjeriModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T20:52:31.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.json",
+              "RelativeDocumentMoniker": "hsm-lab1\\appsettings.json",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.json",
+              "RelativeToolTip": "hsm-lab1\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-09T14:43:01.583Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 11,
+              "Title": "20240413213139_initial migration.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
+              "RelativeToolTip": "hsm-lab1\\Migrations\\20240413213139_initial migration.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwCsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-13T21:31:49.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "20240409143929_InitialCreate.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Migrations\\20240409143929_InitialCreate.Designer.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.Designer.cs",
@@ -225,25 +231,23 @@
               "RelativeToolTip": "hsm-lab1\\Migrations\\20240409143929_InitialCreate.Designer.cs",
               "ViewState": "AQIAAPEAAAAAAAAAAAAUwP0AAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T16:28:27.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-12T16:28:27.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Program.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Program.cs",
               "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\Program.cs",
               "RelativeToolTip": "hsm-lab1\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAIBJwCAAAAAzAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAIBZwCAAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T04:05:56.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-09T04:05:56.549Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\appsettings.Development.json",
               "RelativeDocumentMoniker": "hsm-lab1\\appsettings.Development.json",
@@ -251,8 +255,11 @@
               "RelativeToolTip": "hsm-lab1\\appsettings.Development.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-12T23:24:51.142Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-12T23:24:51.142Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
