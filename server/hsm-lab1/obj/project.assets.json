@@ -12344,19 +12344,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
       "projectName": "hsm-lab1",
-      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\hsm-lab1.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\source\\repos\\lab1-final\\server\\hsm-lab1\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
