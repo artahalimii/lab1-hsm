@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("hsm-lab1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35e6a37fdbdcd98a5e03e9dbe0e0a912d37c6348")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cc586363c477ac2ec1adbc0b2a66252adefd980")]
 [assembly: System.Reflection.AssemblyProductAttribute("hsm-lab1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("hsm-lab1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

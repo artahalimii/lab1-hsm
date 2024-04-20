@@ -322,6 +322,43 @@ namespace hsm_lab1.Migrations
                     b.ToTable("Pacienti");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("hsm_lab1.Models.RecepsionistiModel", b =>
+                {
+                    b.Property<int>("Id_r")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_r"));
+
+                    b.Property<DateTime?>("DataELindjes")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mbiemri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrariP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VitetEksperienc")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_r");
+
+                    b.ToTable("Recepsionisti");
+                });
+
+>>>>>>> 600c4a613ed4025f1ac24efd83c07f802112f253
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
