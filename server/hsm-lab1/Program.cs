@@ -22,6 +22,10 @@ app.MapControllers();
 
 app.Run();*/
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using hsm_lab1.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +38,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddCors();
 // Register DbContext
 builder.Services.AddDbContext<HospitalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDBConnection")));
@@ -47,8 +53,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(builder => {
+    builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
