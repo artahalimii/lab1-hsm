@@ -12344,19 +12344,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sara\\.nuget\\packages\\": {}
+    "C:\\Users\\ccc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "projectUniqueName": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
       "projectName": "hsm-lab1",
-      "projectPath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
-      "packagesPath": "C:\\Users\\sara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\obj\\",
+      "projectPath": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "packagesPath": "C:\\Users\\ccc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm\\server\\hsm-lab1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ccc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12459,7 +12459,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

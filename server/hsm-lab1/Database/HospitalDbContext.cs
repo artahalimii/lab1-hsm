@@ -22,13 +22,18 @@ namespace hsm_lab1.Database
 
 
         public DbSet<RecepsionistiModel> Recepsionisti{ get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Entity<DoktoriModel>()
+                .Property(e => e.DataELindjes)
+                .HasColumnType("date")
+                .HasConversion(
+                    v => v.HasValue ? v.Value.Date : (DateTime?)null,
+                    v => v.HasValue ? v.Value : (DateTime?)null);
             modelBuilder.Entity<InfermjeriModel>()
-                .HasKey(i => i.Id_i);
+               .HasKey(i => i.Id_i);
 
             modelBuilder.Entity<PacientiModel>()
                .HasKey(i => i.Id_P);
