@@ -41,32 +41,6 @@ const CRUD = () => {
   const [editPervoja, setEditPervoja] = useState('');
   const [editFoto, setEditFoto] = useState('');
 
-  // const empdata = useMemo(() => [
-  //   {
-  //     Emri: "alejna",
-  //     DataELindjes: "2024",
-  //     Email: "dsdsd",
-  //     Specializimi:"dsd",
-  //     Pervoja:"ddd",
-  //     PhotoFileName:"sss"
-  //   },
-  //   {
-  //     Emri: "alejna",
-  //     DataELindjes: "2024",
-  //     Email: "dsdsd",
-  //     Specializimi:"dsd",
-  //     Pervoja:"ddd",
-  //     PhotoFileName:"sss"
-  //   },
-  //   {
-  //     Emri: "alejna",
-  //     DataELindjes: "2024",
-  //     Email: "dsdsd",
-  //     Specializimi:"dsd",
-  //     Pervoja:"ddd",
-  //     PhotoFileName:"sss"
-  //   }
-  // ], []);
 
   useEffect(() => {
     getData();
@@ -161,14 +135,10 @@ const CRUD = () => {
 
 
   const handleSave = () => {
-    if (!name || !date || !email || !specializimi || !pervoja || !foto && pervoja<0) {//validimi
+    if (!name || !date || !email || !specializimi || !pervoja || !foto) {
       toast.error('Please fill in all fields.');
       return;
     }
-    if (!isValidEmail(email)) {
-      toast.error('Please enter a valid email address.');
-      return;
-    }//validimi
     const url = "http://localhost:5038/api/DoktoriModels";
     const data = {
       "Emri": name,
@@ -182,10 +152,11 @@ const CRUD = () => {
       .then((result) => {
         getData();
         clear();
-        toast.success('Doktori u shtua');
+        handleClose();
+        toast.success('Doctor added successfully!');
       })
       .catch((error) => {
-        // Handle error
+        toast.error('Error adding doctor');
         console.error('Error adding doctor:', error);
       });
   };
@@ -209,39 +180,33 @@ const CRUD = () => {
 
   return (
     
-    <Fragment>
+   <Fragment>
       <h1 style={{ textAlign: 'center' }}>Doktori</h1>
       <ToastContainer />
       <Container className="mt-5">
-     
-        
-        <Row>
-          <Col xs={12} sm={6} md={4}>
-            <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
-          </Col>
-          { <Col xs={12} sm={6} md={4}>
-            <input type='date' className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
-          </Col> }
-          {/* <Col xs={12} sm={6} md={4}>
-            <DatePicker selected={date} onChange={date => setDate(date)} className="form-control" />
-          </Col> */}
-          <Col xs={12} sm={6} md={4}>
-            <input type='text' className="form-control" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </Col>
-          <Col xs={12} sm={6} md={4}>
-            <input type='text' className="form-control" placeholder="Enter Specializimi" value={specializimi} onChange={(e) => setSpecializimi(e.target.value)} />
-          </Col>
-          <Col xs={12} sm={6} md={4}>
-            <input type='number' className="form-control" placeholder="Enter Pervoja" value={pervoja} onChange={(e) => setPervoja(parseInt(e.target.value))} />
-          </Col>
-          <Col xs={12} sm={6} md={4}>
-            <input type='text' className="form-control" placeholder="Enter Foto url" value={foto} onChange={(e) => setFoto(e.target.value)} />
-          </Col>
-          <Col xs={12} sm={12} md={12} className="text-center mt-3">
-            <Button variant="outline-success" onClick={() => handleSave()}>Submit</Button>
+        <Row className="text-center">
+          <Col>
+            <Button variant="outline-success" onClick={handleShow}>Add Doctor</Button>
           </Col>
         </Row>
       </Container>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Doctor</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type='date' className="form-control mt-3" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Specialization" value={specializimi} onChange={(e) => setSpecializimi(e.target.value)} />
+          <input type='number' className="form-control mt-3" placeholder="Enter Experience" value={pervoja} onChange={(e) => setPervoja(parseInt(e.target.value))} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Photo URL" value={foto} onChange={(e) => setFoto(e.target.value)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+          <Button variant="success" onClick={handleSave}>Save</Button>
+        </Modal.Footer>
+      </Modal>
       <br></br>
       <Container className="text-center">
         <Table striped bordered hover variant="dark">

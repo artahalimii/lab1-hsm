@@ -43,7 +43,7 @@ import CRUD from './CRUD';
 import InfCrud  from './InfCrud '; // Make sure this import is correct
 import Header from './Header'; // Make sure this import is correct
 // import RegisterForm from './LoginForm';
-import LoginForm from './LoginForm';
+// import LoginForm from './LoginForm';
 
 function App() {
   return (
@@ -53,7 +53,7 @@ function App() {
         <Route path="/Doki" element={<CRUD />} />
         <Route path="/InfCrud" element={<InfCrud />} /> {/* Make sure this path is correct */}
         {/* <Route path="/Header" element={<Header />} /> */}
-        <Route path="/LoginForm" element={<LoginForm />} /> 
+        
       </Routes>
     </Router>
   );

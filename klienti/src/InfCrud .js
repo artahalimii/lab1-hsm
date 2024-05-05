@@ -226,46 +226,37 @@ const InfCrud = () => {
 
             return (
                         <Fragment>
-                                    <h1 style={{ textAlign: 'center' }}>Infermieri</h1>
-                                    <ToastContainer />
-                                    <Container className="mt-5">
+                        <h1 style={{ textAlign: 'center' }}>Infermieri</h1>
+                        <ToastContainer />
+                        <Container className="mt-5">
+                            <Row>
+                                <Col xs={12} sm={6} md={4}>
+                                <Button variant="outline-success" onClick={handleShow} style={{ width: '150px' }}>Shto Infermieret</Button>
 
-                                                <Row>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
-                                                            </Col>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
-                                                            </Col>
 
-                                                            {<Col xs={12} sm={6} md={4}>
-                                                                        <input type='date' className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
-                                                            </Col>}
-
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                                            </Col>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter NumriTel" value={numritel} onChange={(e) => setNumritel(e.target.value)} />
-                                                            </Col>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Gjinia" value={gjinia} onChange={(e) => setGjinia(e.target.value)} />
-                                                            </Col>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Departamenti" value={departamenti} onChange={(e) => setDepartamenti(e.target.value)} />
-                                                            </Col>
-
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='number' className="form-control" placeholder="Vitet Pune" value={vitetpune} onChange={(e) => setVitetpune(parseInt(e.target.value))} />
-                                                            </Col>
-                                                            <Col xs={12} sm={6} md={4}>
-                                                                        <input type='text' className="form-control" placeholder="Enter Foto url" value={foto} onChange={(e) => setFoto(e.target.value)} />
-                                                            </Col>
-                                                            <Col xs={12} sm={12} md={12} className="text-center mt-3">
-                                                                        <Button variant="outline-success" onClick={() => handleSave()}>Submit</Button>
-                                                            </Col>
-                                                </Row>
-                                    </Container>
+                                </Col>
+                            </Row>
+                        </Container>
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Add Nurse</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
+                                <input type='date' className="form-control mt-3" value={date} onChange={(e) => setDate(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter NumriTel" value={numritel} onChange={(e) => setNumritel(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter Gjinia" value={gjinia} onChange={(e) => setGjinia(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter Departamenti" value={departamenti} onChange={(e) => setDepartamenti(e.target.value)} />
+                                <input type='number' className="form-control mt-3" placeholder="Enter Vitet Pune" value={vitetpune} onChange={(e) => setVitetpune(parseInt(e.target.value))} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter Foto url" value={foto} onChange={(e) => setFoto(e.target.value)} />
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                                <Button variant="success" onClick={handleSave}>Save</Button>
+                            </Modal.Footer>
+                        </Modal>
                                     <br></br>
                                     <Container className="text-center">
                                                 <Table striped bordered hover variant="dark">
