@@ -20,13 +20,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const CRUD = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+  const [showSub, setShowSub] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleShowSub = () => setShowSub(true);
+  const handleCloseSub = () => setShowSub(false);
   
 
   const [name, setName] = useState('');
-  const [date, setDate] = useState(new Date());
-  //const [date, setDate] = useState('');
+  const [date, setDate] = useState('');
   const [email, setEmail] = useState('');
   const [specializimi, setSpecializimi] = useState('');
   const [pervoja, setPervoja] = useState('');
@@ -63,7 +65,13 @@ const CRUD = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
+  const isValidPervoja = (pervoja) => {
+    if (pervoja === null) {
+        return true;
+    }
+    const pervojaRegex = /^[0-9]\d*$/;
+    return pervojaRegex.test(pervoja.toString());
+  };
 
   const handleEdit = (id) => {
     handleShow();
@@ -102,14 +110,19 @@ const CRUD = () => {
 
 
   const handleUpdate = () => {
-    if (!editName || !editDate || !editEmail || !editSpecializimi || !editPervoja || !editFoto) {//validimi
+    if (!editName || !editDate || !editEmail || !editSpecializimi || !editFoto) {//validimi
       toast.error('Please fill in all fields.');
       return;
     }
     if (!isValidEmail(editEmail)) {
       toast.error('Please enter a valid email address.');
       return;
-    }//validimi
+    }
+     if (!isValidPervoja(editPervoja)) {
+      toast.error('Please enter a valid number.');
+      return;
+    }
+//validimi
     const url = `http://localhost:5038/api/DoktoriModels/${editId}`;
     const data = {
       "ID": editId,
@@ -135,8 +148,16 @@ const CRUD = () => {
 
 
   const handleSave = () => {
-    if (!name || !date || !email || !specializimi || !pervoja || !foto) {
+    if (!name || !date || !email || !specializimi || !foto) {
       toast.error('Please fill in all fields.');
+      return;
+    }
+    if (!isValidEmail(email)) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+    if (!isValidPervoja(pervoja)) {
+      toast.error('Please enter a valid number.');
       return;
     }
     const url = "http://localhost:5038/api/DoktoriModels";
@@ -150,9 +171,9 @@ const CRUD = () => {
     };
     axios.post(url, data)
       .then((result) => {
+        handleClose();
         getData();
         clear();
-        handleClose();
         toast.success('Doctor added successfully!');
       })
       .catch((error) => {
@@ -186,11 +207,11 @@ const CRUD = () => {
       <Container className="mt-5">
         <Row className="text-center">
           <Col>
-            <Button variant="outline-success" onClick={handleShow}>Add Doctor</Button>
+            <Button variant="outline-success" onClick={handleShowSub}>Add Doctor</Button>
           </Col>
         </Row>
       </Container>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showSub} onHide={handleCloseSub}>
         <Modal.Header closeButton>
           <Modal.Title>Add Doctor</Modal.Title>
         </Modal.Header>
@@ -203,7 +224,7 @@ const CRUD = () => {
           <input type='text' className="form-control mt-3" placeholder="Enter Photo URL" value={foto} onChange={(e) => setFoto(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+          <Button variant="secondary" onClick={handleCloseSub}>Cancel</Button>
           <Button variant="success" onClick={handleSave}>Save</Button>
         </Modal.Footer>
       </Modal>
@@ -228,7 +249,7 @@ const CRUD = () => {
                 data.map((item, index) => {
                   return (
                     <tr key={index}>
-                      <td>{item.id}</td>
+                      <td>{index+1}</td>
                       <td>{item.emri}</td>
                       <td>{item.dataELindjes}</td>
                       <td>{item.email}</td>
@@ -256,12 +277,12 @@ const CRUD = () => {
           <Col>
             <input type='text' className="form-control" placeholder="Enter Name" value={editName} onChange={(e) => setEditName(e.target.value)} />
           </Col><br />
-          { <Col>
+           <Col>
             <input type='date' className="form-control" value={editDate} onChange={(e) => setEditDate(e.target.value)} />
-          </Col>}
-          {/* <Col >
+          </Col><br />
+          {/*  <Col >
             <DatePicker selected={date} onChange={date => setEditDate(date)} className="form-control" />
-          </Col> */}
+          </Col> */ }
           <Col>
             <input type='text' className="form-control" placeholder="Enter Email" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} />
           </Col><br />

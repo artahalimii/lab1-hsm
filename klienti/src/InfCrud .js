@@ -15,20 +15,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const InfCrud = () => {
-            const [data, setData] = useState([]);
-            const [show, setShow] = useState(false);
-            const handleClose = () => setShow(false);
-            const handleShow = () => setShow(true);
+  const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [showSub, setShowSub] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleShowSub = () => setShowSub(true);
+  const handleCloseSub = () => setShowSub(false);
 
 
             const [name, setName] = useState('');
             const [surname, setSurname] = useState('');
             const [date, setDate] = useState();
             const [email, setEmail] = useState('');
-            const [numritel, setNumritel] = useState('');
+            const [numriTel, setnumriTel] = useState('');
             const [gjinia, setGjinia] = useState('');
             const [departamenti, setDepartamenti] = useState('');
-            const [vitetpune, setVitetpune] = useState('');
+            const [vitetPune, setvitetPune] = useState('');
             const [foto, setFoto] = useState('');
 
             //edit form
@@ -37,44 +40,17 @@ const InfCrud = () => {
             const [editSurname, setEditSurname] = useState('');
             const [editDate, setEditDate] = useState('');
             const [editEmail, setEditEmail] = useState('');
-            const [editNumritel, setEditNumritel] = useState('');
+            const [editnumriTel, setEditnumriTel] = useState('');
             const [editGjinia, setEditGjinia] = useState('');
             const [editDepartamenti, setEditDepartamenti] = useState('');
-            const [editVitetpune, setEditVitetpune] = useState('');
+            const [editvitetPune, setEditvitetPune] = useState('');
             const [editFoto, setEditFoto] = useState('');
-
-            // const empdata = useMemo(() => [
-            //   {
-            //     Emri: "alejna",
-            //     DataELindjes: "2024",
-            //     Email: "dsdsd",
-            //     Specializimi:"dsd",
-            //     Pervoja:"ddd",
-            //     PhotoFileName:"sss"
-            //   },
-            //   {
-            //     Emri: "alejna",
-            //     DataELindjes: "2024",
-            //     Email: "dsdsd",
-            //     Specializimi:"dsd",
-            //     Pervoja:"ddd",
-            //     PhotoFileName:"sss"
-            //   },
-            //   {
-            //     Emri: "alejna",
-            //     DataELindjes: "2024",
-            //     Email: "dsdsd",
-            //     Specializimi:"dsd",
-            //     Pervoja:"ddd",
-            //     PhotoFileName:"sss"
-            //   }
-            // ], []);
 
             useEffect(() => {
                         getData();
             }, []);
 
-            //---
+            
             const getData = () => {
                         axios.get('http://localhost:5038/api/InfermjeriModels')
                                     .then((result) => {
@@ -91,21 +67,27 @@ const InfCrud = () => {
                         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                         return emailRegex.test(email);
             };
-
+            const isValidPervoja = (vitetPune) => {
+                if (vitetPune === null) {
+                    return true;
+                }
+                const pervojaRegex = /^[0-9]\d*$/;
+                return pervojaRegex.test(vitetPune.toString());
+              };
 
             const handleEdit = (id_i) => {
                         handleShow();
                         axios.get(`http://localhost:5038/api/InfermjeriModels/${id_i}`)
                                     .then((result) => {
-                                                const { emri, mbiemri, dataELindjes, email, numritel, gjinia, departamenti, vitetpune, photoFile } = result.data;
+                                                const { emri, mbiemri, dataELindjes, email, numriTel, gjinia, departamenti, vitetPune, photoFile } = result.data;
                                                 setEditName(emri);
                                                 setEditSurname(mbiemri);
                                                 setEditDate(dataELindjes);
                                                 setEditEmail(email);
-                                                setEditNumritel(numritel);
+                                                setEditnumriTel(numriTel);
                                                 setEditGjinia(gjinia);
                                                 setEditDepartamenti(departamenti);
-                                                setEditVitetpune(vitetpune);
+                                                setEditvitetPune(vitetPune);
                                                 setEditFoto(photoFile);
                                                 setEditId(id_i);
                                     })
@@ -133,14 +115,18 @@ const InfCrud = () => {
 
 
             const handleUpdate = () => {
-                        if (!editName || !editSurname || !editDate || !editEmail || !editNumritel || !editGjinia || !editDepartamenti || !editVitetpune || !editFoto) {//validimi
+                        if (!editName || !editSurname || !editDate || !editEmail || !editnumriTel || !editGjinia || !editDepartamenti|| !editFoto) {//validimi
                                     toast.error('Please fill in all fields.');
                                     return;
                         }
                         if (!isValidEmail(editEmail)) {
                                     toast.error('Please enter a valid email address.');
                                     return;
-                        }//validimi
+                        }
+                        if (!isValidPervoja(editvitetPune)) {
+                            toast.error('Please enter a valid number.');
+                            return;
+                          }//validimi
                         const url = `http://localhost:5038/api/InfermjeriModels/${editId}`;
                         const data = {
                                     "ID_i": editId,
@@ -148,10 +134,10 @@ const InfCrud = () => {
                                     "Mbiemri": editSurname,
                                     "DataELindjes": editDate,
                                     "Email": editEmail,
-                                    "NumriTel": editNumritel,
+                                    "numriTel": editnumriTel,
                                     "Gjinia": editGjinia,
                                     "Departamenti": editDepartamenti,
-                                    "VitetPune": editVitetpune,
+                                    "vitetPune": editvitetPune,
                                     "PhotoFile": editFoto
                         };
                         axios.put(url, data)
@@ -169,28 +155,33 @@ const InfCrud = () => {
 
 
             const handleSave = () => {
-                        if (!name || !surname || !date || !email || !numritel || !gjinia || !departamenti || !vitetpune || !foto) {//validimi
+                        if (!name || !surname || !date || !email || !numriTel || !gjinia || !departamenti || !foto) {//validimi
                                     toast.error('Please fill in all fields.');
                                     return;
                         }
                         if (!isValidEmail(email)) {
                                     toast.error('Please enter a valid email address.');
                                     return;
-                        }//validimi
+                        }
+                        if (!isValidPervoja(vitetPune)) {
+                            toast.error('Please enter a valid number.');
+                            return;
+                          }//validimi
                         const url = "http://localhost:5038/api/InfermjeriModels";
                         const data = {
                                     "Emri": name,
                                     "Mbiemri": surname,
                                     "DataELindjes": date,
                                     "Email": email,
-                                    "NumriTel": numritel,
+                                    "numriTel": numriTel,
                                     "Gjinia": gjinia,
                                     "Departamenti": departamenti,
-                                    "VitetPune": vitetpune,
+                                    "vitetPune": vitetPune,
                                     "PhotoFile": foto
                         };
                         axios.post(url, data)
                                     .then((result) => {
+                                        handleCloseSub();
                                                 getData();
                                                 clear();
                                                 toast.success('infermieri/ja u shtua');
@@ -207,19 +198,19 @@ const InfCrud = () => {
                         setSurname('');
                         setDate('');
                         setEmail('');
-                        setNumritel('');
+                        setnumriTel('');
                         setGjinia('');
                         setDepartamenti('');
-                        setVitetpune('');
+                        setvitetPune('');
                         setFoto('');
                         setEditName('');
                         setEditSurname('');
                         setEditDate('');
                         setEditEmail('');
-                        setEditNumritel('');
+                        setEditnumriTel('');
                         setEditGjinia('');
                         setEditDepartamenti('');
-                        setEditVitetpune('');
+                        setEditvitetPune('');
                         setEditFoto('');
             }
 
@@ -231,13 +222,13 @@ const InfCrud = () => {
                         <Container className="mt-5">
                             <Row>
                                 <Col xs={12} sm={6} md={4}>
-                                <Button variant="outline-success" onClick={handleShow} style={{ width: '150px' }}>Shto Infermieret</Button>
+                                <Button variant="outline-success" onClick={handleShowSub} style={{ width: '150px' }}>Shto Infermieret</Button>
 
 
                                 </Col>
                             </Row>
                         </Container>
-                        <Modal show={show} onHide={handleClose}>
+                        <Modal show={showSub} onHide={handleCloseSub}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Add Nurse</Modal.Title>
                             </Modal.Header>
@@ -246,14 +237,14 @@ const InfCrud = () => {
                                 <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
                                 <input type='date' className="form-control mt-3" value={date} onChange={(e) => setDate(e.target.value)} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                <input type='text' className="form-control mt-3" placeholder="Enter NumriTel" value={numritel} onChange={(e) => setNumritel(e.target.value)} />
+                                <input type='text' className="form-control mt-3" placeholder="Enter numriTel" value={numriTel} onChange={(e) => setnumriTel(e.target.value)} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Gjinia" value={gjinia} onChange={(e) => setGjinia(e.target.value)} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Departamenti" value={departamenti} onChange={(e) => setDepartamenti(e.target.value)} />
-                                <input type='number' className="form-control mt-3" placeholder="Enter Vitet Pune" value={vitetpune} onChange={(e) => setVitetpune(parseInt(e.target.value))} />
+                                <input type='number' className="form-control mt-3" placeholder="Enter Vitet Pune" value={vitetPune} onChange={(e) => setvitetPune(parseInt(e.target.value))} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Foto url" value={foto} onChange={(e) => setFoto(e.target.value)} />
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                                <Button variant="secondary" onClick={handleCloseSub}>Cancel</Button>
                                 <Button variant="success" onClick={handleSave}>Save</Button>
                             </Modal.Footer>
                         </Modal>
@@ -270,7 +261,7 @@ const InfCrud = () => {
                                                                                     <th>Nr-Tel</th>
                                                                                     <th>Gjinia</th>
                                                                                     <th>Departamenti</th>
-                                                                                    <th>VitetPune</th>
+                                                                                    <th>vitetPune</th>
                                                                                     <th>Foto</th>
                                                                                     <th></th>
                                                                         </tr>
@@ -315,14 +306,14 @@ const InfCrud = () => {
                                                             <Col>
                                                                         <input type='text' className="form-control" placeholder="Enter Surname" value={editSurname} onChange={(e) => setEditSurname(e.target.value)} />
                                                             </Col><br />
-                                                            {<Col xs={12} sm={6} md={4}>
+                                                            <Col >
                                                                         <input type='date' className="form-control" value={date} onChange={(e) => setEditDate(e.target.value)} />
-                                                            </Col>}
+                                                            </Col><br />
                                                             <Col>
                                                                         <input type='text' className="form-control" placeholder="Enter Email" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} />
                                                             </Col><br />
                                                             <Col>
-                                                                        <input type='text' className="form-control" placeholder="Enter NumriTel" value={editNumritel} onChange={(e) => setEditNumritel(e.target.value)} />
+                                                                        <input type='text' className="form-control" placeholder="Enter numriTel" value={editnumriTel} onChange={(e) => setEditnumriTel(e.target.value)} />
                                                             </Col><br />
 
                                                             <Col>
@@ -332,7 +323,7 @@ const InfCrud = () => {
                                                                         <input type='text' className="form-control" placeholder="Enter Departamenti" value={editDepartamenti} onChange={(e) => setEditDepartamenti(e.target.value)} />
                                                             </Col><br />
                                                             <Col>
-                                                                        <input type='number' className="form-control" placeholder="Enter vitet pune" value={editVitetpune} onChange={(e) => setEditVitetpune(parseInt(e.target.value))} />
+                                                                        <input type='number' className="form-control" placeholder="Enter vitet pune" value={editvitetPune} onChange={(e) => setEditvitetPune(parseInt(e.target.value))} />
                                                             </Col><br />
                                                             <Col>
                                                                         <input type='text' className="form-control" placeholder="Enter Foto url" value={editFoto} onChange={(e) => setEditFoto(e.target.value)} />
