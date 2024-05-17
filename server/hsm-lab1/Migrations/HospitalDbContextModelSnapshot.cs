@@ -248,7 +248,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doktori");
+                    b.ToTable("Doktori", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.InfermjeriModel", b =>
@@ -288,7 +288,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_i");
 
-                    b.ToTable("Infermjeri");
+                    b.ToTable("Infermjeri", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.PacientiModel", b =>
@@ -319,7 +319,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_P");
 
-                    b.ToTable("Pacienti");
+                    b.ToTable("Pacienti", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.RecepsionistiModel", b =>
@@ -353,42 +353,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_r");
 
-                    b.ToTable("Recepsionisti");
-                });
-
-            modelBuilder.Entity("hsm_lab1.Models.RekordModel", b =>
-                {
-                    b.Property<int>("Id_Rek")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Rek"));
-
-                    b.Property<string>("Diagnoza")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_P")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PacientiId_P")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Receta")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rezultatet")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id_Rek");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PacientiId_P");
-
-                    b.ToTable("Rekords");
+                    b.ToTable("Recepsionisti", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -440,25 +405,6 @@ namespace hsm_lab1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("hsm_lab1.Models.RekordModel", b =>
-                {
-                    b.HasOne("hsm_lab1.Models.DoktoriModel", "Doktori")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("hsm_lab1.Models.PacientiModel", "Pacienti")
-                        .WithMany()
-                        .HasForeignKey("Id_P")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doktori");
-
-                    b.Navigation("Pacienti");
                 });
 #pragma warning restore 612, 618
         }

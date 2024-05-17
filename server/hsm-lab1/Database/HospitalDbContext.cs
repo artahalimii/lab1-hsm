@@ -23,7 +23,6 @@ namespace hsm_lab1.Database
 
         public DbSet<RecepsionistiModel> Recepsionisti{ get; set; }
 
-        public DbSet<RekordModel> Rekord { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -36,18 +35,6 @@ namespace hsm_lab1.Database
             modelBuilder.Entity<RecepsionistiModel>()
                .HasKey(i => i.Id_r);
 
-            modelBuilder.Entity<RekordModel>()
-               .HasKey(i => i.Id_Rek);
-
-            modelBuilder.Entity<RekordModel>()
-               .HasOne(r => r.Doktori)
-               .WithMany()
-               .HasForeignKey(r => r.DoctorId);
-
-            modelBuilder.Entity<RekordModel>()
-            .HasOne(r => r.Pacienti)
-            .WithMany()
-            .HasForeignKey(r => r.Id_P);
         }
     }
 }
