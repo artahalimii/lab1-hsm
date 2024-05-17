@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\database\\hospitaldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\database\\hospitaldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\migrations\\20240420120842_initial_recep.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\20240420120842_initial_recep.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\models\\rekordmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\rekordmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\doktorimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\migrations\\hospitaldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\pacientimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\sara\\desktop\\lab1\\lab1-hsm\\server\\hsm-lab1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,32 +54,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "20240420120842_initial_recep.cs",
+              "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Migrations\\20240420120842_initial_recep.cs",
+              "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\20240420120842_initial_recep.cs",
+              "ToolTip": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Migrations\\20240420120842_initial_recep.cs",
+              "RelativeToolTip": "hsm-lab1\\Migrations\\20240420120842_initial_recep.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T13:17:28.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "HospitalDbContext.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Database\\HospitalDbContext.cs",
               "ToolTip": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Database\\HospitalDbContext.cs",
               "RelativeToolTip": "hsm-lab1\\Database\\HospitalDbContext.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAuwB8AAAAlAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAmwDUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T17:09:52.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "RekordModelsController.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Controllers\\RekordModelsController.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\RekordModelsController.cs",
               "ToolTip": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Controllers\\RekordModelsController.cs",
               "RelativeToolTip": "hsm-lab1\\Controllers\\RekordModelsController.cs",
-              "ViewState": "AQIAAHEAAAAAAAAAAAAAAK4AAAAAAAAA",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAowK4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T17:27:44.133Z"
+              "WhenOpened": "2024-05-16T17:27:44.133Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "DoktoriModel.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Models\\DoktoriModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\DoktoriModel.cs",
@@ -87,19 +105,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RekordModel.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Models\\RekordModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\RekordModel.cs",
               "ToolTip": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Models\\RekordModel.cs",
               "RelativeToolTip": "hsm-lab1\\Models\\RekordModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T16:52:50.111Z"
+              "WhenOpened": "2024-05-16T16:52:50.111Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "PacientiModel.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Models\\PacientiModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\PacientiModel.cs",
@@ -111,19 +130,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "HospitalDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
               "ToolTip": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
               "RelativeToolTip": "hsm-lab1\\Migrations\\HospitalDbContextModelSnapshot.cs",
-              "ViewState": "AQIAALIBAAAAAAAAAAAAAL0BAAARAAAA",
+              "ViewState": "AQIAALEBAAAAAAAAAAAuwNIBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T17:34:00.568Z"
+              "WhenOpened": "2024-05-16T17:34:00.568Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\appsettings.json",
               "RelativeDocumentMoniker": "hsm-lab1\\appsettings.json",
@@ -135,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "DoktoriModelsController.cs",
               "DocumentMoniker": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\server\\hsm-lab1\\Controllers\\DoktoriModelsController.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\DoktoriModelsController.cs",
