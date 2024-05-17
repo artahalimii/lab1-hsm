@@ -11,8 +11,7 @@ import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-
+// import 'react-datepicker/dist/react-datepicker.css';import React, { useState } from 'react';
 
 const InfCrud = () => {
   const [data, setData] = useState([]);
@@ -238,7 +237,18 @@ const InfCrud = () => {
                                 <input type='date' className="form-control mt-3" value={date} onChange={(e) => setDate(e.target.value)} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter numriTel" value={numriTel} onChange={(e) => setnumriTel(e.target.value)} />
-                                <input type='text' className="form-control mt-3" placeholder="Enter Gjinia" value={gjinia} onChange={(e) => setGjinia(e.target.value)} />
+                                <br/><select
+                                id="gjiniaSelect"
+                                className="form-control"
+                                value={gjinia}
+                                onChange={(e) => setGjinia(e.target.value)}
+                                >
+                                <option value="" disabled>
+                                    Enter Gjinia
+                                </option>
+                                <option value="femer">Femer</option>
+                                <option value="mashkull">Mashkull</option>
+                                </select>
                                 <input type='text' className="form-control mt-3" placeholder="Enter Departamenti" value={departamenti} onChange={(e) => setDepartamenti(e.target.value)} />
                                 <input type='number' className="form-control mt-3" placeholder="Enter Vitet Pune" value={vitetPune} onChange={(e) => setvitetPune(parseInt(e.target.value))} />
                                 <input type='text' className="form-control mt-3" placeholder="Enter Foto url" value={foto} onChange={(e) => setFoto(e.target.value)} />
@@ -316,8 +326,18 @@ const InfCrud = () => {
                                                                         <input type='text' className="form-control" placeholder="Enter numriTel" value={editnumriTel} onChange={(e) => setEditnumriTel(e.target.value)} />
                                                             </Col><br />
 
-                                                            <Col>
-                                                                        <input type='text' className="form-control" placeholder="Enter Gjinia" value={editGjinia} onChange={(e) => setEditGjinia(e.target.value)} />
+                                                             <Col> <select
+                                                                            id="gjiniaSelect"
+                                                                            className="form-control"
+                                                                            value={editGjinia}
+                                                                            onChange={(e) => setEditGjinia(e.target.value)}
+                                                                            >
+                                                                            <option value="" disabled>
+                                                                                Enter Gjinia
+                                                                            </option>
+                                                                            <option value="femer">Femer</option>
+                                                                            <option value="mashkull">Mashkull</option>
+                                                                            </select>
                                                             </Col><br />
                                                             <Col>
                                                                         <input type='text' className="form-control" placeholder="Enter Departamenti" value={editDepartamenti} onChange={(e) => setEditDepartamenti(e.target.value)} />

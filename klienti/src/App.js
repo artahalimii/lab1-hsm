@@ -40,7 +40,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CRUD from './CRUD';
-import InfCrud  from './InfCrud '; // Make sure this import is correct
+import InfCrud  from './InfCrud ';
+import RekCrud from './RekCrud'; // Make sure this import is correct
 import Header from './Header'; // Make sure this import is correct
 // import RegisterForm from './LoginForm';
 // import LoginForm from './LoginForm';
@@ -53,7 +54,8 @@ function App() {
         <Route path="/Doki" element={<CRUD />} />
         <Route path="/InfCrud" element={<InfCrud />} /> {/* Make sure this path is correct */}
         {/* <Route path="/Header" element={<Header />} /> */}
-        
+        <Route path="/RekCrud" element={<RekCrud />} />
+
       </Routes>
     </Router>
   );
