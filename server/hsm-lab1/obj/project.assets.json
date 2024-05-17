@@ -12349,11 +12349,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "projectUniqueName": "C:\\Users\\sara\\Desktop\\projekti\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
       "projectName": "hsm-lab1",
-      "projectPath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+      "projectPath": "C:\\Users\\sara\\Desktop\\projekti\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
       "packagesPath": "C:\\Users\\sara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\obj\\",
+      "outputPath": "C:\\Users\\sara\\Desktop\\projekti\\lab1-hsm\\server\\hsm-lab1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sara\\AppData\\Roaming\\NuGet\\NuGet.Config",

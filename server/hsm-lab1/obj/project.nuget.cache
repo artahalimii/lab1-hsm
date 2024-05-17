@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yd5WoN/n1qe9sUNHwwz/PDDtJ45cer6dbDHhw3pIMShMP/cbgTH5biva/6h5rjY3WhJ/pDE8KfqogoN9ICiKpQ==",
+  "dgSpecHash": "siunwMbQlPHEwQiP6FoHKcJRbYeO6foiHeaqNBBdlhxO5aXiG9ZW6HIzxXyS+BttLCXT7Ew4+1fqqZ8OR62D1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sara\\Desktop\\Lab1\\lab1-hsm\\lab1-hsm\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
+  "projectFilePath": "C:\\Users\\sara\\Desktop\\projekti\\lab1-hsm\\server\\hsm-lab1\\hsm-lab1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sara\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\sara\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
