@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace hsm_lab1.Database
 {
-   public class HospitalDbContext : IdentityDbContext<IdentityUser>
+    public class HospitalDbContext : IdentityDbContext<IdentityUser>
     {
         public HospitalDbContext(DbContextOptions<HospitalDbContext> options)
             : base(options)
@@ -18,11 +18,12 @@ namespace hsm_lab1.Database
         public DbSet<DoktoriModel> Doktori { get; set; }
 
         public DbSet<InfermjeriModel> Infermjeri { get; set; }
-         public DbSet<PacientiModel> Pacienti { get; set; }
+        public DbSet<PacientiModel> Pacienti { get; set; }
 
 
-        public DbSet<RecepsionistiModel> Recepsionisti{ get; set; }
+        public DbSet<RecepsionistiModel> Recepsionisti { get; set; }
 
+        public DbSet<RekordModel> Rekord { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -35,6 +36,18 @@ namespace hsm_lab1.Database
             modelBuilder.Entity<RecepsionistiModel>()
                .HasKey(i => i.Id_r);
 
+            modelBuilder.Entity<RekordModel>()
+               .HasKey(i => i.Id_Rek);
+
+            modelBuilder.Entity<RekordModel>()
+               .HasOne(r => r.Doktori)
+               .WithMany()
+               .HasForeignKey(r => r.DoctorId);
+
+            modelBuilder.Entity<RekordModel>()
+            .HasOne(r => r.Pacienti)
+            .WithMany()
+            .HasForeignKey(r => r.Id_P);
         }
     }
 }
