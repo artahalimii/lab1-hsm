@@ -42,7 +42,7 @@ const Header = () => {
           <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
           <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
           <li className="navbar__item"><a href="/" className="navbar__link">Recepsionisti</a></li>
-          <li className="navbar__item"><a href="/" className="navbar__link">Pacienti</a></li>
+          <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
           <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi
           </a></li>
         </ul>

@@ -41,6 +41,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CRUD from './CRUD';
 import InfCrud  from './InfCrud ';
+import PacCrud from './PacCrud'; // Ensure this path is correct
+
 import RekCrud from './RekCrud'; // Make sure this import is correct
 import Header from './Header'; // Make sure this import is correct
 // import RegisterForm from './LoginForm';
@@ -55,6 +57,7 @@ function App() {
         <Route path="/InfCrud" element={<InfCrud />} /> {/* Make sure this path is correct */}
         {/* <Route path="/Header" element={<Header />} /> */}
         <Route path="/RekCrud" element={<RekCrud />} />
+        <Route path="/PacCrud" element={<PacCrud />} />
 
       </Routes>
     </Router>
