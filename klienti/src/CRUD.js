@@ -171,7 +171,7 @@ const CRUD = () => {
     };
     axios.post(url, data)
       .then((result) => {
-        handleClose();
+        handleCloseSub();
         getData();
         clear();
         toast.success('Doctor added successfully!');

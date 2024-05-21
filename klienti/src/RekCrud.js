@@ -166,7 +166,7 @@ const RekCrud = () => {
     };
     axios.post(url, data)
       .then((result) => {
-        handleClose();
+        handleCloseSub();
         getData();
         clear();
         toast.success('Rekord added successfully!');

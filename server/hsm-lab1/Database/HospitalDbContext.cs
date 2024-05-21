@@ -48,6 +48,22 @@ namespace hsm_lab1.Database
             .HasOne(r => r.Pacienti)
             .WithMany()
             .HasForeignKey(r => r.Id_P);
+
+            modelBuilder.Entity<ReservationModel>()
+               .HasKey(i => i.ReservationId);
+
+            modelBuilder.Entity<ReservationModel>()
+            .HasOne(r => r.DoctorNavigation)
+            .WithMany()
+            .HasForeignKey(r => r.Doctor)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ReservationModel>()
+                .HasOne(r => r.PatientNavigation)
+                .WithMany()
+                .HasForeignKey(r => r.Patient)
+                .OnDelete(DeleteBehavior.Restrict);
         }
+        public DbSet<hsm_lab1.Models.ReservationModel>? ReservationModel { get; set; }
     }
 }

@@ -28,6 +28,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using hsm_lab1.Database;
 using Microsoft.EntityFrameworkCore;
+using hsm_lab1.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,8 @@ app.UseCors(builder => {
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();
 
