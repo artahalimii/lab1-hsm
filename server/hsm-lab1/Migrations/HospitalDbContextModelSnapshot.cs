@@ -248,7 +248,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doktori");
+                    b.ToTable("Doktori", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.InfermjeriModel", b =>
@@ -288,7 +288,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_i");
 
-                    b.ToTable("Infermjeri");
+                    b.ToTable("Infermjeri", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.PacientiModel", b =>
@@ -319,7 +319,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_P");
 
-                    b.ToTable("Pacienti");
+                    b.ToTable("Pacienti", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.RecepsionistiModel", b =>
@@ -353,7 +353,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasKey("Id_r");
 
-                    b.ToTable("Recepsionisti");
+                    b.ToTable("Recepsionisti", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.RekordModel", b =>
@@ -385,7 +385,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasIndex("Id_P");
 
-                    b.ToTable("Rekord");
+                    b.ToTable("Rekord", (string)null);
                 });
 
             modelBuilder.Entity("hsm_lab1.Models.ReservationModel", b =>
@@ -419,7 +419,7 @@ namespace hsm_lab1.Migrations
 
                     b.HasIndex("Patient");
 
-                    b.ToTable("ReservationModel");
+                    b.ToTable("ReservationModel", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

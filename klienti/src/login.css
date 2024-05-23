@@ -1,0 +1,96 @@
+.loginForm {
+            margin: -9% 0 0 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+          }
+          
+          .login-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 10px 8px 25px rgba(0, 0, 0, 0.7);
+            position: relative;
+            margin-top: 6rem;
+          }
+          
+          .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 105%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            transform: skewX(-39.5deg);
+            transform-origin: bottom left;
+            border-radius: 10px;
+            pointer-events: none;
+          }
+          
+          .card-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c899f;
+            margin-bottom: 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+          }
+          
+          .login-user-a,
+          .login-user-b {
+            width: 100%;
+            margin-bottom: 2px;
+          }
+          
+          .login-user-b {
+            margin-top: -2.5rem;
+          }
+          
+          .login-user-a input,
+          .login-user-b input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 2px solid #1c899f;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f8f8f8;
+            transition: border-color 0.3s, background-color 0.3s;
+          }
+          
+          .login-user-a input:focus,
+          .login-user-b input:focus {
+            border-color: #1c899f;
+            background-color: #fff;
+          }
+          
+          .button {
+            background-color: #1c899f;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+          }
+          
+          .button:hover {
+            background-color: #25b3cf;
+          }
+          
+          /* Add media query for responsiveness */
+          @media (max-width: 768px) {
+            .login-page {
+              margin: 1rem;
+            }
+          }
+          

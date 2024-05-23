@@ -253,6 +253,7 @@ const ReservationCrud = () => {
                 <ListGroup.Item>{selectedPaci.dataELindjes}</ListGroup.Item><br />
                 <ListGroup.Item>{selectedPaci.gjinia}</ListGroup.Item><br />
                 <ListGroup.Item>{selectedPaci.numriTel}</ListGroup.Item><br />
+                <ListGroup.Item>{selectedPaci.ankesa}</ListGroup.Item><br />
               </ListGroup>
             )}
           </Modal.Body>

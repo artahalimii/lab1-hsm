@@ -316,19 +316,19 @@ const PacCrud = () => {
           <Col>
             <input type='int' className="form-control" placeholder="Enter NumriTel" value={editNumriTel} onChange={(e) => setEditNumriTel(parseInt(e.target.value))} />
           </Col><br />
-          <Col><select
-                                id="gjiniaSelect"
-                                className="form-control"
-                                value={gjinia}
-                                onChange={(e) => setGjinia(e.target.value)}
-                                >
-                                <option value="" disabled>
-                                    Enter Gjinia
-                                </option>
-                                <option value="femer">Femer</option>
-                                <option value="mashkull">Mashkull</option>
-                                </select>
-          </Col>
+          <Col> <select
+                        id="gjiniaSelect"
+                        className="form-control"
+                        value={editGjinia}
+                        onChange={(e) => setEditGjinia(e.target.value)}
+                    >
+                        <option value="" disabled>
+                            Enter Gjinia
+                        </option>
+                        <option value="femer">Femer</option>
+                        <option value="mashkull">Mashkull</option>
+                    </select>
+                    </Col><br />
           <Col>
             <input type='text' className="form-control" placeholder="Enter Ankesa" value={editAnkesa} onChange={(e) => setEditAnkesa(e.target.value)} />
           </Col><br />

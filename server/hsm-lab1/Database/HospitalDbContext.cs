@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace hsm_lab1.Database
 {
-    public class HospitalDbContext : IdentityDbContext<IdentityUser>
+    public class HospitalDbContext : IdentityDbContext<User>
     {
+
         public HospitalDbContext(DbContextOptions<HospitalDbContext> options)
             : base(options)
         {

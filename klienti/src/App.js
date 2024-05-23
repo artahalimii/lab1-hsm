@@ -45,8 +45,9 @@ import PacCrud from './PacCrud'; // Ensure this path is correct
 import ReservationCrud from './ReservationCrud';
 import RekCrud from './RekCrud'; // Make sure this import is correct
 import Header from './Header'; // Make sure this import is correct
-// import RegisterForm from './LoginForm';
-// import LoginForm from './LoginForm';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+
 
 function App() {
   return (
@@ -59,7 +60,9 @@ function App() {
         <Route path="/RekCrud" element={<RekCrud />} />
         <Route path="/PacCrud" element={<PacCrud />} />
         <Route path="/ReservationCrud" element={<ReservationCrud />} />
-
+        <Route path="/LoginForm" element={<LoginForm />} />
+        <Route path="/RegisterForm" element={<RegisterForm />} />
+      
       </Routes>
     </Router>
   );
