@@ -1,77 +1,51 @@
-/*import CRUD from './CRUD';
-import InfCrud  from './InfCrud ';
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-
-function App(){
-  return(
-<div>
- <CRUD/>
-<InfCrud />
-</div>
-
-  );
-}
-
-export default App;*/
-/*import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CRUD from './CRUD';
-import InfCrud  from './InfCrud ';
-import Header  from './Header'; // Make sure this import is correct
+// import InfCrud from './InfCrud';
+import PacCrud from './PacCrud';
+import ReservationCrud from './ReservationCrud';
+import RekCrud from './RekCrud';
+import Header from './Header';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import Home from './Home';
 
 function App() {
+  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud'];
+
+  const shouldShowHeader = (location) => {
+    return CRUDPaths.includes(location.pathname);
+  };
+
   return (
     <Router>
-      <Routes>
-        <Route path="/Doktori" element={<CRUD />} />
-        <Route path="/InfCrud" element={<InfCrud />} />
-        <Route path="/Header" element={<Header />} />
-      </Routes>
+      <RouteRender />
     </Router>
   );
 }
 
-export default App;*/
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CRUD from './CRUD';
-import InfCrud  from './InfCrud ';
-import PacCrud from './PacCrud'; // Ensure this path is correct
-import ReservationCrud from './ReservationCrud';
-import RekCrud from './RekCrud'; // Make sure this import is correct
-import Header from './Header'; // Make sure this import is correct
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+function RouteRender() {
+  const location = useLocation();
+  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud'];
 
+  const shouldShowHeader = CRUDPaths.includes(location.pathname);
 
-function App() {
   return (
-    <Router>
-      <Header />
+    <>
+      {shouldShowHeader && <Header />}
       <Routes>
         <Route path="/Doki" element={<CRUD />} />
-        <Route path="/InfCrud" element={<InfCrud />} /> {/* Make sure this path is correct */}
-        {/* <Route path="/Header" element={<Header />} /> */}
+        {/* <Route path="/InfCrud" element={<InfCrud />} />  */}
         <Route path="/RekCrud" element={<RekCrud />} />
         <Route path="/PacCrud" element={<PacCrud />} />
         <Route path="/ReservationCrud" element={<ReservationCrud />} />
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
-      
+        <Route path="/Home" element={<Home />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
 export default App;
-
-
-
-
-
-

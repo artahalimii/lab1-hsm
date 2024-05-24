@@ -216,7 +216,7 @@ const InfCrud = () => {
 
     return (
         <Fragment>
-            <h1 style={{ textAlign: 'center' }}>Infermieri</h1>
+            <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Infermieri</h1>
             <ToastContainer />
             <Container className="mt-5">
                 <Row>

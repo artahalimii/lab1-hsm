@@ -79,12 +79,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller}/{action=Index}/{id?}"
-    ).RequireAuthorization(new AuthorizeAttribute { Roles = "Doktori, Admin" });
-});
-
+//app.UseEndpoints(endpoints =>
+//{
+   // endpoints.MapControllerRoute(
+     //   name: "default",
+    //    pattern: "{controller}/{action=Index}/{id?}"
+    //).RequireAuthorization(new AuthorizeAttribute { Roles = "Doktori, Admin" });
+//}); 
+//
 app.Run();

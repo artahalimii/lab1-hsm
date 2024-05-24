@@ -179,7 +179,7 @@ const ReservationCrud = () => {
 
   return (
     <Fragment>
-      <h1 style={{ textAlign: 'center' }}>Reservations</h1>
+      <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Reservations</h1>
       <ToastContainer />
       <Container className="mt-5">
         <Row className="text-center">

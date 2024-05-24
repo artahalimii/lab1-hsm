@@ -1,0 +1,23 @@
+.linksFooter:hover{
+    color:red;  
+}
+i:hover{
+    color:red;
+}
+i{
+    font-size:20px;
+}
+.originalPathFooter:hover{
+    color:red;
+}
+.row{
+    margin:0 auto;
+    padding-left:50px;
+}
+.mb-1{
+    margin-right: 2.5rem;
+
+}
+.list-unstyled {
+    margin-right: 2rem;
+}

@@ -202,7 +202,7 @@ const CRUD = () => {
   return (
     
    <Fragment>
-      <h1 style={{ textAlign: 'center' }}>Doktori</h1>
+      <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)'}}>Doktori</h1>
       <ToastContainer />
       <Container className="mt-5">
         <Row className="text-center">
