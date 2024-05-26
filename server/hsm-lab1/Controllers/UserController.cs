@@ -3,7 +3,7 @@ using hsm_lab1.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
-using hsm_lab1.Models;
+
 
 [ApiController]
 [Route("api/users")]

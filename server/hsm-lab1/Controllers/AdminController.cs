@@ -12,6 +12,6 @@ public class AdminController : ControllerBase
     public IActionResult GetAdminData()
     {
         // Implementation for admin data
-        return Ok("User");
+        return Ok("ADmin");
     }
 }

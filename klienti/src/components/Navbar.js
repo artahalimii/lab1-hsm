@@ -4,6 +4,7 @@ import {
   faCommentDots,
   faBars,
   faXmark,
+  faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
 import "../components/Navbar.css";
 import { Link } from "react-router-dom";
@@ -17,15 +18,7 @@ function Navbar() {
     setNav(!nav);
   };
 
-  const handleChatBtnClick = () => {
-    if (!isButtonDisabled) {
-      toast.info("Experiencing high traffic, Please wait a moment.", {
-        position: toast.POSITION.TOP_CENTER,
-        onOpen: () => setIsButtonDisabled(true),
-        onClose: () => setIsButtonDisabled(false),
-      });
-    }
-  };
+  
 
   return (
     <div className="navbar-section">
@@ -58,8 +51,8 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <a href="#doctors" className="navbar-links">
-            Staff
+          <a href="/LoginForm" className="navbar-links sign-in-button">
+            <FontAwesomeIcon icon={faSignInAlt} /> SignIn
           </a>
         </li>
       </ul>
@@ -96,10 +89,10 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a onClick={openNav} href="#contact">
-              Contact
-            </a>
-          </li>
+          <a href="/LoginForm" className="navbar-links sign-in-button">
+            <FontAwesomeIcon icon={faSignInAlt} /> SignIn
+          </a>
+        </li>
         </ul>
       </div>
 

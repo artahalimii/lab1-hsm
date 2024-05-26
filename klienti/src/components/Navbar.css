@@ -96,6 +96,16 @@
 .open-nav {
     left: 0;
 }
+.sign-in-button {
+    background-color: #87b4bd;
+    color: #384e66;
+    padding: 5px 10px;
+    border-radius: 50px; /* Makes the button round */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adds space between icon and text */
+    text-decoration: none; /* Removes underline */
+  }
 .mobile-navbar-links {
     list-style-type: none;
     display: flex;

@@ -10,6 +10,8 @@ import axios from 'axios';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Navbar.css';
+
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';import React, { useState } from 'react';
 
@@ -21,7 +23,11 @@ const InfCrud = () => {
     const handleShow = () => setShow(true);
     const handleShowSub = () => setShowSub(true);
     const handleCloseSub = () => setShowSub(false);
+    const [expanded, setExpanded] = useState(false);
 
+    const handleHover = () => {
+      setExpanded(!expanded);
+    }
 
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
@@ -215,7 +221,28 @@ const InfCrud = () => {
 
 
     return (
+        
         <Fragment>
+            <nav className="navbar">
+      <div className="container">
+      {/* <h1 className="navbar__logo" onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          {expanded ? "Hospital Management System" : "HMS"}
+        </h1> */}
+        <h1 className="navbar__logo" onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhYYuts7OIowNO0D3K3WVNx9S36WxX664As8fCDTQeXg&s" alt="Logo" className="logo-image" />
+          {expanded ? "ospital Management System" : ""}
+        </h1>
+        <ul className="navbar__list">
+          <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
+          <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
+          <li className="navbar__item"><a href="/ReservationCrud" className="navbar__link">Rezervimet</a></li>
+          <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
+          <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi
+          </a></li>
+        </ul>
+      </div>
+    </nav>
+            
             <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Infermieri</h1>
             <ToastContainer />
             <Container className="mt-5">

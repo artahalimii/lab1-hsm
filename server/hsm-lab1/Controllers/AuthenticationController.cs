@@ -32,7 +32,7 @@ public class AuthenticationController : ControllerBase
 
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var token = GenerateJwtToken(user);
+                var token = GenerateJwtToken(user, Get_configuration());
                 return Ok(new { Token = token, Role = user.UserRole });
             }
             return Unauthorized("Invalid login attempt.");
@@ -58,7 +58,12 @@ public class AuthenticationController : ControllerBase
         return BadRequest(new { Errors = result.Errors.Select(e => e.Description) });
     }
 
-    private string GenerateJwtToken(User user)
+    private IConfiguration Get_configuration()
+    {
+        return _configuration;
+    }
+
+    private string GenerateJwtToken(User user, IConfiguration _configuration)
     {
         var claims = new[]
         {

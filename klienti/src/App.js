@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CRUD from './CRUD';
-// import InfCrud from './InfCrud';
+import InfCrud  from './InfCrud ';
 import PacCrud from './PacCrud';
 import ReservationCrud from './ReservationCrud';
 import RekCrud from './RekCrud';
@@ -36,7 +36,7 @@ function RouteRender() {
       {shouldShowHeader && <Header />}
       <Routes>
         <Route path="/Doki" element={<CRUD />} />
-        {/* <Route path="/InfCrud" element={<InfCrud />} />  */}
+        <Route path="/InfCrud" element={<InfCrud />} />
         <Route path="/RekCrud" element={<RekCrud />} />
         <Route path="/PacCrud" element={<PacCrud />} />
         <Route path="/ReservationCrud" element={<ReservationCrud />} />
