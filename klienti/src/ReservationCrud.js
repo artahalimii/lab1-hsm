@@ -10,6 +10,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ListGroup from 'react-bootstrap/ListGroup';
+import ReservationModal from './ReservationModal';
 
 const ReservationCrud = () => {
   const [data, setData] = useState([]);
@@ -23,6 +24,23 @@ const ReservationCrud = () => {
   const [selectedPaci, setSelectedPaci] = useState(null);
   const [showDoki, setShowDoki] = useState(false);
   const [selectedDoki, setSelectedDoki] = useState(null);
+  const handleSubmitReservation = (reservationData) => {
+    // Example endpoint URL where you want to send the reservation data
+    const url = 'http://localhost:5038/api/ReservationModels';
+
+    // Make a POST request to the backend API to save the reservation data
+    axios.post(url, reservationData)
+        .then((response) => {
+            // Handle the response if needed
+            console.log('Reservation data saved successfully:', response.data);
+        })
+        .catch((error) => {
+            // Handle errors if the request fails
+            console.error('Error saving reservation data:', error);
+        });
+};
+
+
 
   const handleShowPaci = (pacienti) => {
     setSelectedPaci(pacienti);

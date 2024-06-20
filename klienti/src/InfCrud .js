@@ -11,12 +11,14 @@ import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Navbar.css';
+import { getAuthHeader, decodeToken } from './authService';
 
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';import React, { useState } from 'react';
 
 const InfCrud = () => {
     const [data, setData] = useState([]);
+    const [error, setError] = useState('');
     const [show, setShow] = useState(false);
     const [showSub, setShowSub] = useState(false);
     const handleClose = () => setShow(false);
@@ -56,16 +58,30 @@ const InfCrud = () => {
     }, []);
 
 
-    const getData = () => {
-        axios.get('http://localhost:5038/api/InfermjeriModels')
-            .then((result) => {
-                setData(result.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
+    const getData = async () => {
+        const token = localStorage.getItem('token');
+        const decoded = decodeToken(token);
+    
+        if (!decoded) {
+          setError('Token has expired or is invalid');
+          return;
+        }
+    
+        try {
+          const response = await axios.get('http://localhost:5038/api/InfermjeriModels', {
+            headers: getAuthHeader(),
+          });
+          setData(response.data);
+        } catch (error) {
+          setError('Failed to fetch data');
+          console.error('Error fetching data:', error);
+        }
+      };
+    
+      useEffect(() => {
+        getData();
+      }, []);
+    
 
     // Basic email validation using regex
     const isValidEmail = (email) => {

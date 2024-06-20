@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using hsm_lab1.Database;
 using hsm_lab1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class RekordModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;

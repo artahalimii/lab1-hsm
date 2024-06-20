@@ -1,4 +1,6 @@
-﻿namespace hsm_lab1.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace hsm_lab1.Models
 {
     public class PacientiModel
     {
@@ -9,6 +11,9 @@
         public int? NumriTel { get; set; }
         public string? Gjinia { get; set; }
         public string? Ankesa { get; set; }
-
+        [ForeignKey("UserId")]
+        public String? UserId { get; set; }
+        
+        public User User { get; set; }
     }
 }

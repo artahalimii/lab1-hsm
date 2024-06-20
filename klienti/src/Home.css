@@ -302,6 +302,7 @@ span:hover {
   padding: 2rem 7%;
   width: 100%;
   background-color: var(--background);
+  
 }
 
 .service-heading h1 {
@@ -344,15 +345,16 @@ span:hover {
 }
 
 .main-inner-servicess {
-    color: var(--dark-color);
-    font-family: 'Phudu', cursive;
-    text-align: center;
-    padding: 40px 25px;
-    border-radius: 50px;
-    border: 6px solid var(--dark-color);
-    position: relative;
-    z-index: 1;
-    background: var(--background);
+  color: var(--dark-color);
+  font-family: 'Phudu', cursive;
+  text-align: center;
+  padding: 40px 25px;
+  border-radius: 50px;
+  border: 6px solid var(--dark-color);
+  position: relative;
+  z-index: 1;
+  background: var(--background);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
 }
 
 .main-inner-servicess:before,

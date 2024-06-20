@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCommentDots,
-  faBars,
-  faXmark,
-  faSignInAlt
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark, faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "../components/Navbar.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // State to track login status
 
   const openNav = () => {
     setNav(!nav);
   };
 
+  const handleLogout = () => {
+    // Perform logout actions here
+    // Clear any user session data, such as tokens or user information stored in local storage
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    
+    // Set login status to false
+    setIsLoggedIn(false);
   
+    // Optionally, you can show a toast message or perform any other action after logout
+    toast.success('Logged out successfully');
+  };
 
   return (
     <div className="navbar-section">
@@ -51,11 +57,18 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <a href="/LoginForm" className="navbar-links sign-in-button">
-            <FontAwesomeIcon icon={faSignInAlt} /> SignIn
-          </a>
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="navbar-links sign-in-button">
+              <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
+            </button>
+          ) : (
+            <Link to="/LoginForm" className="navbar-links sign-in-button">
+              <FontAwesomeIcon icon={faSignInAlt} /> Sign In
+            </Link>
+          )}
         </li>
       </ul>
+      
       {/* Mobile */}
       <div className={`mobile-navbar ${nav ? "open-nav" : ""}`}>
         <div onClick={openNav} className="mobile-navbar-close">
@@ -84,15 +97,16 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a onClick={openNav} href="#doctors">
-              Doctors
-            </a>
+            {isLoggedIn ? (
+              <button onClick={handleLogout} className="navbar-links sign-in-button">
+                <FontAwesomeIcon icon={faSignOutAlt} /> Log Out
+              </button>
+            ) : (
+              <Link onClick={openNav} to="/LoginForm" className="navbar-links sign-in-button">
+                <FontAwesomeIcon icon={faSignInAlt} /> Sign In
+              </Link>
+            )}
           </li>
-          <li>
-          <a href="/LoginForm" className="navbar-links sign-in-button">
-            <FontAwesomeIcon icon={faSignInAlt} /> SignIn
-          </a>
-        </li>
         </ul>
       </div>
 

@@ -5,12 +5,29 @@ import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
 import Navbar from './/components/Navbar';
 import Banner from './/components/Banner';
+import ReservationModal from './ReservationModal';
 
 import Button from 'react-bootstrap/Button';
 const Home = () => {
 
     const [fullImgSrc, setFullImgSrc] = useState(null);
+    const [showReservationModal, setShowReservationModal] = useState(false);
 
+    const handleReservationSubmit = (reservationData) => {
+        // Submit reservation data to the backend
+        console.log('Submitting reservation:', reservationData);
+        // Close the modal after submission
+        setShowReservationModal(false);
+    };
+    const handleLogout = () => {
+        // Clear any user session data, such as tokens or user information stored in local storage
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        
+        // Optionally, redirect the user to the login page or perform any other necessary actions after logout
+        // For example, you can use window.location.href to redirect the user to the login page
+        window.location.href = '/LoginForm';
+    };
     function openFullImg(src) {
         setFullImgSrc(src);
     }
@@ -25,6 +42,7 @@ const Home = () => {
             <Banner />
             <div className='home-container'>
                 <video src="videoHome.mp4" autoPlay loop muted />
+                
                 <h1><span>Hospital-SM</span></h1>
                 <p><strong>Welcome to our Hospital, where your health is our priority !</strong></p>
 
@@ -75,11 +93,15 @@ const Home = () => {
                         <div className='button-1'><strong>Patient Registration</strong></div>
                     </div>
                 </Link>
-                <Link to="/Reservation" style={{ textDecoration: "none" }}>
-                    <div className='container-button'>
-                        <div className='button-1'><strong>Choose an appointment</strong></div>
-                    </div>
-                </Link>
+                <div>
+            {/* Your existing content */}
+            <button onClick={() => setShowReservationModal(true)}>Make a Reservation</button>
+
+            {/* Reservation Modal */}
+            {showReservationModal && (
+                <ReservationModal onClose={() => setShowReservationModal(false)} onSubmit={handleReservationSubmit} />
+            )}
+        </div>
                 <Link to="/Contact" style={{ textDecoration: "none" }}>
                     <div className='container-button'>
                         <div className='button-1'><strong>Contact</strong></div>

@@ -10,6 +10,8 @@ import Header from './Header';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Home from './Home';
+ import AdminPanel from './AdminPanel';
+
 
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud'];
@@ -43,6 +45,8 @@ function RouteRender() {
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Home" element={<Home />} />
+         <Route path="/AdminPanel" element={<AdminPanel />} /> 
+        
       </Routes>
     </>
   );

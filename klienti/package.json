@@ -8,9 +8,14 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.8",
+    "assert": "^2.1.0",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "browserify-zlib": "^0.2.0",
+    "formik": "^2.4.6",
+    "https-browserify": "^1.0.0",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "mdb-react-ui-kit": "^8.0.0",
     "mdbreact": "^5.2.0",
     "npm": "^10.8.0",
@@ -19,11 +24,16 @@
     "react-datepicker": "^6.9.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.23.0",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.5",
     "read-more-react": "^1.0.10",
-    "web-vitals": "^2.1.4"
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.3",
+    "util": "^0.12.5",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,5 +58,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
+  
 }

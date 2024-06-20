@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 public class Program
 {
     public static async Task Main(string[] args)
@@ -26,11 +27,44 @@ public class Program
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDBConnection"));
         });
+        
 
         builder.Services.AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<HospitalDbContext>()
+            .AddSignInManager()
+            .AddRoles<IdentityRole>()
             .AddDefaultTokenProviders();
 
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+
+            };
+        });
+
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            {
+                Description = "Standard authorization header using Bearer scheme (\"bearer {token}\")",
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey
+            });
+            options.OperationFilter<SecurityRequirementsOperationFilter>();
+        });
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowSpecificOrigin",
@@ -41,22 +75,10 @@ public class Program
                     .AllowCredentials());
         });
 
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                    ValidAudience = builder.Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-                };
-            });
-
         var app = builder.Build();
+        
+
+        
 
         // Create roles
         using (var scope = app.Services.CreateScope())
@@ -74,11 +96,12 @@ public class Program
 
         app.UseHttpsRedirection();
 
-        // Apply CORS middleware
         app.UseCors("AllowSpecificOrigin");
 
         app.UseAuthentication();
         app.UseAuthorization();
+        // Apply CORS middleware
+        
 
         app.MapControllers();
 

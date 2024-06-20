@@ -11,6 +11,7 @@
         public string? Gjinia { get; set; }
         public string? Departamenti { get; set; }
         public int? VitetPune { get; set; }
+        public string? UserId { get; set; }
         public string? PhotoFile { get; set; }
     }
 }
