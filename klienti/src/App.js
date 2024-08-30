@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import CRUD from './CRUD';
 import InfCrud  from './InfCrud ';
 import PacCrud from './PacCrud';
+import ServCrud from './ServCrud';
 import ReservationCrud from './ReservationCrud';
 import RekCrud from './RekCrud';
 import Header from './Header';
@@ -14,7 +15,7 @@ import Home from './Home';
 
 
 function App() {
-  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud'];
+  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 
   const shouldShowHeader = (location) => {
     return CRUDPaths.includes(location.pathname);
@@ -29,7 +30,7 @@ function App() {
 
 function RouteRender() {
   const location = useLocation();
-  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud'];
+  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 
   const shouldShowHeader = CRUDPaths.includes(location.pathname);
 
@@ -42,6 +43,7 @@ function RouteRender() {
         <Route path="/RekCrud" element={<RekCrud />} />
         <Route path="/PacCrud" element={<PacCrud />} />
         <Route path="/ReservationCrud" element={<ReservationCrud />} />
+        <Route path="/ServCrud" element={<ServCrud />} />
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Home" element={<Home />} />

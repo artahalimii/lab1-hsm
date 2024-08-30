@@ -17,6 +17,9 @@ namespace hsm_lab1.Database
         public DbSet<RecepsionistiModel> Recepsionisti { get; set; }
         public DbSet<RekordModel> Rekord { get; set; }
         public DbSet<ReservationModel> ReservationModel { get; set; }
+        public DbSet<SherbimiModel> Sherbimi { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +36,9 @@ namespace hsm_lab1.Database
 
             modelBuilder.Entity<RecepsionistiModel>()
                 .HasKey(i => i.Id_r);
+
+            modelBuilder.Entity<SherbimiModel>()
+              .HasKey(i => i.Id_S);
 
             modelBuilder.Entity<RekordModel>()
                 .HasKey(i => i.Id_Rek);

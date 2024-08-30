@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hsm_lab1.Database;
 
@@ -11,9 +12,11 @@ using hsm_lab1.Database;
 namespace hsm_lab1.Migrations
 {
     [DbContext(typeof(HospitalDbContext))]
-    partial class HospitalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240829214307_Sherbimi")]
+    partial class Sherbimi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,7 +368,28 @@ namespace hsm_lab1.Migrations
                     b.ToTable("ReservationModel");
                 });
 
-           
+            modelBuilder.Entity("hsm_lab1.Models.ServiceModel", b =>
+                {
+                    b.Property<int>("Id_S")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_S"));
+
+                    b.Property<string>("Emri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pershkrimi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Stafi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id_S");
+
+                    b.ToTable("Service");
+                });
+
             modelBuilder.Entity("hsm_lab1.Models.SherbimiModel", b =>
                 {
                     b.Property<int>("Id_S")

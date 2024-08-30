@@ -43,8 +43,8 @@ const Header = () => {
           <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
           <li className="navbar__item"><a href="/ReservationCrud" className="navbar__link">Rezervimet</a></li>
           <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
-          <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi
-          </a></li>
+          <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi</a></li>
+          <li className="navbar__item"><a href="/ServCrud" className="navbar__link">Sherbimet</a></li>
         </ul>
       </div>
     </nav>
