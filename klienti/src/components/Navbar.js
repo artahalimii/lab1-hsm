@@ -37,22 +37,22 @@ function Navbar() {
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="/" className="navbar-links">
+          <Link to="../Home" className="navbar-links">
             Home
           </Link>
         </li>
         <li>
-          <a href="#services" className="navbar-links">
-            Services
-          </a>
+        <Link to="../Services" className="navbar-links">
+        Services
+      </Link>
         </li>
         <li>
-          <a href="#about" className="navbar-links">
+          <a href=".#about" className="navbar-links">
             About
           </a>
         </li>
         <li>
-          <a href="#reviews" className="navbar-links">
+          <a href=".#reviews" className="navbar-links">
             Reviews
           </a>
         </li>
@@ -77,14 +77,15 @@ function Navbar() {
 
         <ul className="mobile-navbar-links">
           <li>
-            <Link onClick={openNav} to="/">
+            <Link onClick={openNav} to="../Home">
               Home
             </Link>
           </li>
           <li>
-            <a onClick={openNav} href="#services">
-              Services
-            </a>
+          <Link onClick={openNav} to="../Services">
+             Services
+          </Link>
+
           </li>
           <li>
             <a onClick={openNav} href="#about">

@@ -11,6 +11,7 @@ import Header from './Header';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Home from './Home';
+import Services from './Services';
  import AdminPanel from './AdminPanel';
 
 
@@ -47,6 +48,7 @@ function RouteRender() {
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="/Services" element={<Services />} />
          <Route path="/AdminPanel" element={<AdminPanel />} /> 
         
       </Routes>
