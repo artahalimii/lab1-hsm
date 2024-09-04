@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useMemo } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -8,14 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './App.css';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 
 const CRUD = () => {
   const [data, setData] = useState([]);
@@ -43,6 +37,10 @@ const CRUD = () => {
   const [editPervoja, setEditPervoja] = useState('');
   const [editFoto, setEditFoto] = useState('');
 
+  const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+  const config = {
+    headers: { Authorization: `Bearer ${token}` } // Include the token in the Authorization header
+  };
 
   useEffect(() => {
     getData();
@@ -50,21 +48,21 @@ const CRUD = () => {
 
   //---
   const getData = () => {
-    axios.get('http://localhost:5038/api/DoktoriModels')
+    axios.get('http://localhost:5038/api/DoktoriModels', config)
       .then((result) => {
-        setData(result.data)
+        setData(result.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
-
+        console.log(error);
+      });
+  };
 
   // Basic email validation using regex
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
   const isValidPervoja = (pervoja) => {
     if (pervoja === null) {
         return true;
@@ -75,7 +73,7 @@ const CRUD = () => {
 
   const handleEdit = (id) => {
     handleShow();
-    axios.get(`http://localhost:5038/api/DoktoriModels/${id}`)
+    axios.get(`http://localhost:5038/api/DoktoriModels/${id}`, config)
       .then((result) => {
         const { emri, dataELindjes, email, specializimi, pervoja, photoFileName } = result.data;
         setEditName(emri);
@@ -89,12 +87,11 @@ const CRUD = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
-
+  };
 
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this doctor?") == true) {
-      axios.delete(`http://localhost:5038/api/DoktoriModels/${id}`)
+    if (window.confirm("Are you sure you want to delete this doctor?") === true) {
+      axios.delete(`http://localhost:5038/api/DoktoriModels/${id}`, config)
         .then((result) => {
           if (result.status === 200) {
             toast.success('Doctor deleted successfully!');
@@ -106,11 +103,10 @@ const CRUD = () => {
           console.error('Error deleting doctor:', error);
         });
     }
-  }
-
+  };
 
   const handleUpdate = () => {
-    if (!editName || !editDate || !editEmail || !editSpecializimi || !editFoto) {//validimi
+    if (!editName || !editDate || !editEmail || !editSpecializimi || !editFoto) {
       toast.error('Please fill in all fields.');
       return;
     }
@@ -118,11 +114,11 @@ const CRUD = () => {
       toast.error('Please enter a valid email address.');
       return;
     }
-     if (!isValidPervoja(editPervoja)) {
+    if (!isValidPervoja(editPervoja)) {
       toast.error('Please enter a valid number.');
       return;
     }
-//validimi
+
     const url = `http://localhost:5038/api/DoktoriModels/${editId}`;
     const data = {
       "ID": editId,
@@ -133,7 +129,7 @@ const CRUD = () => {
       "Pervoja": editPervoja,
       "PhotoFileName": editFoto
     };
-    axios.put(url, data)
+    axios.put(url, data, config)
       .then((result) => {
         handleClose();
         getData();
@@ -141,12 +137,44 @@ const CRUD = () => {
         toast.success('Update u krye me sukses');
       })
       .catch((error) => {
-        // Handle error
-        console.error('Error adding doctor:', error);
+        console.error('Error updating doctor:', error);
       });
-  }
+  };
 
-
+  // const handleSave = () => {
+  //   if (!name || !date || !email || !specializimi || !foto) {
+  //     toast.error('Please fill in all fields.');
+  //     return;
+  //   }
+  //   if (!isValidEmail(email)) {
+  //     toast.error('Please enter a valid email address.');
+  //     return;
+  //   }
+  //   if (!isValidPervoja(pervoja)) {
+  //     toast.error('Please enter a valid number.');
+  //     return;
+  //   }
+  //   const url = "http://localhost:5038/api/DoktoriModels";
+  //   const data = {
+  //     "Emri": name,
+  //     "DataELindjes": date,
+  //     "Email": email,
+  //     "Specializimi": specializimi,
+  //     "Pervoja": pervoja,
+  //     "PhotoFileName": foto
+  //   };
+  //   axios.post(url, data, config)
+  //     .then((result) => {
+  //       handleCloseSub();
+  //       getData();
+  //       clear();
+  //       toast.success('Doctor added successfully!');
+  //     })
+  //     .catch((error) => {
+  //       toast.error('Error adding doctor');
+  //       console.error('Error adding doctor:', error);
+  //     });
+  // };
   const handleSave = () => {
     if (!name || !date || !email || !specializimi || !foto) {
       toast.error('Please fill in all fields.');
@@ -160,7 +188,7 @@ const CRUD = () => {
       toast.error('Please enter a valid number.');
       return;
     }
-    const url = "http://localhost:5038/api/DoktoriModels";
+
     const data = {
       "Emri": name,
       "DataELindjes": date,
@@ -169,7 +197,10 @@ const CRUD = () => {
       "Pervoja": pervoja,
       "PhotoFileName": foto
     };
-    axios.post(url, data)
+
+    console.log('Data being sent:', data); // Log data before sending
+
+    axios.post('http://localhost:5038/api/DoktoriModels', data, config)
       .then((result) => {
         handleCloseSub();
         getData();
@@ -177,10 +208,9 @@ const CRUD = () => {
         toast.success('Doctor added successfully!');
       })
       .catch((error) => {
-        toast.error('Error adding doctor');
-        console.error('Error adding doctor:', error);
-      });
-  };
+  console.error('Error updating doctor:', error.response?.data || error.message);
+});
+};
 
 
   const clear = () => {
@@ -196,12 +226,10 @@ const CRUD = () => {
     setEditSpecializimi('');
     setEditPervoja('');
     setEditFoto('');
-  }
-  
+  };
 
   return (
-    
-   <Fragment>
+    <Fragment>
       <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)'}}>Doktori</h1>
       <ToastContainer />
       <Container className="mt-5">
@@ -280,9 +308,6 @@ const CRUD = () => {
            <Col>
             <input type='date' className="form-control" value={editDate} onChange={(e) => setEditDate(e.target.value)} />
           </Col><br />
-          {/*  <Col >
-            <DatePicker selected={date} onChange={date => setEditDate(date)} className="form-control" />
-          </Col> */ }
           <Col>
             <input type='text' className="form-control" placeholder="Enter Email" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} />
           </Col><br />
@@ -309,6 +334,4 @@ const CRUD = () => {
   );
 };
 
-
 export default CRUD;
-

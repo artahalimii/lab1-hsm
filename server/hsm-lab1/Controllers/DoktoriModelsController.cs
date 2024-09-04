@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 [Route("api/[controller]")]
 [ApiController]
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "admin")]
 public class DoktoriModelsController : ControllerBase
 {
     private readonly HospitalDbContext _context;

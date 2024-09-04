@@ -18,9 +18,7 @@ namespace hsm_lab1.Controllers
     {
         private readonly HospitalDbContext _context;
 
-        public
-
-InfermjeriModelsController(HospitalDbContext context)
+        public InfermjeriModelsController(HospitalDbContext context)
         {
             _context = context;
         }

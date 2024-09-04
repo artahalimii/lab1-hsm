@@ -13,9 +13,9 @@ namespace hsm_lab1.Models
         public int? Pervoja { get; set; }
         public string? PhotoFileName { get; set; }
 
-        [ForeignKey("UserId")]
+       /* [ForeignKey("UserId")]
         public string? UserId { get; set; }
         
-        public User User { get; set; }
+        public User User { get; set; }*/
     }
 }

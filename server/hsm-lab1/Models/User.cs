@@ -8,7 +8,7 @@ namespace hsm_lab1.Models
     public class User : IdentityUser
     {
         public string UserRole { get; set; }
-        public string? RefreshToken { get; set; }
+        public string RefreshToken { get; set; } = string.Empty;
         public DateTime RefreshTokenExpiryTime { get; set; }
 
         /*InverseProperty("User")]*/
