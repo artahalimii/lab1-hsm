@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hsm_lab1.Models
@@ -13,9 +14,10 @@ namespace hsm_lab1.Models
         public int? Pervoja { get; set; }
         public string? PhotoFileName { get; set; }
 
-       /* [ForeignKey("UserId")]
         public string? UserId { get; set; }
-        
-        public User User { get; set; }*/
+
+        // Navigation property for IdentityUser
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }

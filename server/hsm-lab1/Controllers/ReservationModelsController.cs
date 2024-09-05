@@ -21,6 +21,7 @@ namespace hsm_lab1.Controllers
             _context = context;
         }
 
+
         // GET: api/ReservationModels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ReservationModel>>> GetReservations()
