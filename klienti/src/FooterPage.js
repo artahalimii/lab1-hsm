@@ -1,63 +1,58 @@
 import React from 'react';
-//  import  Footer  from 'mdbreact';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// // import 'mdbreact/dist/css/mdb.css';
-// import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faFax, faMapMarkerAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export class FooterPage extends React.Component {
     render() {
         return (
-            <footer >
-                <Container className="text-left">
+            <footer className="footer">
+                <Container>
                     <Row>
-                        <Col md="6">
+                        <Col md="3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhYYuts7OIowNO0D3K3WVNx9S36WxX664As8fCDTQeXg&s" alt="HMS  Logo" className="footer-logo" />
                         </Col>
-                        <hr className="clearfix w-100 d-md-none" />
-                        <Col md="4">
-                            <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Links</h5>
+                        <Col md="3">
+                            <h5 className="footer-title">Menu</h5>
                             <ul className="list-unstyled">
-                                <li><a href="/" className='linksFooter'>Home</a></li>
-                                <li><a href="/" className='linksFooter'>Services</a></li>
-                                <li><a href="/" className='linksFooter'>More About Us</a></li>
-                                <li><a href="/" className='linksFooter'>Contact Information</a></li>
+                                <li><a href="/" className='footer-link'>Home</a></li>
+                                <li><a href="/about" className='footer-link'>About Us</a></li>
+                                <li><a href="/refer" className='footer-link'>Refer a Patient</a></li>
+                                <li><a href="/privacy" className='footer-link'>Privacy Policy</a></li>
+                                <li><a href="/contact" className='footer-link'>Contact Us</a></li>
                             </ul>
-                            
                         </Col>
-
-                           
-
-                        
+                        <Col md="3">
+                            <h5 className="footer-title">Contact Us</h5>
+                            <ul className="list-unstyled">
+                                <li><FontAwesomeIcon icon={faPhone} /> (044) xxx-xxx</li>
+                                <li><FontAwesomeIcon icon={faFax} /> (038) xxx-xxx</li>
+                                <li><FontAwesomeIcon icon={faMapMarkerAlt} /> Dukagjini Prishtine</li>
+                                <li><FontAwesomeIcon icon={faEnvelope} /> contact@uswound.com</li>
+                            </ul>
+                        </Col>
+                        <Col md="3">
+                            <h5 className="footer-title">Book an Appointment</h5>
+                            <p>Reclaim your health and peace of mind.</p>
+                            <a href="/appointment" className="btn btn-danger">Call Us Today</a>
+                        </Col>
+                    </Row>
+                    <Row className="social-icons">
+                        <Col className="text-right">
+                            <a href="https://www.facebook.com/" className="social-icon"><FontAwesomeIcon icon={faFacebook} /></a> 
+                             <a href="https://www.instagram.com/" className="social-icon"><FontAwesomeIcon icon={faInstagram} /></a> 
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="text-center">
+                            <p className="footer-copyright">&copy; {new Date().getFullYear()}  All rights reserved.</p>
+                        </Col>
                     </Row>
                 </Container>
-                <hr />
-                <div className="text-center py-3">
-                    <ul className="list-unstyled list-inline mb-0">
-                        <li className="list-inline-item">
-
-                            <h5 className="mb-1">Register for free</h5> 
-
-                        </li>
-                        <li className="list-inline-item"><a href="/RegisterForm" className="btn btn-danger btn-rounded">Sign up!</a></li>
-                    </ul>
-                </div>
-                <hr />
-                <div className="text-center">
-                    <ul className="list-unstyled list-inline">
-                        <li className="list-inline-item"><a className="btn-floating btn-sm btn-fb mx-1" href="https://www.facebook.com/"><i className="fab fa-facebook"> </i></a></li>
-                        <li className="list-inline-item"><a className="btn-floating btn-sm btn-tw mx-1" href="https://www.twitter.com/"><i className="fab fa-twitter"> </i></a></li>
-                        <li className="list-inline-item"><a className="btn-floating btn-sm btn-gplus mx-1" href="https://plus.google.com/"><i className="fab fa-google-plus"> </i></a></li>
-                        <li className="list-inline-item"><a className="btn-floating btn-sm btn-li mx-1" href="https://linkedin.com/"><i className="fab fa-linkedin"> </i></a></li>
-                        <li className="list-inline-item"><a className="btn-floating btn-sm btn-dribbble mx-1" href="https://dribbble.com/"><i className="fab fa-dribbble"> </i></a></li>
-                    </ul>
-                </div>
-                <div className="footer-copyright text-center">
-                    <Container fluid>
-                        &copy; {(new Date().getFullYear())} Copyright: <a href="/" className='originalPathFooter'> HospitalManagmentSystem.com </a>
-                    </Container>
-                </div>
             </footer>
         );
     }
