@@ -167,7 +167,7 @@ const ServCrud = () => {
         <Modal.Body>
           <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
           <input type='text' className="form-control mt-3" placeholder="Enter Pershkrimin" value={pershkrimi} onChange={(e) => setPershkrimi(e.target.value)} />
-          <input type='text' className="form-control mt-3" placeholder="Enter Stafin" value={stafi} onChange={(e) => setStafi(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Foto Url" value={stafi} onChange={(e) => setStafi(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseSub}>Cancel</Button>
@@ -182,7 +182,7 @@ const ServCrud = () => {
               <th>#</th>
               <th>Name /Title</th>
               <th>Pershkrimi</th>
-              <th>Stafi</th>
+              <th>Foto url</th>
               <th></th>
             </tr>
           </thead>
@@ -221,7 +221,7 @@ const ServCrud = () => {
             <input type='text' className="form-control" placeholder="Enter pershkrimi" value={editPershkrimi} onChange={(e) => setEditPershkrimi(e.target.value)} />
           </Col><br />
           <Col>
-            <input type='text' className="form-control" placeholder="Enter stafi" value={editStafi} onChange={(e) => setEditStafi(e.target.value)} />
+            <input type='text' className="form-control" placeholder="Enter Foto url" value={editStafi} onChange={(e) => setEditStafi(e.target.value)} />
           </Col><br />
         </Modal.Body>
         <Modal.Footer>

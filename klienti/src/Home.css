@@ -163,6 +163,8 @@ span:hover {
 }
 
 .all-buttons {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin-top: 28%;
   margin-left: -18%;

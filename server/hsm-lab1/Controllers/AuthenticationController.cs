@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
-using hsm_lab1.Models; // Add this line to include the TokenRequest class
+using hsm_lab1.Models;
+using hsm_lab1.Database; // Add this line to include the TokenRequest class
 
 [ApiController]
 [Route("api/authentication")]
@@ -17,11 +18,13 @@ public class AuthenticationController : ControllerBase
 {
     private readonly UserManager<User> _userManager;
     private readonly IConfiguration _configuration;
+    private readonly HospitalDbContext _context;
 
-    public AuthenticationController(UserManager<User> userManager, IConfiguration configuration)
+    public AuthenticationController(UserManager<User> userManager, IConfiguration configuration, HospitalDbContext context)
     {
         _userManager = userManager;
         _configuration = configuration;
+        _context = context;
     }
 
     [HttpPost("login")]
@@ -49,20 +52,57 @@ public class AuthenticationController : ControllerBase
         }
     }
 
+    /* [HttpPost("register")]
+     public async Task<IActionResult> Register([FromBody] RegistrationRequest model)
+     {
+         var user = new User { UserName = model.Username, Email = model.Email, UserRole = "user" };
+
+         var result = await _userManager.CreateAsync(user, model.Password);
+
+         if (result.Succeeded)
+         {
+             return Ok(new { Message = "User registered successfully" });
+         }
+
+         return BadRequest(new { Errors = result.Errors.Select(e => e.Description) });
+     }
+    */
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegistrationRequest model)
     {
-        var user = new User { UserName = model.Username, Email = model.Email, UserRole = "user" };
+        var user = new User
+        {
+            UserName = model.Username,
+            Email = model.Email,
+            UserRole = model.Role // Assuming model has a Role field
+        };
 
         var result = await _userManager.CreateAsync(user, model.Password);
 
         if (result.Succeeded)
         {
+            // If the user role is 'doctor', create a corresponding Doktori record
+            if (model.Role.ToLower() == "doktor")
+            {
+                var doktori = new DoktoriModel
+                {
+                    UserId = user.Id,
+                    Emri = model.Username,
+
+                    // Set other properties as needed
+                };
+
+                // Add the Doktori record to the database
+                _context.Doktori.Add(doktori);
+                await _context.SaveChangesAsync();
+            }
+
             return Ok(new { Message = "User registered successfully" });
         }
 
         return BadRequest(new { Errors = result.Errors.Select(e => e.Description) });
     }
+
 
     [HttpPost("refresh")]
     public async Task<IActionResult> Refresh([FromBody] TokenRequest model)

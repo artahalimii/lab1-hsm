@@ -1,23 +1,61 @@
-.linksFooter:hover{
-    color:red;  
+.footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
 }
-i:hover{
-    color:red;
-}
-i{
-    font-size:20px;
-}
-.originalPathFooter:hover{
-    color:red;
-}
-.row{
-    margin:0 auto;
-    padding-left:50px;
-}
-.mb-1{
-    margin-right: 2.5rem;
 
+.footer-logo {
+    max-width: 150px;
+    margin-bottom: 20px;
 }
-.list-unstyled {
-    margin-right: 2rem;
+
+.footer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0046b3;
+}
+
+.footer-link {
+    color: #0046b3;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-link:hover {
+    color: #73a8fe;
+}
+
+.social-icons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.social-icon {
+    color: #0046b3;
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.social-icon:hover {
+    color: #73a8fe;
+}
+
+.btn-danger {
+    background-color: #73a8fe;
+    border-color: #73a8fe;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-danger:hover {
+    background-color: #2d5497;
+    border-color: #2d5497;
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #6c757d;
 }

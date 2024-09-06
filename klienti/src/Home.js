@@ -93,15 +93,13 @@ const Home = () => {
                         <div className='button-1'><strong>Patient Registration</strong></div>
                     </div>
                 </Link>
-                <div>
-            {/* Your existing content */}
-            <button onClick={() => setShowReservationModal(true)}>Make a Reservation</button>
 
-            {/* Reservation Modal */}
-            {showReservationModal && (
-                <ReservationModal onClose={() => setShowReservationModal(false)} onSubmit={handleReservationSubmit} />
-            )}
-        </div>
+               <Link to="/LoginForm" style={{ textDecoration: "none" }}>
+                    <div className='container-button'>
+                        <div className='button-1'><strong>Make a Reservation</strong></div>
+                    </div>
+                </Link>
+
                 <Link to="/Contact" style={{ textDecoration: "none" }}>
                     <div className='container-button'>
                         <div className='button-1'><strong>Contact</strong></div>
@@ -143,66 +141,44 @@ const Home = () => {
                 <div class="main-servicess">
                     <div class="main-inner-servicess">
                         <div class="services-img">
-                            <img src="https://i.pinimg.com/736x/48/d8/d3/48d8d3f49ac249c290d8d6768f883a5b.jpg" alt="Endokrinologji" />
+                            <img src="https://i.pinimg.com/originals/37/fd/be/37fdbe6812ca54bd9dd816ce9e62311e.jpg" alt="Kirurgji" />
                         </div>
                         <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
+                            <h2>Kirurgji</h2>
+                            <Link to="/services">
+                              <Button variant="outline-secondary">Read More</Button>
+                            </Link>
                         </div>
                     </div>
 
                     <div class="main-inner-servicess">
                         <div class="services-img">
-                            <img src="https://i.pinimg.com/736x/48/d8/d3/48d8d3f49ac249c290d8d6768f883a5b.jpg" alt="Urgjenca 24/7" />
+                            <img src="https://i.pinimg.com/originals/0e/d4/3a/0ed43ad3bb82d1849acb154ac44282b8.jpg" />
                         </div>
                         <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
+                            <h2>Stomatologji</h2>
+                            <Link to="/Services">
+                              <Button variant="outline-secondary">Read More</Button>
+                            </Link>
                         </div>
                     </div>
 
                     <div class="main-inner-servicess">
                         <div class="services-img">
-                            <img src="https://images.squarespace-cdn.com/content/v1/5aa96c579772aea9adaa2ef7/295bd613-d748-4a18-9b91-c04a725f7f06/MedicalTechnologyExamples_124.png" alt="Alergologjia" />
+                            <img src="https://i.pinimg.com/736x/c4/0c/3d/c40c3d19f58e63bb72fc1437453414b4.jpg" />
                         </div>
                         <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
-                        </div>
-                    </div>
-
-                    <div class="main-inner-servicess">
-                        <div class="services-img">
-                            <img src="https://images.squarespace-cdn.com/content/v1/5aa96c579772aea9adaa2ef7/295bd613-d748-4a18-9b91-c04a725f7f06/MedicalTechnologyExamples_124.png" alt="Alergologjia" />
-                        </div>
-                        <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
-                        </div>
-                    </div>
-
-                    <div class="main-inner-servicess">
-                        <div class="services-img">
-                            <img src="https://images.squarespace-cdn.com/content/v1/5aa96c579772aea9adaa2ef7/295bd613-d748-4a18-9b91-c04a725f7f06/MedicalTechnologyExamples_124.png" alt="Alergologjia" />
-                        </div>
-                        <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
-                        </div>
-                    </div>
-
-                    <div class="main-inner-servicess">
-                        <div class="services-img">
-                            <img src="https://images.squarespace-cdn.com/content/v1/5aa96c579772aea9adaa2ef7/295bd613-d748-4a18-9b91-c04a725f7f06/MedicalTechnologyExamples_124.png" alt="Dermatologji" />
-                        </div>
-                        <div class="servicess-content">
-                            <h2>hospital</h2>
-                            <Button variant="outline-secondary">Read More</Button>{' '}
+                            <h2>Neurologji</h2>
+                            <Link to="/services">
+                              <Button class="bu" variant="outline-secondary">Read More</Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div class="read-more-button">
-                    <button><a href="#">Click Here for more Services</a></button>
+                    <Link to="/services">
+                              <Button variant="outline-secondary">Click Here for more Services</Button>
+                            </Link>
                 </div>
             </div>
 

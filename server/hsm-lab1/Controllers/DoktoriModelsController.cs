@@ -6,11 +6,12 @@ using hsm_lab1.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 [Route("api/[controller]")]
 [ApiController]
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "admin")]
 public class DoktoriModelsController : ControllerBase
 {
     private readonly HospitalDbContext _context;
@@ -19,9 +20,49 @@ public class DoktoriModelsController : ControllerBase
     {
         _context = context;
     }
+    public class AccountController : Controller
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly HospitalDbContext _context;
+
+        public AccountController(UserManager<IdentityUser> userManager, HospitalDbContext context)
+        {
+            _userManager = userManager;
+            _context = context;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterDoctor(DoktoriModel model, string password)
+        {
+            if (ModelState.IsValid)
+            {
+                // Create the user
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, password);
+
+                if (result.Succeeded)
+                {
+                    // Assign the UserId to the Doctor record
+                    model.UserId = user.Id; // Assign the generated UserId
+
+                    _context.Doktori.Add(model);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            return View(model);
+        }
+    }
 
     // GET: api/DoktoriModels
-    [HttpGet]
+    /*[HttpGet]
     public async Task<ActionResult<IEnumerable<DoktoriModel>>> GetDoktori()
     {
         if (_context.Doktori == null)
@@ -30,7 +71,24 @@ public class DoktoriModelsController : ControllerBase
         }
         return await _context.Doktori.ToListAsync();
     }
-
+    */
+    [HttpGet]
+    public async Task<IActionResult> GetDoktori()
+    {
+        try
+        {
+            var doktoriList = await _context.Doktori.ToListAsync();
+            if (doktoriList == null || !doktoriList.Any())
+            {
+                return NotFound("No doktor records found.");
+            }
+            return Ok(doktoriList);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
     // GET: api/DoktoriModels/5
     [HttpGet("{id}")]
     public async Task<ActionResult<DoktoriModel>> GetDoktoriModel(int id)

@@ -13,7 +13,7 @@ namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public class PacientiModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;

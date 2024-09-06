@@ -11,7 +11,9 @@ import Header from './Header';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Home from './Home';
- import AdminPanel from './AdminPanel';
+import Services from './Services';
+
+import AboutUs from './About';
 
 
 function App() {
@@ -47,7 +49,8 @@ function RouteRender() {
         <Route path="/LoginForm" element={<LoginForm />} />
         <Route path="/RegisterForm" element={<RegisterForm />} />
         <Route path="/Home" element={<Home />} />
-         <Route path="/AdminPanel" element={<AdminPanel />} /> 
+        <Route path="/Services" element={<Services />} />
+         <Route path="/About" element={<AboutUs />} /> 
         
       </Routes>
     </>
