@@ -264,7 +264,7 @@ const CRUD = () => {
                   )
                 })
                 :
-                'Loading....'
+                'Loading.......'
             }
           </tbody>
         </Table>
