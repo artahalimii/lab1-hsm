@@ -24,11 +24,13 @@ namespace hsm_lab1.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            base.OnModelCreating(modelBuilder);
-           
 
 
+            modelBuilder.Entity<DoktoriModel>()
+                .HasIndex(d => d.UserId)
+                .IsUnique();
 
-            modelBuilder.Entity<InfermjeriModel>()
+        modelBuilder.Entity<InfermjeriModel>()
                 .HasKey(i => i.Id_i);
 
             modelBuilder.Entity<PacientiModel>()

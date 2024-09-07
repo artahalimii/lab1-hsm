@@ -20,47 +20,7 @@ public class DoktoriModelsController : ControllerBase
     {
         _context = context;
     }
-    public class AccountController : Controller
-    {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly HospitalDbContext _context;
-
-        public AccountController(UserManager<IdentityUser> userManager, HospitalDbContext context)
-        {
-            _userManager = userManager;
-            _context = context;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> RegisterDoctor(DoktoriModel model, string password)
-        {
-            if (ModelState.IsValid)
-            {
-                // Create the user
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, password);
-
-                if (result.Succeeded)
-                {
-                    // Assign the UserId to the Doctor record
-                    model.UserId = user.Id; // Assign the generated UserId
-
-                    _context.Doktori.Add(model);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction("Index", "Home");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
-
-            return View(model);
-        }
-    }
-
+   
     // GET: api/DoktoriModels
     /*[HttpGet]
     public async Task<ActionResult<IEnumerable<DoktoriModel>>> GetDoktori()
@@ -77,7 +37,20 @@ public class DoktoriModelsController : ControllerBase
     {
         try
         {
-            var doktoriList = await _context.Doktori.ToListAsync();
+            var doktoriList = await _context.Doktori
+                .Select(d => new
+                {
+                    d.Id,
+                    d.Emri,
+                    d.DataELindjes,
+                    d.Email,
+                    d.Specializimi,
+                    d.Pervoja,
+                    d.PhotoFileName,
+                    d.UserId
+                })
+                .ToListAsync();
+
             if (doktoriList == null || !doktoriList.Any())
             {
                 return NotFound("No doktor records found.");
@@ -89,6 +62,7 @@ public class DoktoriModelsController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+
     // GET: api/DoktoriModels/5
     [HttpGet("{id}")]
     public async Task<ActionResult<DoktoriModel>> GetDoktoriModel(int id)
@@ -139,16 +113,32 @@ public class DoktoriModelsController : ControllerBase
 
     // POST: api/DoktoriModels
     [HttpPost]
-    public async Task<ActionResult<DoktoriModel>> PostDoktoriModel(DoktoriModel doktoriModel)
+    public async Task<IActionResult> PostDoktoriModel(DoktoriModel doktoriModel)
     {
         if (_context.Doktori == null)
         {
             return Problem("Entity set 'HospitalDbContext.Doktori' is null.");
         }
+
+        // Handle user creation logic separately if needed
+
         _context.Doktori.Add(doktoriModel);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetDoktoriModel", new { id = doktoriModel.Id }, doktoriModel);
+        // Return only the doktor attributes
+        var result = new
+        {
+            doktoriModel.Id,
+            doktoriModel.Emri,
+            doktoriModel.DataELindjes,
+            doktoriModel.Email,
+            doktoriModel.Specializimi,
+            doktoriModel.Pervoja,
+            doktoriModel.PhotoFileName,
+            doktoriModel.UserId
+        };
+
+        return CreatedAtAction("GetDoktoriModel", new { id = doktoriModel.Id }, result);
     }
 
     // DELETE: api/DoktoriModels/5

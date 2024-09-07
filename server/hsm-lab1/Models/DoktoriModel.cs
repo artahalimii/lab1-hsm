@@ -13,11 +13,6 @@ namespace hsm_lab1.Models
         public string? Specializimi { get; set; }
         public int? Pervoja { get; set; }
         public string? PhotoFileName { get; set; }
-
         public string? UserId { get; set; }
-
-        // Navigation property for IdentityUser
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
     }
 }
