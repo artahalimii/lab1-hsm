@@ -15,7 +15,7 @@ import Services from './Services';
 
 import AboutUs from './About';
 
-
+ 
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 
