@@ -16,7 +16,7 @@ namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin,doktor")]
     public class PacientiModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;
@@ -32,6 +32,7 @@ namespace hsm_lab1.Controllers
 
         // GET: api/PacientiModels
         [HttpGet]
+        [Authorize(Roles = "admin,doktor")]
         public async Task<ActionResult<IEnumerable<PacientiModel>>> GetPacienti()
         {
             if (_context.Pacienti == null)
@@ -43,6 +44,7 @@ namespace hsm_lab1.Controllers
 
  // POST: api/PacientiModels
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<PacientiModel>> PostPacientiModel(PacientiModel pacientiModel)
         {
             if (_context.Pacienti == null)
@@ -71,6 +73,7 @@ namespace hsm_lab1.Controllers
         }
         // GET: api/PacientiModels/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<PacientiModel>> GetPacientiModel(int id)
         {
             if (_context.Pacienti == null)
@@ -90,6 +93,7 @@ namespace hsm_lab1.Controllers
         // PUT: api/PacientiModels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> PutPacientiModel(int id, PacientiModel pacientiModel)
         {
             if (id != pacientiModel.Id_P)
@@ -124,6 +128,7 @@ namespace hsm_lab1.Controllers
 
         // DELETE: api/PacientiModels/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeletePacientiModel(int id)
         {
             if (_context.Pacienti == null)
