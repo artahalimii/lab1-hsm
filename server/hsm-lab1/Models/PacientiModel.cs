@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization; // Required for JsonIgnore
 
 namespace hsm_lab1.Models
 {
@@ -11,9 +12,11 @@ namespace hsm_lab1.Models
         public int? NumriTel { get; set; }
         public string? Gjinia { get; set; }
         public string? Ankesa { get; set; }
+
         [ForeignKey("UserId")]
-        public String? UserId { get; set; }
-        
-        public User User { get; set; }
+        public string? UserId { get; set; }
+
+        [JsonIgnore] // This will prevent the User object from being serialized or required on registration
+        public User? User { get; set; }
     }
 }

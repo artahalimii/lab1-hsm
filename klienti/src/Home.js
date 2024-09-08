@@ -103,7 +103,7 @@ const Home = () => {
                 <Link to="/Contact" style={{ textDecoration: "none" }}>
                     <div className='container-button'>
                         <div className='button-1'><strong>Contact</strong></div>
-                    </div>
+                    </div> 
                 </Link>
             </div>
 

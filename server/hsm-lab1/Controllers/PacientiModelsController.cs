@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+// Only relevant parts are shown
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using hsm_lab1.Database;
 using hsm_lab1.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace hsm_lab1.Controllers
 {
@@ -17,31 +20,63 @@ namespace hsm_lab1.Controllers
     public class PacientiModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public PacientiModelsController(HospitalDbContext context)
+        public PacientiModelsController(HospitalDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+       
 
         // GET: api/PacientiModels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PacientiModel>>> GetPacienti()
         {
-          if (_context.Pacienti == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pacienti == null)
+            {
+                return NotFound();
+            }
             return await _context.Pacienti.ToListAsync();
         }
 
+ // POST: api/PacientiModels
+        [HttpPost]
+        public async Task<ActionResult<PacientiModel>> PostPacientiModel(PacientiModel pacientiModel)
+        {
+            if (_context.Pacienti == null)
+            {
+                return Problem("Entity set 'HospitalDbContext.Pacienti' is null.");
+            }
+
+            // Check if user exists by UserId
+            if (!string.IsNullOrEmpty(pacientiModel.UserId))
+            {
+                var user = await _userManager.FindByIdAsync(pacientiModel.UserId);
+                if (user == null)
+                {
+                    return BadRequest("User with specified UserId does not exist.");
+                }
+            }
+            else
+            {
+                return BadRequest("UserId is required.");
+            }
+
+            _context.Pacienti.Add(pacientiModel);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPacientiModel", new { id = pacientiModel.Id_P }, pacientiModel);
+        }
         // GET: api/PacientiModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<PacientiModel>> GetPacientiModel(int id)
         {
-          if (_context.Pacienti == null)
-          {
-              return NotFound();
-          }
+            if (_context.Pacienti == null)
+            {
+                return NotFound();
+            }
             var pacientiModel = await _context.Pacienti.FindAsync(id);
 
             if (pacientiModel == null)
@@ -85,18 +120,7 @@ namespace hsm_lab1.Controllers
 
         // POST: api/PacientiModels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<PacientiModel>> PostPacientiModel(PacientiModel pacientiModel)
-        {
-          if (_context.Pacienti == null)
-          {
-              return Problem("Entity set 'HospitalDbContext.Pacienti'  is null.");
-          }
-            _context.Pacienti.Add(pacientiModel);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPacientiModel", new { id = pacientiModel.Id_P }, pacientiModel);
-        }
 
         // DELETE: api/PacientiModels/5
         [HttpDelete("{id}")]

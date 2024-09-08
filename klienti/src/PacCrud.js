@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useMemo } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -8,250 +8,218 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './App.css';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
-const PacCrud = () => {
+const PacientiCRUD = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [showSub, setShowSub] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleShowSub = () => setShowSub(true);
-  const handleCloseSub = () => setShowSub(false);
-  
 
   const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [gjinia, setGjinia] = useState('');
-  const [surname, setSurName] = useState('');
-  const [ankesa, setAnkesa] = useState('');
-  const [NumriTel, setNumriTel] = useState('');
-  
+  const [surname, setSurname] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [phone, setPhone] = useState('');
+  const [gender, setGender] = useState('');
+  const [complaint, setComplaint] = useState('');
+  const [userId, setUserId] = useState('');
 
-  //edit form
   const [editId, setEditId] = useState('');
   const [editName, setEditName] = useState('');
-  const [editDate, setEditDate] = useState('');
   const [editSurname, setEditSurname] = useState('');
-  const [editGjinia, setEditGjinia] = useState('');
-  const [editAnkesa, setEditAnkesa] = useState('');
-  const [editNumriTel, setEditNumriTel] = useState('');
-
+  const [editBirthDate, setEditBirthDate] = useState('');
+  const [editPhone, setEditPhone] = useState('');
+  const [editGender, setEditGender] = useState('');
+  const [editComplaint, setEditComplaint] = useState('');
+  const [editUserId, setEditUserId] = useState('');
 
   useEffect(() => {
     getData();
   }, []);
 
-  //---
+  const token = localStorage.getItem('token');
+
   const getData = () => {
-    axios.get('http://localhost:5038/api/PacientiModels')
-      .then((result) => {
-        setData(result.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+    axios.get('http://localhost:5038/api/PacientiModels', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then((result) => {
+      setData(result.data);
+    })
+    .catch((error) => {
+      toast.error('Error fetching data');
+    });
+  };
 
+  const isValidPhone = (phone) => {
+    const phoneRegex = /^[0-9]*$/;
+    return phoneRegex.test(phone);
+  };
 
-  // Basic email validation using regex
-//   const isValidEmail = (email) => {
-//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     return emailRegex.test(email);
-//   };
+  const handleEdit = (id) => {
+    axios.get(`http://localhost:5038/api/PacientiModels/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then((response) => {
+      const patient = response.data;
 
-  
-  
+      setEditId(patient.id_P);
+      setEditName(patient.emri);
+      setEditSurname(patient.mbiemri);
+      setEditBirthDate(patient.dataELindjes);
+      setEditPhone(patient.numriTel);
+      setEditGender(patient.gjinia);
+      setEditComplaint(patient.ankesa);
+      setEditUserId(patient.userId);
 
-  const handleEdit = (id_P) => {
-    handleShow();
-    axios.get(`http://localhost:5038/api/PacientiModels/${id_P}`)
-      .then((result) => {
-        const { emri,mbiemri ,  dataELindjes, NumriTel , gjinia , ankesa } = result.data;
-        setEditName(emri);
-        setEditSurname(mbiemri);
-        setEditDate(dataELindjes);
-        setEditNumriTel(NumriTel);
-        setEditGjinia(gjinia);
-        setEditAnkesa(ankesa);
-        setEditId(id_P);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-
-  const handleDelete = (id_P) => {
-    if (window.confirm("Are you sure you want to delete this doctor?") == true) {
-      axios.delete(`http://localhost:5038/api/PacientiModels/${id_P}`)
-        .then((result) => {
-          if (result.status === 200) {
-            toast.success('Pacienti deleted successfully!');
-            getData(); // Refresh the data after successful deletion
-          }
-        })
-        .catch((error) => {
-          toast.error('Error deleting Pacienti');
-          console.error('Error deleting doctor:', error);
-        });
-    }
-  }
-
+      setShow(true);
+    })
+    .catch((error) => {
+      toast.error("Error fetching patient details.");
+    });
+  };
 
   const handleUpdate = () => {
-    if (!editName || !editDate || !editGjinia || !editAnkesa || !editNumriTel || !editSurname) {//validimi
+    if (!editName || !editSurname || !editBirthDate || !editPhone || !editGender || !editUserId) {
       toast.error('Please fill in all fields.');
       return;
     }
 
-//validimi
+    if (!isValidPhone(editPhone)) {
+      toast.error('Please enter a valid phone number.');
+      return;
+    }
+
     const url = `http://localhost:5038/api/PacientiModels/${editId}`;
-    const data = {
-      "ID_P": editId,
+    const updatedPatient = {
+      "Id_P": editId,
       "Emri": editName,
       "Mbiemri": editSurname,
-      "DataELindjes": editDate,
-      "NumriTel": editNumriTel,
-      "Gjinia": editGjinia,
-      "Ankesa": editAnkesa,
+      "DataELindjes": editBirthDate,
+      "NumriTel": editPhone,
+      "Gjinia": editGender,
+      "Ankesa": editComplaint,
+      "UserId": editUserId
     };
-    axios.put(url, data)
-      .then((result) => {
-        handleClose();
+
+    axios.put(url, updatedPatient, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(() => {
+      setShow(false);
+      getData();
+      clear();
+      toast.success("Patient updated successfully!");
+    })
+    .catch((error) => {
+      toast.error("Error updating patient.");
+    });
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this patient?")) {
+      axios.delete(`http://localhost:5038/api/PacientiModels/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(() => {
         getData();
-        clear();
-        toast.success('Update u krye me sukses');
+        toast.success('Patient deleted successfully!');
       })
       .catch((error) => {
-        // Handle error
-        console.error('Error adding pacienti:', error);
+        toast.error('Error deleting patient');
       });
-  }
+    }
+  };
 
-
-  // const handleSave = () => {
-  //   if (!name || !surname || !data || !NumriTel || !ankesa || !gjinia) {
-  //     toast.error('Please fill in all fields.');
-  //     return;
-  //   }
-   
-  //   const url = "http://localhost:5038/api/PacientiModels";
-  //   const data = {
-  //     "Emri": name,
-  //     "Mbiemri": surname,
-  //     "DataELindjes": date,
-  //     "NumriTel":NumriTel,
-  //     "gjinia": gjinia,
-  //     "ankesa": ankesa,
-  //   };
-  //   axios.post(url, data)
-  //     .then((result) => {
-  //       handleClose();
-  //       getData();
-  //       clear();
-  //       toast.success('Pacienti added successfully!');
-  //     })
-  //     .catch((error) => {
-  //       toast.error('Error adding pacienti');
-  //       console.error('Error adding pacienti:', error);
-  //     });
-  // };
   const handleSave = () => {
-    if (!name || !surname || !date || !NumriTel || !ankesa || !gjinia) {
+    if (!name || !surname || !birthDate || !phone || !gender || !userId) {
       toast.error('Please fill in all fields.');
       return;
     }
-     
+
+    if (!isValidPhone(phone)) {
+      toast.error('Please enter a valid phone number.');
+      return;
+    }
+
     const url = "http://localhost:5038/api/PacientiModels";
-    const newPacientiData = {
+    const data = {
       "Emri": name,
       "Mbiemri": surname,
-      "DataELindjes": date,
-      "NumriTel": NumriTel,
-      "gjinia": gjinia,
-      "ankesa": ankesa,
+      "DataELindjes": birthDate,
+      "NumriTel": phone,
+      "Gjinia": gender,
+      "Ankesa": complaint,
+      "UserId": userId
     };
-    
-    axios.post(url, newPacientiData)
-      .then((result) => {
-        handleClose();
-        getData();
-        clear();
-        toast.success('Pacienti added successfully!');
-      })
-      .catch((error) => {
-        toast.error('Error adding pacienti');
-        console.error('Error adding pacienti:', error);
-      });
-  };
-  
 
+    axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(() => {
+      setShowSub(false);
+      getData();
+      clear();
+      toast.success('Patient added successfully!');
+    })
+    .catch((error) => {
+      toast.error('Error adding patient');
+    });
+  };
 
   const clear = () => {
     setName('');
-    setDate('');
-    setSurName('');
-    setNumriTel('');
-    setGjinia('');
-    setAnkesa('');
+    setSurname('');
+    setBirthDate('');
+    setPhone('');
+    setGender('');
+    setComplaint('');
+    setUserId('');
     setEditName('');
-    setEditDate('');
     setEditSurname('');
-    setEditNumriTel('');
-    setEditGjinia('');
-    setEditAnkesa('');
-  }
-  
+    setEditBirthDate('');
+    setEditPhone('');
+    setEditGender('');
+    setEditComplaint('');
+    setEditUserId('');
+  };
 
   return (
-    
-   <Fragment>
-      <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Pacienti</h1>
+    <Fragment>
+      <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)'}}>Pacienti</h1>
       <ToastContainer />
       <Container className="mt-5">
         <Row className="text-center">
           <Col>
-            <Button variant="outline-success" onClick={handleShowSub}>Add Pacienti</Button>
+            <Button variant="outline-success" onClick={() => setShowSub(true)}>Add Patient</Button>
           </Col>
         </Row>
       </Container>
-      <Modal show={showSub} onHide={handleCloseSub}>
+      <Modal show={showSub} onHide={() => setShowSub(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Pacienti</Modal.Title>
+          <Modal.Title>Add Patient</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         
-         
-         
-         
           <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
-          <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={surname} onChange={(e) => setSurName(e.target.value)} />
-          <input type='date' className="form-control mt-3" value={date} onChange={(e) => setDate(e.target.value)} />
-          <input type='number' className="form-control mt-3" placeholder="Enter NumriTel" value={NumriTel} onChange={(e) => setNumriTel(parseInt(e.target.value))} />
-          <select
-                                id="gjiniaSelect"
-                                className="form-control"
-                                value={gjinia}
-                                onChange={(e) => setGjinia(e.target.value)}
-                                >
-                                <option value="" disabled>
-                                    Enter Gjinia
-                                </option>
-                                <option value="femer">Femer</option>
-                                <option value="mashkull">Mashkull</option>
-                                </select>
-                                <input type='text' className="form-control" placeholder="Enter Ankesa" value={ankesa} onChange={(e) => setAnkesa(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
+          <input type='date' className="form-control mt-3" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Gender" value={gender} onChange={(e) => setGender(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Complaint" value={complaint} onChange={(e) => setComplaint(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseSub}>Cancel</Button>
+          <Button variant="secondary" onClick={() => setShowSub(false)}>Cancel</Button>
           <Button variant="success" onClick={handleSave}>Save</Button>
         </Modal.Footer>
       </Modal>
@@ -263,89 +231,61 @@ const PacCrud = () => {
               <th>#</th>
               <th>Name</th>
               <th>Surname</th>
-              <th>Date</th>
-              <th>NumriTel</th>
-              <th>Gjinia</th>
-              <th>Ankesa</th>
+              <th>Birth Date</th>
+              <th>Phone</th>
+              <th>Gender</th>
+              <th>Complaint</th>
+              <th>UserId</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {
               data && data.length > 0 ?
-                data.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index+1}</td>
-                      <td>{item.emri}</td>
-                      <td>{item.mbiemri}</td>
-                      <td>{item.dataELindjes}</td>
-                      <td>{item.numriTel}</td>
-                      <td>{item.gjinia}</td>
-                      <td>{item.ankesa}</td>
-                      <td>
-                        <Button variant="success" onClick={() => handleEdit(item.id_P)}>Edit</Button> &nbsp;
-                        <Button variant="outline-light" onClick={() => handleDelete(item.id_P)}>Delete</Button>
-                      </td>
-                    </tr>
-                  )
-                })
+                data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{item.emri}</td>
+                    <td>{item.mbiemri}</td>
+                    <td>{item.dataELindjes}</td>
+                    <td>{item.numriTel}</td>
+                    <td>{item.gjinia}</td>
+                    <td>{item.ankesa}</td>
+                    <td>{item.userId}</td>
+                    <td>
+                      <Button variant="success" onClick={() => handleEdit(item.id_P)}>Edit</Button>
+                      <Button variant="outline-light" className="ml-2" onClick={() => handleDelete(item.id_P)}>Delete</Button>
+                    </td>
+                  </tr>
+                ))
                 :
-                'Loading....'
+                <tr>
+                  <td colSpan="9">No data available</td>
+                </tr>
             }
           </tbody>
         </Table>
       </Container>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modify/update Pacienti</Modal.Title>
+          <Modal.Title>Edit Patient</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Col>
-            <input type='text' className="form-control" placeholder="Enter Name" value={editName} onChange={(e) => setEditName(e.target.value)} />
-          </Col><br />
-          <Col>
-            <input type='text' className="form-control" placeholder="Enter Surname" value={editSurname} onChange={(e) => setEditSurname(e.target.value)} />
-          </Col><br />
-           <Col>
-            <input type='date' className="form-control" value={editDate} onChange={(e) => setEditDate(e.target.value)} />
-          </Col><br />
-          {/*  <Col >
-            <DatePicker selected={date} onChange={date => setEditDate(date)} className="form-control" />
-          </Col> */ }
-          <Col>
-            <input type='int' className="form-control" placeholder="Enter NumriTel" value={editNumriTel} onChange={(e) => setEditNumriTel(parseInt(e.target.value))} />
-          </Col><br />
-          <Col> <select
-                        id="gjiniaSelect"
-                        className="form-control"
-                        value={editGjinia}
-                        onChange={(e) => setEditGjinia(e.target.value)}
-                    >
-                        <option value="" disabled>
-                            Enter Gjinia
-                        </option>
-                        <option value="femer">Femer</option>
-                        <option value="mashkull">Mashkull</option>
-                    </select>
-                    </Col><br />
-          <Col>
-            <input type='text' className="form-control" placeholder="Enter Ankesa" value={editAnkesa} onChange={(e) => setEditAnkesa(e.target.value)} />
-          </Col><br />
+          <input type='text' className="form-control" placeholder="Enter Name" value={editName} onChange={(e) => setEditName(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={editSurname} onChange={(e) => setEditSurname(e.target.value)} />
+          <input type='date' className="form-control mt-3" value={editBirthDate} onChange={(e) => setEditBirthDate(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Phone Number" value={editPhone} onChange={(e) => setEditPhone(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Gender" value={editGender} onChange={(e) => setEditGender(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter Complaint" value={editComplaint} onChange={(e) => setEditComplaint(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter UserId" value={editUserId} onChange={(e) => setEditUserId(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="success" onClick={handleUpdate}>
-            Save Changes
-          </Button>
+          <Button variant="secondary" onClick={() => setShow(false)}>Cancel</Button>
+          <Button variant="success" onClick={handleUpdate}>Update</Button>
         </Modal.Footer>
       </Modal>
     </Fragment>
   );
 };
 
-
-export default PacCrud;
-
+export default PacientiCRUD;

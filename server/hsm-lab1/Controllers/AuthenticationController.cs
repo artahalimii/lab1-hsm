@@ -96,6 +96,17 @@ public class AuthenticationController : ControllerBase
                 _context.Doktori.Add(doktori);
                 await _context.SaveChangesAsync();
             }
+            if (model.Role.ToLower() == "user")
+            {
+                var pacienti = new PacientiModel
+                {
+                    UserId = user.Id,
+                    Emri = model.Username,
+                  };
+
+                _context.Pacienti.Add(pacienti);
+                await _context.SaveChangesAsync();
+            }
 
             return Ok(new { Message = "User registered successfully" });
         }

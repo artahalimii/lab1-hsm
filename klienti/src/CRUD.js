@@ -33,6 +33,7 @@ const CRUD = () => {
   const [specializimi, setSpecializimi] = useState('');
   const [pervoja, setPervoja] = useState('');
   const [foto, setFoto] = useState('');
+  const [userId, setUserId] = useState('');
 
   //edit form
   const [editId, setEditId] = useState('');
@@ -42,6 +43,7 @@ const CRUD = () => {
   const [editSpecializimi, setEditSpecializimi] = useState('');
   const [editPervoja, setEditPervoja] = useState('');
   const [editFoto, setEditFoto] = useState('');
+  const [editUserId, setEditUserId] = useState('');
 
 
   useEffect(() => {
@@ -49,15 +51,24 @@ const CRUD = () => {
   }, []);
 
   //---
+  const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+
   const getData = () => {
-    axios.get('http://localhost:5038/api/DoktoriModels')
-      .then((result) => {
-        setData(result.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+    axios.get('http://localhost:5038/api/DoktoriModels', {
+      headers: {
+        'Authorization': `Bearer ${token}` // Add the Authorization header
+      }
+    })
+    .then((result) => {
+      console.log('Fetched data:', result.data);
+      setData(result.data);
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error.response ? error.response.data : error.message);
+      toast.error('Error fetching data');
+    });
+  };
+  
 
 
   // Basic email validation using regex
@@ -74,43 +85,36 @@ const CRUD = () => {
   };
 
   const handleEdit = (id) => {
-    handleShow();
-    axios.get(`http://localhost:5038/api/DoktoriModels/${id}`)
-      .then((result) => {
-        const { emri, dataELindjes, email, specializimi, pervoja, photoFileName } = result.data;
-        setEditName(emri);
-        setEditDate(dataELindjes);
-        setEditEmail(email);
-        setEditSpecializimi(specializimi);
-        setEditPervoja(pervoja);
-        setEditFoto(photoFileName);
-        setEditId(id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this doctor?") == true) {
-      axios.delete(`http://localhost:5038/api/DoktoriModels/${id}`)
-        .then((result) => {
-          if (result.status === 200) {
-            toast.success('Doctor deleted successfully!');
-            getData(); // Refresh the data after successful deletion
-          }
-        })
-        .catch((error) => {
-          toast.error('Error deleting doctor');
-          console.error('Error deleting doctor:', error);
-        });
-    }
-  }
-
+    // Fetch the doctor by ID and populate the form
+    axios.get(`http://localhost:5038/api/DoktoriModels/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`  // Include token if required
+      }
+    })
+    .then((response) => {
+      const doctor = response.data;
+  
+      // Set form values based on fetched data
+      setEditId(doctor.id);
+      setEditName(doctor.emri);
+      setEditDate(doctor.dataELindjes);
+      setEditEmail(doctor.email);
+      setEditSpecializimi(doctor.specializimi);
+      setEditPervoja(doctor.pervoja);
+      setEditFoto(doctor.photoFileName);
+      setEditUserId(doctor.userId);
+  
+      handleShow();  // Open the edit modal after data is populated
+    })
+    .catch((error) => {
+      console.error("Error fetching doctor:", error);
+      toast.error("Error fetching doctor details.");
+    });
+  };
+  
 
   const handleUpdate = () => {
-    if (!editName || !editDate || !editEmail || !editSpecializimi || !editFoto) {//validimi
+    if (!editName || !editDate || !editEmail || !editSpecializimi || !editFoto || !editUserId) {
       toast.error('Please fill in all fields.');
       return;
     }
@@ -118,48 +122,77 @@ const CRUD = () => {
       toast.error('Please enter a valid email address.');
       return;
     }
-     if (!isValidPervoja(editPervoja)) {
+  
+    if (!isValidPervoja(editPervoja)) {
       toast.error('Please enter a valid number.');
       return;
     }
-//validimi
     const url = `http://localhost:5038/api/DoktoriModels/${editId}`;
-    const data = {
+    const updatedDoctor = {
       "ID": editId,
       "Emri": editName,
       "DataELindjes": editDate,
       "Email": editEmail,
       "Specializimi": editSpecializimi,
       "Pervoja": editPervoja,
-      "PhotoFileName": editFoto
+      "PhotoFileName": editFoto,
+      "UserId": editUserId
     };
-    axios.put(url, data)
-      .then((result) => {
-        handleClose();
-        getData();
-        clear();
-        toast.success('Update u krye me sukses');
-      })
-      .catch((error) => {
-        // Handle error
-        console.error('Error adding doctor:', error);
-      });
-  }
+  
+    axios.put(url, updatedDoctor, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then((response) => {
+      handleClose();  // Close modal after success
+      getData();      // Refresh the data after editing
+      clear();        // Clear the form
+      toast.success("Doctor updated successfully!");
+    })
+    .catch((error) => {
+      console.error("Error updating doctor:", error.response ? error.response.data : error.message);
+      toast.error("Error updating doctor.");
+    });
+  };
+  
 
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this doctor?")) {
+      axios.delete(`http://localhost:5038/api/DoktoriModels/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`  // Include token if authorization is required
+        }
+      })
+        .then((result) => {
+          getData();  // Refresh the data after successful deletion
+          toast.success('Doctor deleted successfully!');
+        })
+        .catch((error) => {
+          toast.error('Error deleting doctor');
+          console.error('Error deleting doctor:', error.response ? error.response.data : error.message);
+        });
+    }
+  };
+  
 
   const handleSave = () => {
-    if (!name || !date || !email || !specializimi || !foto) {
+    if (!name || !date || !email || !specializimi || !foto || !userId) {
       toast.error('Please fill in all fields.');
       return;
     }
+  
     if (!isValidEmail(email)) {
       toast.error('Please enter a valid email address.');
       return;
     }
+  
     if (!isValidPervoja(pervoja)) {
       toast.error('Please enter a valid number.');
       return;
     }
+  
     const url = "http://localhost:5038/api/DoktoriModels";
     const data = {
       "Emri": name,
@@ -167,21 +200,27 @@ const CRUD = () => {
       "Email": email,
       "Specializimi": specializimi,
       "Pervoja": pervoja,
-      "PhotoFileName": foto
+      "PhotoFileName": foto,
+      "UserId": userId
     };
-    axios.post(url, data)
+  
+    axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}` // Add the token here if needed
+      }
+    })
       .then((result) => {
         handleCloseSub();
-        getData();
+        getData(); // Refresh the list after adding the doctor
         clear();
         toast.success('Doctor added successfully!');
       })
       .catch((error) => {
         toast.error('Error adding doctor');
-        console.error('Error adding doctor:', error);
+        console.error('Error adding doctor:', error.response ? error.response.data : error.message);
       });
   };
-
+  
 
   const clear = () => {
     setName('');
@@ -190,12 +229,14 @@ const CRUD = () => {
     setSpecializimi('');
     setPervoja('');
     setFoto('');
+    setUserId('');
     setEditName('');
     setEditDate('');
     setEditEmail('');
     setEditSpecializimi('');
     setEditPervoja('');
     setEditFoto('');
+    setEditUserId('');
   }
   
 
@@ -222,6 +263,7 @@ const CRUD = () => {
           <input type='text' className="form-control mt-3" placeholder="Enter Specialization" value={specializimi} onChange={(e) => setSpecializimi(e.target.value)} />
           <input type='number' className="form-control mt-3" placeholder="Enter Experience" value={pervoja} onChange={(e) => setPervoja(parseInt(e.target.value))} />
           <input type='text' className="form-control mt-3" placeholder="Enter Photo URL" value={foto} onChange={(e) => setFoto(e.target.value)} />
+          <input type='text' className="form-control mt-3" placeholder="Enter UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseSub}>Cancel</Button>
@@ -240,6 +282,7 @@ const CRUD = () => {
               <th>Speci</th>
               <th>Pervoj</th>
               <th>Foto</th>
+              <th>UserId</th>
               <th></th>
             </tr>
           </thead>
@@ -255,10 +298,17 @@ const CRUD = () => {
                       <td>{item.email}</td>
                       <td>{item.specializimi}</td>
                       <td>{item.pervoja}</td>
-                      <td>{item.photoFileName}</td>
                       <td>
-                        <Button variant="success" onClick={() => handleEdit(item.id)}>Edit</Button> &nbsp;
-                        <Button variant="outline-light" onClick={() => handleDelete(item.id)}>Delete</Button>
+                     <img 
+                      src={item.photoFileName} 
+                      alt="Doctor" 
+                       style={{ width: '100px', height: '100px', objectFit: 'cover' }} 
+                      />
+                      </td>
+                      <td>{item.userId}</td>
+                      <td>
+                      <Button variant="success" onClick={() => handleEdit(item.id)}>Edit</Button>
+                      <Button variant="outline-light" onClick={() => handleDelete(item.id)}>Delete</Button>
                       </td>
                     </tr>
                   )
@@ -295,6 +345,9 @@ const CRUD = () => {
           <Col>
             <input type='text' className="form-control" placeholder="Enter Foto url" value={editFoto} onChange={(e) => setEditFoto(e.target.value)} />
           </Col><br />
+          <Col>
+            <input type='text' className="form-control" placeholder="Enter User Id" value={editUserId} onChange={(e) => setEditUserId(e.target.value)} />
+          </Col><br />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -304,11 +357,10 @@ const CRUD = () => {
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>  
     </Fragment>
   );
 };
 
 
 export default CRUD;
-

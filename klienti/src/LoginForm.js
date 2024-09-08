@@ -25,8 +25,11 @@ const LoginForm = () => {
         // Redirect based on the role
         switch (role) {
           case 'admin':
-          case 'doktor':
             window.location.href = 'http://localhost:3000/Doki';
+            window.location.href = 'http://localhost:3000/PacCrud';
+            break;
+            case 'doktor':
+            window.location.href = 'http://localhost:3000/Doktori';
             break;
           case 'user':
             window.location.href = 'http://localhost:3000/Home';

@@ -12,10 +12,10 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Home from './Home';
 import Services from './Services';
-
+import Doktori from './Doktori';
 import AboutUs from './About';
 
- 
+
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 
@@ -51,6 +51,7 @@ function RouteRender() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Services" element={<Services />} />
          <Route path="/About" element={<AboutUs />} /> 
+         <Route path="/Doktori" element={<Doktori />} /> 
         
       </Routes>
     </>
