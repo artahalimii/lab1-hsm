@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import './App.css';
+import '../App.css';
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';
 
@@ -146,7 +146,11 @@ const ServCrud = () => {
     setEditPershkrimi('');
     setEditStafi('');
   }
+  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
   
+  if (userRole !== 'admin') {
+    return <h2>Unauthorized: You do not have access to this page.</h2>;
+  }
 
   return (
     

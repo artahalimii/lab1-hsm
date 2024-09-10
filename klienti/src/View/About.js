@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import './AboutUs.css';
-import Navbar from './components/Navbar';
+import '../CSS/AboutUs.css';
+import Navbar from '../components/Navbar';
 import FooterPage from './FooterPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStethoscope, faSyringe, faHospital } from '@fortawesome/free-solid-svg-icons';

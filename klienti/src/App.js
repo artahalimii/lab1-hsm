@@ -1,24 +1,22 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import CRUD from './CRUD';
+import CRUD from './View/CRUD';
+import PacCrud from './View/PacCrud';
+import ServCrud from './View/ServCrud';
+import ReservationCrud from './View/ReservationCrud';
+import RekCrud from './View/RekCrud';
+import Header from './View/Header';
+import LoginForm from './View/LoginForm';
+import RegisterForm from './View/RegisterForm';
+import Home from './View/Home';
+import Services from './View/Services';
+import Doktori from './View/Doktori';
+import AboutUs from './View/About';
+import ContactForm from './View/ContactForm';
+import PatientDashboard from './View/PatientDashboard';
+import ContactCRUD from './View/ContactCrud';
 import InfCrud  from './InfCrud ';
-import PacCrud from './PacCrud';
-import ServCrud from './ServCrud';
-import ReservationCrud from './ReservationCrud';
-import RekCrud from './RekCrud';
-import Header from './Header';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
-import Home from './Home';
-import Services from './Services';
-import Doktori from './Doktori';
-import AboutUs from './About';
-import ContactForm from './ContactForm';
-import PatientDashboard from './PatientDashboard';
-import ContactCRUD from './ContactCrud';
-
-
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 

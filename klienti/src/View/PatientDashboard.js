@@ -12,7 +12,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './components/Navbar'; 
+import Navbar from '../components/Navbar'; 
 
 
 
@@ -118,6 +118,13 @@ const PatientDashboard = () => {
 
     fetchData();
   }, []);
+  // Check user role
+  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
+  
+  if (userRole !== 'patient') {
+    return <h2>Unauthorized: You do not have access to this page.</h2>;
+  }
+
 
   return (
     <>

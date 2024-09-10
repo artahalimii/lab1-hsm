@@ -12,7 +12,7 @@ import Tab from 'react-bootstrap/Tab';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './components/Navbar'; // Ensure correct path
+import Navbar from '../components/Navbar'; // Ensure correct path
 
 const styles = {
   sidebar: {
@@ -24,13 +24,13 @@ const styles = {
     backgroundColor: '#f8f9fa',
     padding: '15px',
     boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
-    zIndex: 1000, // Ensure the sidebar stays below the navbar
-    marginTop:'84px',
+    zIndex: 1000,
+    marginTop: '84px',
   },
   content: {
-    marginLeft: '250px', // Same width as the sidebar
+    marginLeft: '250px',
     padding: '15px',
-    paddingTop: '60px', // Adjust for navbar height
+    paddingTop: '60px',
     flexGrow: 1,
   },
   sidebarLink: {
@@ -41,10 +41,6 @@ const styles = {
     display: 'block',
     transition: 'background-color 0.3s, color 0.3s',
   },
-  sidebarLinkHover: {
-    backgroundColor: '#007bff',
-    color: '#fff',
-  },
   sidebarLinkActive: {
     backgroundColor: '#007bff',
     color: '#fff',
@@ -52,12 +48,14 @@ const styles = {
 };
 
 const Doktori = () => {
+  const [activeTab, setActiveTab] = useState('patients');
   const [patients, setPatients] = useState([]);
   const [records, setRecords] = useState([]);
   const [reservations, setReservations] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const [activeTab, setActiveTab] = useState('patients');
+  const [nurses, setNurses] = useState({});
+
 
   const handleClose = () => setShowModal(false);
   const handleShow = (patient) => {
@@ -71,47 +69,63 @@ const Doktori = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-
+  
         // Fetch reservations
-        const reservationsResponse = await axios.get(`http://localhost:5038/api/Dashboard/doctor/reservations`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+        const reservationsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/reservations', {
+          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
         });
         setReservations(reservationsResponse.data);
-
+  
         // Fetch records
-        const recordsResponse = await axios.get(`http://localhost:5038/api/Dashboard/doctor/records`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+        const recordsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/records', {
+          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
         });
         setRecords(recordsResponse.data);
-
+  
         // Collect patient IDs from reservations and records
         const patientIds = new Set([
           ...reservationsResponse.data.map(r => r.patient),
           ...recordsResponse.data.map(r => r.id_P)
         ]);
-
+  
         if (patientIds.size === 0) {
           setPatients([]);
           return;
         }
-
+  
         // Fetch patients based on collected IDs
-        const patientsResponse = await axios.get(`http://localhost:5038/api/PacientiModels`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+        const patientsResponse = await axios.get('http://localhost:5038/api/PacientiModels', {
+          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
         });
-
+  
         // Filter patients to only those with IDs in patientIds
         const filteredPatients = patientsResponse.data.filter(patient => patientIds.has(patient.id_P));
         setPatients(filteredPatients);
-
+  
+        // Fetch nurses for the week
+        const nursesResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/nurses', {
+          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
+        });
+        setNurses(nursesResponse.data);
+  
       } catch (error) {
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         toast.error('Error fetching data');
       }
     };
-
+  
     fetchData();
   }, []);
+   // Check user role
+   const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
+  
+   if (userRole !== 'doktor') {
+     return <h2>Unauthorized: You do not have access to this page.</h2>;
+   }
+ 
+  
+
+
 
   return (
     <>
@@ -142,10 +156,16 @@ const Doktori = () => {
             >
               Rezervimet
             </Nav.Link>
+            <Nav.Link 
+              href="#nurses" 
+              style={{ ...styles.sidebarLink, ...(activeTab === 'nurses' ? styles.sidebarLinkActive : {}) }}
+              onClick={() => handleSelectTab('nurses')}
+            >
+              Nurses
+            </Nav.Link>
           </Nav>
         </div>
 
-        {/* Main Content */}
         <div style={styles.content}>
           <Container className="mt-5">
             <Row>
@@ -250,7 +270,36 @@ const Doktori = () => {
                           </Table>
                         </Card.Body>
                       </Card>
-                    </Tab.Pane>
+                      </Tab.Pane>
+                      
+                      <Tab.Pane eventKey="nurses">
+  <Card className="shadow-sm mb-4">
+    <Card.Header>
+      <h2>Nurses for the Week</h2>
+    </Card.Header>
+    <Card.Body>
+      <Table striped bordered hover variant="light">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Nurse</th>  {/* Only one nurse */}
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(nurses).map(([day, nurseList], index) => (
+            <tr key={index}>
+              <td>{day}</td>
+              <td>{nurseList?.[0]?.emri || 'N/A'} {nurseList?.[0]?.mbiemri || ''}</td> {/* Display only Nurse 1 */}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Card.Body>
+  </Card>
+</Tab.Pane>
+
+
+
                   </Tab.Content>
                 </Tab.Container>
               </Col>

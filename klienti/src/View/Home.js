@@ -1,11 +1,11 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
-import './Home.css';
+import '../CSS/Home.css';
 import FooterPage from './FooterPage';
 import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
-import Navbar from './/components/Navbar';
-import Banner from './/components/Banner';
-import ReservationModal from './ReservationModal';
+import Navbar from '../components/Navbar';
+import Banner from '../components/Banner';
+import ReservationModal from '../View/ReservationModal';
 
 import Button from 'react-bootstrap/Button';
 const Home = () => {

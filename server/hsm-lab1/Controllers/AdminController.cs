@@ -58,6 +58,39 @@ namespace hsm_lab1.Controllers
 
             return Ok(records);
         }
+        // Get nurses for each day of the week
+        [HttpGet("doctor/nurses")]
+        [Authorize(Roles = "doktor")]
+        public async Task<IActionResult> GetNursesForWeek()
+        {
+            var nurses = await _context.Infermjeri
+                .Select(n => new
+                {
+                    n.Id_i,
+                    n.Emri,
+                    n.Mbiemri,
+                    n.Departamenti,
+                    n.Email,
+                    n.NumriTel,
+                    Day = (n.Id_i % 7)  // Assuming nurses are assigned to days in a cyclic manner
+                })
+                .ToListAsync();
+
+            var nursesByDay = new Dictionary<string, List<object>>
+    {
+        { "Monday", nurses.Where(n => n.Day == 1).Select(n => (object)n).ToList() },
+        { "Tuesday", nurses.Where(n => n.Day == 2).Select(n => (object)n).ToList() },
+        { "Wednesday", nurses.Where(n => n.Day == 3).Select(n => (object)n).ToList() },
+        { "Thursday", nurses.Where(n => n.Day == 4).Select(n => (object)n).ToList() },
+        { "Friday", nurses.Where(n => n.Day == 5).Select(n => (object)n).ToList() },
+        { "Saturday", nurses.Where(n => n.Day == 6).Select(n => (object)n).ToList() },
+        { "Sunday", nurses.Where(n => n.Day == 0).Select(n => (object)n).ToList() }
+    };
+
+            return Ok(nursesByDay);
+        }
+
+
 
         // Get logged-in patient's reservations
         [HttpGet("patient/reservations")]
@@ -94,6 +127,7 @@ namespace hsm_lab1.Controllers
 
             return Ok(records);
         }
+
 
         // Additional endpoints can be added here for other functionalities
     }

@@ -195,6 +195,11 @@ const ReservationCrud = () => {
     setEditPacienti({});
   }
 
+  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
+  
+  if (userRole !== 'admin') {
+    return <h2>Unauthorized: You do not have access to this page.</h2>;
+  }
   return (
     <Fragment>
       <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Reservations</h1>

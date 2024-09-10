@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactForm.css'; // Import the CSS styles or inline the styles.
+import '../CSS/ContactForm.css'; // Import the CSS styles or inline the styles.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';

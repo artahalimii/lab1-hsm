@@ -10,8 +10,8 @@ import axios from 'axios';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Navbar.css';
-import { getAuthHeader, decodeToken } from './authService';
+import './CSS/Navbar.css';
+import { getAuthHeader, decodeToken } from './View/authService';
 
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';import React, { useState } from 'react';
@@ -233,6 +233,11 @@ const InfCrud = () => {
         setEditDepartamenti('');
         setEditvitetPune('');
         setEditFoto('');
+    }
+    const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
+  
+    if (userRole !== 'admin') {
+      return <h2>Unauthorized: You do not have access to this page.</h2>;
     }
 
 

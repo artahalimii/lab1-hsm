@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import './Home.css';
+import '../CSS/Home.css';
 import FooterPage from './FooterPage';
-import Navbar from './components/Navbar';
+import Navbar from '../components/Navbar';
 import Button from 'react-bootstrap/Button';
-import './services.css';
+import '../CSS/services.css';
 
 const Services = () => {
   const [services, setServices] = useState([]);

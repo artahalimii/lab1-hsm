@@ -8,31 +8,38 @@ import { toast } from "react-toastify";
 function Navbar() {
   const [nav, setNav] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('token') ? true : false);
+  const [role, setRole] = useState(() => localStorage.getItem('role')); // Store the role from localStorage
 
   const openNav = () => {
     setNav(!nav);
   };
 
   const handleLogout = () => {
-    // Perform logout actions here
-    // Clear any user session data, such as tokens or user information stored in local storage
+    // Clear user session data and token
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     
-    // Set login status to false
     setIsLoggedIn(false);
-    
-    // Optionally, you can show a toast message or perform any other action after logout
     toast.success('Logged out successfully');
-    
-    // Refresh the page
     window.location.reload();
   };
 
   useEffect(() => {
-    // Update login status based on localStorage
     setIsLoggedIn(localStorage.getItem('token') ? true : false);
+    setRole(localStorage.getItem('role')); // Update role when the component mounts
   }, []);
+
+  // Function to determine the correct dashboard link
+  const getDashboardLink = () => {
+    if (role === 'patient') {
+      return '/PatientDashboard';
+    } else if (role === 'doktor') {
+      return '/Doktori';
+    } else if (role === 'admin') {
+      return '/Doki';
+    }
+    return '#'; // Default in case no role is found
+  };
 
   return (
     <div className="navbar-section">
@@ -63,6 +70,13 @@ function Navbar() {
           <a href=".#reviews" className="navbar-links">
             Reviews
           </a>
+        </li>
+        <li>
+          {isLoggedIn && (
+            <Link to={getDashboardLink()} className="navbar-links">
+              Dashboard
+            </Link>
+          )}
         </li>
         <li>
           {isLoggedIn ? (
@@ -103,6 +117,13 @@ function Navbar() {
             <a onClick={openNav} href="#reviews">
               Reviews
             </a>
+          </li>
+          <li>
+            {isLoggedIn && (
+              <Link to={getDashboardLink()} onClick={openNav} className="navbar-links">
+                Dashboard
+              </Link>
+            )}
           </li>
           <li>
             {isLoggedIn ? (

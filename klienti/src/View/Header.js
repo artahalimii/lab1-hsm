@@ -19,7 +19,7 @@
 
 // export default Header;
 import React, { useState } from 'react';
-import './Navbar.css';
+import '../CSS/Navbar.css';
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
@@ -39,6 +39,7 @@ const Header = () => {
           {expanded ? "ospital Management System" : ""}
         </h1>
         <ul className="navbar__list">
+        <li className="navbar__item"><a href="/Home" className="navbar__link">Home</a></li>
           <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
           <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
           <li className="navbar__item"><a href="/ReservationCrud" className="navbar__link">Rezervimet</a></li>
@@ -46,6 +47,7 @@ const Header = () => {
           <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi</a></li>
           <li className="navbar__item"><a href="/ServCrud" className="navbar__link">Sherbimet</a></li>
           <li className="navbar__item"><a href="/ContactCrud" className="navbar__link">Contact</a></li>
+
         </ul>
       </div>
     </nav>
