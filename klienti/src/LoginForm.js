@@ -26,13 +26,13 @@ const LoginForm = () => {
         switch (role) {
           case 'admin':
             window.location.href = 'http://localhost:3000/Doki';
-            window.location.href = 'http://localhost:3000/PacCrud';
+            
             break;
             case 'doktor':
             window.location.href = 'http://localhost:3000/Doktori';
             break;
-          case 'user':
-            window.location.href = 'http://localhost:3000/Home';
+          case 'patient':
+            window.location.href = 'http://localhost:3000/PatientDashboard';
             break;
           default:
             window.location.href = 'http://localhost:3000/Home';

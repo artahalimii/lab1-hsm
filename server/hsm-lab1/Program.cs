@@ -110,7 +110,7 @@ public class Program
 
     private static async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
     {
-        string[] roleNames = { "admin", "user", "doktor" };
+        string[] roleNames = { "admin", "patient", "doktor" };
 
         foreach (var roleName in roleNames)
         {

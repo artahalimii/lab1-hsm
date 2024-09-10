@@ -45,6 +45,7 @@ const Header = () => {
           <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
           <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi</a></li>
           <li className="navbar__item"><a href="/ServCrud" className="navbar__link">Sherbimet</a></li>
+          <li className="navbar__item"><a href="/ContactCrud" className="navbar__link">Contact</a></li>
         </ul>
       </div>
     </nav>

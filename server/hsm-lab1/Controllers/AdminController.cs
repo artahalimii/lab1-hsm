@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using hsm_lab1.Database;
 using hsm_lab1.Models;
@@ -12,22 +10,23 @@ using Microsoft.AspNetCore.Identity;
 namespace hsm_lab1.Controllers
 {
     // AdminController.cs
-    [Authorize(Roles = "doktor")]
-    [Route("api/doctor-dashboard")]
-    public class DoctorDashboardController : ControllerBase
+    [Authorize]
+    [Route("api/[controller]")]
+    public class DashboardController : ControllerBase
     {
         private readonly HospitalDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        public DoctorDashboardController(HospitalDbContext context, UserManager<User> userManager)
+        public DashboardController(HospitalDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
         // Get logged-in doctor's reservations
-        [HttpGet("reservations")]
-        public async Task<IActionResult> GetReservations()
+        [HttpGet("doctor/reservations")]
+        [Authorize(Roles = "doktor")]
+        public async Task<IActionResult> GetDoctorReservations()
         {
             var userId = _userManager.GetUserId(User);
             var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.UserId == userId);
@@ -43,8 +42,9 @@ namespace hsm_lab1.Controllers
         }
 
         // Get logged-in doctor's records
-        [HttpGet("records")]
-        public async Task<IActionResult> GetRecords()
+        [HttpGet("doctor/records")]
+        [Authorize(Roles = "doktor")]
+        public async Task<IActionResult> GetDoctorRecords()
         {
             var userId = _userManager.GetUserId(User);
             var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.UserId == userId);
@@ -59,8 +59,42 @@ namespace hsm_lab1.Controllers
             return Ok(records);
         }
 
-        // Get logged-in doctor's patients
-        
-    }
+        // Get logged-in patient's reservations
+        [HttpGet("patient/reservations")]
+        [Authorize(Roles = "patient")]
+        public async Task<IActionResult> GetPatientReservations()
+        {
+            var userId = _userManager.GetUserId(User);
+            var patient = await _context.Pacienti.FirstOrDefaultAsync(p => p.UserId == userId);
 
+            if (patient == null)
+                return NotFound("Patient not found");
+
+            var reservations = await _context.ReservationModel
+                .Where(r => r.Patient == patient.Id_P)
+                .ToListAsync();
+
+            return Ok(reservations);
+        }
+
+        // Get logged-in patient's records
+        [HttpGet("patient/records")]
+        [Authorize(Roles = "patient")]
+        public async Task<IActionResult> GetPatientRecords()
+        {
+            var userId = _userManager.GetUserId(User);
+            var patient = await _context.Pacienti.FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (patient == null)
+                return NotFound("Patient not found");
+
+            var records = await _context.Rekord
+                .Where(r => r.Id_P == patient.Id_P)
+                .ToListAsync();
+
+            return Ok(records);
+        }
+
+        // Additional endpoints can be added here for other functionalities
+    }
 }

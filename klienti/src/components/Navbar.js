@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark, faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "../components/Navbar.css";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // State to track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('token') ? true : false);
 
   const openNav = () => {
     setNav(!nav);
@@ -21,10 +21,18 @@ function Navbar() {
     
     // Set login status to false
     setIsLoggedIn(false);
-  
+    
     // Optionally, you can show a toast message or perform any other action after logout
     toast.success('Logged out successfully');
+    
+    // Refresh the page
+    window.location.reload();
   };
+
+  useEffect(() => {
+    // Update login status based on localStorage
+    setIsLoggedIn(localStorage.getItem('token') ? true : false);
+  }, []);
 
   return (
     <div className="navbar-section">
@@ -42,12 +50,12 @@ function Navbar() {
           </Link>
         </li>
         <li>
-        <Link to="../Services" className="navbar-links">
-        Services
-      </Link>
+          <Link to="../Services" className="navbar-links">
+            Services
+          </Link>
         </li>
         <li>
-          <a href=".#about" className="navbar-links">
+          <a href="./About" className="navbar-links">
             About
           </a>
         </li>
@@ -82,13 +90,12 @@ function Navbar() {
             </Link>
           </li>
           <li>
-          <Link onClick={openNav} to="../Services">
-             Services
-          </Link>
-
+            <Link onClick={openNav} to="../Services">
+              Services
+            </Link>
           </li>
           <li>
-            <a onClick={openNav} href="#about">
+            <a onClick={openNav} href="../About">
               About
             </a>
           </li>

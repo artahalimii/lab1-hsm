@@ -19,6 +19,7 @@ namespace hsm_lab1.Database
         public DbSet<ReservationModel> ReservationModel { get; set; }
         public DbSet<SherbimiModel> Sherbimi { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ContactModel> Contacts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

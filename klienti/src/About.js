@@ -4,8 +4,9 @@ import Navbar from './components/Navbar';
 import FooterPage from './FooterPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStethoscope, faSyringe, faHospital } from '@fortawesome/free-solid-svg-icons';
+import ContactForm from './ContactForm'; // Import the ContactForm component
 
-const AboutUs = () => {
+const About = () => {
   const statRefs = useRef([]);
 
   useEffect(() => {
@@ -14,14 +15,14 @@ const AboutUs = () => {
       rootMargin: '0px',
       threshold: 0.1
     };
-
+  
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const element = entry.target;
           const targetNumber = parseInt(element.getAttribute('data-target'), 10);
           const speed = 200;
-
+  
           const updateCount = () => {
             const currentNumber = parseInt(element.innerText, 10);
             const increment = targetNumber / speed;
@@ -32,23 +33,29 @@ const AboutUs = () => {
               element.innerText = targetNumber;
             }
           };
-
+  
           updateCount();
           observer.unobserve(entry.target);
         }
       });
     }, options);
-
+  
     statRefs.current.forEach(stat => {
       if (stat) observer.observe(stat);
     });
-
+  
     return () => {
       if (statRefs.current) {
-        statRefs.current.forEach(stat => observer.unobserve(stat));
+        statRefs.current.forEach(stat => {
+          if (stat) {
+            observer.unobserve(stat);
+          }
+        });
       }
+      observer.disconnect(); // Clear the observer
     };
   }, []);
+  
 
   return (
     <div className="about-us-container">
@@ -159,7 +166,24 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <center><h3>Where can you find us ?</h3></center>
+      {/* Contact form section */}
+      <ContactForm />  {/* Add the ContactForm component here */}
+      <href></href>
+      <center><h3>Where can you find us?</h3></center>
+      <br />
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2856.812469825241!2d21.143523503176603!3d42.65200171275375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ef3f69baacb%3A0xf864a269cc75e908!2sDukagjini%20Residence!5e0!3m2!1sen!2s!4v1682282589650!5m2!1sen!2s"
+        width="100%"
+        height="450"
+        style={{ border: "0" }}
+        allowFullScreen=""
+        loading="lazy">
+      </iframe>
+
+      <FooterPage />
+      <div id="contactUs">  {/* Adding ID for anchor linking */}
+  <ContactForm />  {/* Add the ContactForm component here */}
+      <href></href>
+      <center><h3>Where can you find us?</h3></center>
       <br />
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2856.812469825241!2d21.143523503176603!3d42.65200171275375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ef3f69baacb%3A0xf864a269cc75e908!2sDukagjini%20Residence!5e0!3m2!1sen!2s!4v1682282589650!5m2!1sen!2s"
         width="100%"
@@ -169,8 +193,10 @@ const AboutUs = () => {
         loading="lazy">
       </iframe>
       <FooterPage />
+
+</div>
     </div>
   );
 };
 
-export default AboutUs;
+export default About;

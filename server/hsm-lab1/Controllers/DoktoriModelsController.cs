@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 [Route("api/[controller]")]
 [ApiController]
 
-[Authorize(Roles = "admin")]
+[Authorize(Roles = "admin,patient")]
 public class DoktoriModelsController : ControllerBase
 {
     private readonly HospitalDbContext _context;
@@ -20,9 +20,10 @@ public class DoktoriModelsController : ControllerBase
     {
         _context = context;
     }
-   
+
     // GET: api/DoktoriModels
-    /*[HttpGet]
+    [HttpGet]
+      [Authorize(Roles = "admin,patient")]
     public async Task<ActionResult<IEnumerable<DoktoriModel>>> GetDoktori()
     {
         if (_context.Doktori == null)
@@ -31,8 +32,9 @@ public class DoktoriModelsController : ControllerBase
         }
         return await _context.Doktori.ToListAsync();
     }
-    */
-    [HttpGet]
+    
+   /* [HttpGet]
+    [Authorize(Roles = "admin,patient")]
     public async Task<IActionResult> GetDoktori()
     {
         try
@@ -61,7 +63,7 @@ public class DoktoriModelsController : ControllerBase
         {
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
-    }
+    }*/
 
     // GET: api/DoktoriModels/5
     [HttpGet("{id}")]
@@ -83,6 +85,7 @@ public class DoktoriModelsController : ControllerBase
 
     // PUT: api/DoktoriModels/5
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> PutDoktoriModel(int id, DoktoriModel doktoriModel)
     {
         if (id != doktoriModel.Id)
@@ -113,6 +116,7 @@ public class DoktoriModelsController : ControllerBase
 
     // POST: api/DoktoriModels
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> PostDoktoriModel(DoktoriModel doktoriModel)
     {
         if (_context.Doktori == null)
@@ -143,6 +147,7 @@ public class DoktoriModelsController : ControllerBase
 
     // DELETE: api/DoktoriModels/5
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> DeleteDoktoriModel(int id)
     {
         if (_context.Doktori == null)

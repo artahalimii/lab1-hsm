@@ -96,7 +96,7 @@ public class AuthenticationController : ControllerBase
                 _context.Doktori.Add(doktori);
                 await _context.SaveChangesAsync();
             }
-            if (model.Role.ToLower() == "user")
+            if (model.Role.ToLower() == "patient")
             {
                 var pacienti = new PacientiModel
                 {

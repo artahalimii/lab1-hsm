@@ -151,7 +151,7 @@ const PacientiCRUD = () => {
     }
 
     const url = "http://localhost:5038/api/PacientiModels";
-    const data = {
+    const newPatient = {
       "Emri": name,
       "Mbiemri": surname,
       "DataELindjes": birthDate,
@@ -161,7 +161,7 @@ const PacientiCRUD = () => {
       "UserId": userId
     };
 
-    axios.post(url, data, {
+    axios.post(url, newPatient, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -196,7 +196,7 @@ const PacientiCRUD = () => {
 
   return (
     <Fragment>
-      <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)'}}>Pacienti</h1>
+      <h1 style={{ textAlign: 'center', color: 'rgb(86, 168, 86)' }}>Pacienti</h1>
       <ToastContainer />
       <Container className="mt-5">
         <Row className="text-center">
@@ -223,7 +223,6 @@ const PacientiCRUD = () => {
           <Button variant="success" onClick={handleSave}>Save</Button>
         </Modal.Footer>
       </Modal>
-      <br></br>
       <Container className="text-center">
         <Table striped bordered hover variant="dark">
           <thead>
@@ -236,33 +235,26 @@ const PacientiCRUD = () => {
               <th>Gender</th>
               <th>Complaint</th>
               <th>UserId</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {
-              data && data.length > 0 ?
-                data.map((item, index) => (
-                  <tr key={index}>
-                    <td>{index+1}</td>
-                    <td>{item.emri}</td>
-                    <td>{item.mbiemri}</td>
-                    <td>{item.dataELindjes}</td>
-                    <td>{item.numriTel}</td>
-                    <td>{item.gjinia}</td>
-                    <td>{item.ankesa}</td>
-                    <td>{item.userId}</td>
-                    <td>
-                      <Button variant="success" onClick={() => handleEdit(item.id_P)}>Edit</Button>
-                      <Button variant="outline-light" className="ml-2" onClick={() => handleDelete(item.id_P)}>Delete</Button>
-                    </td>
-                  </tr>
-                ))
-                :
-                <tr>
-                  <td colSpan="9">No data available</td>
-                </tr>
-            }
+            {data.map((item, index) => (
+              <tr key={item.id_P}>
+                <td>{index + 1}</td>
+                <td>{item.emri}</td>
+                <td>{item.mbiemri}</td>
+                <td>{item.dataELindjes}</td>
+                <td>{item.numriTel}</td>
+                <td>{item.gjinia}</td>
+                <td>{item.ankesa}</td>
+                <td>{item.userId}</td>
+                <td>
+                  <Button variant="outline-warning" className="me-2" onClick={() => handleEdit(item.id_P)}>Edit</Button>
+                  <Button variant="outline-danger" onClick={() => handleDelete(item.id_P)}>Delete</Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Container>
@@ -281,7 +273,7 @@ const PacientiCRUD = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>Cancel</Button>
-          <Button variant="success" onClick={handleUpdate}>Update</Button>
+          <Button variant="success" onClick={handleUpdate}>Save</Button>
         </Modal.Footer>
       </Modal>
     </Fragment>

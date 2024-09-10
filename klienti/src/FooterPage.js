@@ -19,11 +19,11 @@ export class FooterPage extends React.Component {
                         <Col md="3">
                             <h5 className="footer-title">Menu</h5>
                             <ul className="list-unstyled">
-                                <li><a href="/" className='footer-link'>Home</a></li>
-                                <li><a href="/about" className='footer-link'>About Us</a></li>
-                                <li><a href="/refer" className='footer-link'>Refer a Patient</a></li>
+                                <li><a href="./Home" className='footer-link'>Home</a></li>
+                                <li><a href="./about" className='footer-link'>About Us</a></li>
+                                <li><a href="/Register" className='footer-link'>Refer a Patient</a></li>
                                 <li><a href="/privacy" className='footer-link'>Privacy Policy</a></li>
-                                <li><a href="/contact" className='footer-link'>Contact Us</a></li>
+                                <li><a href="./ContactUs" className='footer-link'>Contact Us</a></li>
                             </ul>
                         </Col>
                         <Col md="3">

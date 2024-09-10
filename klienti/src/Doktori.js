@@ -6,9 +6,50 @@ import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
+import Tab from 'react-bootstrap/Tab';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './components/Navbar'; // Ensure correct path
+
+const styles = {
+  sidebar: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '250px',
+    backgroundColor: '#f8f9fa',
+    padding: '15px',
+    boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
+    zIndex: 1000, // Ensure the sidebar stays below the navbar
+    marginTop:'84px',
+  },
+  content: {
+    marginLeft: '250px', // Same width as the sidebar
+    padding: '15px',
+    paddingTop: '60px', // Adjust for navbar height
+    flexGrow: 1,
+  },
+  sidebarLink: {
+    padding: '10px 15px',
+    fontSize: '16px',
+    color: '#333',
+    textDecoration: 'none',
+    display: 'block',
+    transition: 'background-color 0.3s, color 0.3s',
+  },
+  sidebarLinkHover: {
+    backgroundColor: '#007bff',
+    color: '#fff',
+  },
+  sidebarLinkActive: {
+    backgroundColor: '#007bff',
+    color: '#fff',
+  },
+};
 
 const Doktori = () => {
   const [patients, setPatients] = useState([]);
@@ -16,6 +57,7 @@ const Doktori = () => {
   const [reservations, setReservations] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [activeTab, setActiveTab] = useState('patients');
 
   const handleClose = () => setShowModal(false);
   const handleShow = (patient) => {
@@ -23,19 +65,21 @@ const Doktori = () => {
     setShowModal(true);
   };
 
+  const handleSelectTab = (key) => setActiveTab(key);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
 
         // Fetch reservations
-        const reservationsResponse = await axios.get(`http://localhost:5038/api/doctor-dashboard/reservations`, {
+        const reservationsResponse = await axios.get(`http://localhost:5038/api/Dashboard/doctor/reservations`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setReservations(reservationsResponse.data);
 
         // Fetch records
-        const recordsResponse = await axios.get(`http://localhost:5038/api/doctor-dashboard/records`, {
+        const recordsResponse = await axios.get(`http://localhost:5038/api/Dashboard/doctor/records`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setRecords(recordsResponse.data);
@@ -72,96 +116,156 @@ const Doktori = () => {
   return (
     <>
       <ToastContainer />
-      <Container className="mt-5">
-        <h1 className="text-center mb-4">Dashboard i Doktorit</h1>
+      <Navbar />
+      <div style={{ display: 'flex' }}>
+        {/* Sidebar */}
+        <div style={styles.sidebar}>
+          <Nav className="flex-column">
+            <Nav.Link 
+              href="#patients" 
+              style={{ ...styles.sidebarLink, ...(activeTab === 'patients' ? styles.sidebarLinkActive : {}) }}
+              onClick={() => handleSelectTab('patients')}
+            >
+              Pacientet
+            </Nav.Link>
+            <Nav.Link 
+              href="#records" 
+              style={{ ...styles.sidebarLink, ...(activeTab === 'records' ? styles.sidebarLinkActive : {}) }}
+              onClick={() => handleSelectTab('records')}
+            >
+              Rekordet
+            </Nav.Link>
+            <Nav.Link 
+              href="#reservations" 
+              style={{ ...styles.sidebarLink, ...(activeTab === 'reservations' ? styles.sidebarLinkActive : {}) }}
+              onClick={() => handleSelectTab('reservations')}
+            >
+              Rezervimet
+            </Nav.Link>
+          </Nav>
+        </div>
 
-        <Row>
-          <Col md={12} lg={4} className="mb-4">
-            <h2>Pacientet</h2>
-            <Table striped bordered hover variant="light">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Emri</th>
-                  <th>Email</th>
-                  <th>Telefoni</th>
-                  <th>Veprime</th>
-                </tr>
-              </thead>
-              <tbody>
-                {patients.length > 0 ? patients.map((patient, index) => (
-                  <tr key={patient.id_P}>
-                    <td>{index + 1}</td>
-                    <td>{patient.emri}</td>
-                    <td>{patient.email}</td>
-                    <td>{patient.numriTel}</td>
-                    <td>
-                      <Button variant="info" onClick={() => handleShow(patient)}>Detajet</Button>
-                    </td>
-                  </tr>
-                )) : <tr><td colSpan="5">Loading...</td></tr>}
-              </tbody>
-            </Table>
-          </Col>
+        {/* Main Content */}
+        <div style={styles.content}>
+          <Container className="mt-5">
+            <Row>
+              <Col>
+                <Tab.Container activeKey={activeTab}>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="patients">
+                      <Card className="shadow-sm mb-4">
+                        <Card.Header>
+                          <h2>Pacientet</h2>
+                        </Card.Header>
+                        <Card.Body>
+                          <Table striped bordered hover variant="light">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Emri</th>
+                                <th>Email</th>
+                                <th>Telefoni</th>
+                                <th>Veprime</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {patients.length > 0 ? patients.map((patient, index) => (
+                                <tr key={patient.id_P}>
+                                  <td>{index + 1}</td>
+                                  <td>{patient.emri}</td>
+                                  <td>{patient.email}</td>
+                                  <td>{patient.numriTel}</td>
+                                  <td>
+                                    <Button variant="info" onClick={() => handleShow(patient)}>Detajet</Button>
+                                  </td>
+                                </tr>
+                              )) : <tr><td colSpan="5">Loading...</td></tr>}
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+                    </Tab.Pane>
 
-          <Col md={12} lg={4} className="mb-4">
-            <h2>Rekordet</h2>
-            <Table striped bordered hover variant="light">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>ID Rekordi</th>
-                  <th>Diagnoza</th>
-                  <th>Receta</th>
-                  <th>Rezultatet</th>
-                  <th>Pacienti</th>
-                </tr>
-              </thead>
-              <tbody>
-                {records.length > 0 ? records.map((record, index) => (
-                  <tr key={record.id_Rek}>
-                    <td>{index + 1}</td>
-                    <td>{record.id_Rek}</td>
-                    <td>{record.diagnoza}</td>
-                    <td>{record.receta}</td>
-                    <td>{record.rezultatet}</td>
-                    <td>{patients.find(p => p.id_P === record.id_P)?.emri || 'Unknown'}</td>
-                  </tr>
-                )) : <tr><td colSpan="6">Loading...</td></tr>}
-              </tbody>
-            </Table>
-          </Col>
+                    <Tab.Pane eventKey="records">
+                      <Card className="shadow-sm mb-4">
+                        <Card.Header>
+                          <h2>Rekordet</h2>
+                        </Card.Header>
+                        <Card.Body>
+                          <Table striped bordered hover variant="light">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>ID Rekordi</th>
+                                <th>Diagnoza</th>
+                                <th>Receta</th>
+                                <th>Rezultatet</th>
+                                <th>Pacienti</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {records.length > 0 ? records.map((record, index) => (
+                                <tr key={record.id_Rek}>
+                                  <td>{index + 1}</td>
+                                  <td>{record.id_Rek}</td>
+                                  <td>{record.diagnoza}</td>
+                                  <td>{record.receta}</td>
+                                  <td>{record.rezultatet}</td>
+                                  <td>{patients.find(p => p.id_P === record.id_P)?.emri || 'Unknown'}</td>
+                                </tr>
+                              )) : <tr><td colSpan="6">Loading...</td></tr>}
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+                    </Tab.Pane>
 
-          <Col md={12} lg={4} className="mb-4">
-            <h2>Rezervimet</h2>
-            <Table striped bordered hover variant="light">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>ID Rezervimi</th>
-                  <th>Data</th>
-                  <th>Koha</th>
-                  <th>Pacienti</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reservations.length > 0 ? reservations.map((reservation, index) => (
-                  <tr key={reservation.reservationId}>
-                    <td>{index + 1}</td>
-                    <td>{reservation.reservationId}</td>
-                    <td>{reservation.reservationDate}</td>
-                    <td>{reservation.reservationTime}</td>
-                    <td>{patients.find(p => p.id_P === reservation.patient)?.emri || 'Unknown'}</td>
-                  </tr>
-                )) : <tr><td colSpan="5">Loading...</td></tr>}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+                    <Tab.Pane eventKey="reservations">
+                      <Card className="shadow-sm mb-4">
+                        <Card.Header>
+                          <h2>Rezervimet</h2>
+                        </Card.Header>
+                        <Card.Body>
+                          <Table striped bordered hover variant="light">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>ID Rezervimi</th>
+                                <th>Data</th>
+                                <th>Koha</th>
+                                <th>Pacienti</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {reservations.length > 0 ? reservations.map((reservation, index) => (
+                                <tr key={reservation.reservationId}>
+                                  <td>{index + 1}</td>
+                                  <td>{reservation.reservationId}</td>
+                                  <td>{reservation.reservationDate}</td>
+                                  <td>{reservation.reservationTime}</td>
+                                  <td>{patients.find(p => p.id_P === reservation.patient)?.emri || 'Unknown'}</td>
+                                </tr>
+                              )) : <tr><td colSpan="5">Loading...</td></tr>}
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Tab.Container>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </div>
 
       {/* Patient Details Modal */}
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal 
+        show={showModal} 
+        onHide={handleClose}
+        dialogClassName="modal-dialog-centered" /* Ensures Bootstrap centering */
+        centered /* Additional Bootstrap prop to ensure centering */
+      >
         <Modal.Header closeButton>
           <Modal.Title>Detajet e Pacientit</Modal.Title>
         </Modal.Header>

@@ -14,6 +14,9 @@ import Home from './Home';
 import Services from './Services';
 import Doktori from './Doktori';
 import AboutUs from './About';
+import ContactForm from './ContactForm';
+import PatientDashboard from './PatientDashboard';
+import ContactCRUD from './ContactCrud';
 
 
 function App() {
@@ -32,7 +35,7 @@ function App() {
 
 function RouteRender() {
   const location = useLocation();
-  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
+  const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud' , '/ContactCrud'];
 
   const shouldShowHeader = CRUDPaths.includes(location.pathname);
 
@@ -52,7 +55,9 @@ function RouteRender() {
         <Route path="/Services" element={<Services />} />
          <Route path="/About" element={<AboutUs />} /> 
          <Route path="/Doktori" element={<Doktori />} /> 
-        
+         <Route path="/Contact" element={<ContactForm />} /> 
+         <Route path="/PatientDashboard" element={<PatientDashboard />} /> 
+         <Route path="/ContactCrud" element={<ContactCRUD />} /> 
       </Routes>
     </>
   );
