@@ -14,8 +14,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar'; 
 
-
-
 const styles = {
   sidebar: {
     position: 'fixed',
@@ -52,6 +50,7 @@ const styles = {
 const PatientDashboard = () => {
   const [reservations, setReservations] = useState([]);
   const [records, setRecords] = useState([]);
+  const [doctors, setDoctors] = useState({});
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [reservationData, setReservationData] = useState({
     reservationDate: '',
@@ -59,14 +58,15 @@ const PatientDashboard = () => {
     doctorId: '',
   });
   const [activeTab, setActiveTab] = useState('makeReservation');
+
   const handleSelectTab = (tab) => {
-            if (tab === 'contactUs') {
-              // Simply redirect using a link to the Contact Us section
-              window.location.href = '/about#contactUs'; 
-            } else {
-              setActiveTab(tab);
-            }
-          };
+    if (tab === 'contactUs') {
+      window.location.href = '/about#contactUs'; 
+    } else {
+      setActiveTab(tab);
+    }
+  };
+
   const handleReservationInputChange = (e) => {
     const { name, value } = e.target;
     setReservationData((prevData) => ({
@@ -110,6 +110,15 @@ const PatientDashboard = () => {
         });
         setRecords(recordsResponse.data);
 
+        const doctorsResponse = await axios.get(`http://localhost:5038/api/DoktoriModels`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const doctorsMap = doctorsResponse.data.reduce((acc, doctor) => {
+          acc[doctor.id] = doctor.emri; 
+          return acc;
+        }, {});
+        setDoctors(doctorsMap);
+
       } catch (error) {
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         toast.error(`Error fetching data: ${error.response ? error.response.data : error.message}`);
@@ -118,13 +127,18 @@ const PatientDashboard = () => {
 
     fetchData();
   }, []);
-  // Check user role
-  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
-  
-  if (userRole !== 'patient') {
-    return <h2>Unauthorized: You do not have access to this page.</h2>;
-  }
 
+  const userRole = localStorage.getItem('role');
+  if (userRole !== 'patient') {
+    return (
+      <div className="text-center mt-5">
+        <h2>Unauthorized: You do not have access to this page.</h2>
+        <h3>
+          Click <a href="./Home"> here </a>to go to our home page
+        </h3>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -155,7 +169,7 @@ const PatientDashboard = () => {
               My Records
             </Nav.Link>
             <Nav.Link 
-              href="/About#contactUs"  // Direct link to the Contact Us section
+              href="/About#contactUs"
               style={{ ...styles.sidebarLink, ...(activeTab === 'contactUs' ? styles.sidebarLinkActive : {}) }}
             >
               Contact Us
@@ -205,7 +219,7 @@ const PatientDashboard = () => {
                                   <td>{reservation.reservationId}</td>
                                   <td>{reservation.reservationDate}</td>
                                   <td>{reservation.reservationTime}</td>
-                                  <td>{reservation.doctor || 'Unknown'}</td>
+                                  <td>{doctors[reservation.doctor] || 'Unknown'}</td>
                                 </tr>
                               )) : <tr><td colSpan="5">No Reservations</td></tr>}
                             </tbody>
@@ -239,7 +253,7 @@ const PatientDashboard = () => {
                                   <td>{record.diagnoza}</td>
                                   <td>{record.receta}</td>
                                   <td>{record.rezultatet}</td>
-                                  <td>{record.doctorId || 'Unknown'}</td>
+                                  <td>{doctors[record.doctorId] || 'Unknown'}</td>
                                 </tr>
                               )) : <tr><td colSpan="6">No Records</td></tr>}
                             </tbody>
@@ -256,18 +270,14 @@ const PatientDashboard = () => {
       </div>
 
       {/* Reservation Modal */}
-      <Modal 
-        show={showReservationModal} 
-        onHide={() => setShowReservationModal(false)}
-        centered
-      >
+      <Modal show={showReservationModal} onHide={() => setShowReservationModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Make a Reservation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formReservationDate">
-              <Form.Label>Reservation Date</Form.Label>
+              <Form.Label>Date</Form.Label>
               <Form.Control
                 type="date"
                 name="reservationDate"
@@ -276,7 +286,7 @@ const PatientDashboard = () => {
               />
             </Form.Group>
             <Form.Group controlId="formReservationTime">
-              <Form.Label>Reservation Time</Form.Label>
+              <Form.Label>Time</Form.Label>
               <Form.Control
                 type="time"
                 name="reservationTime"
@@ -287,12 +297,18 @@ const PatientDashboard = () => {
             <Form.Group controlId="formDoctorId">
               <Form.Label>Doctor</Form.Label>
               <Form.Control
-                type="text"
+                as="select"
                 name="doctorId"
-                placeholder="Doctor ID"
                 value={reservationData.doctorId}
                 onChange={handleReservationInputChange}
-              />
+              >
+                <option value="">Select a Doctor</option>
+                {Object.entries(doctors).map(([doctorId, doctorName]) => (
+                  <option key={doctorId} value={doctorId}>
+                    {doctorName}
+                  </option>
+                ))}
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>

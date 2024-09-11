@@ -74,10 +74,8 @@ const ServCrud = () => {
     if (window.confirm("Are you sure you want to delete this service?") == true) {
       axios.delete(`http://localhost:5038/api/SherbimiModels/${id_S}`)
         .then((result) => {
-          if (result.status === 200) {
+          getData(); 
             toast.success('Service deleted successfully!');
-            getData(); // Refresh the data after successful deletion
-          }
         })
         .catch((error) => {
           toast.error('Error deleting service');

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CRUD from './View/CRUD';
+import InfCrud from './View/InfCrud';
 import PacCrud from './View/PacCrud';
 import ServCrud from './View/ServCrud';
 import ReservationCrud from './View/ReservationCrud';
@@ -16,7 +17,6 @@ import AboutUs from './View/About';
 import ContactForm from './View/ContactForm';
 import PatientDashboard from './View/PatientDashboard';
 import ContactCRUD from './View/ContactCrud';
-import InfCrud  from './InfCrud ';
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 

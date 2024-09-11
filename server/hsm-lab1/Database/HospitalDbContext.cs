@@ -14,7 +14,6 @@ namespace hsm_lab1.Database
         public DbSet<DoktoriModel> Doktori { get; set; }
         public DbSet<InfermjeriModel> Infermjeri { get; set; }
         public DbSet<PacientiModel> Pacienti { get; set; }
-        public DbSet<RecepsionistiModel> Recepsionisti { get; set; }
         public DbSet<RekordModel> Rekord { get; set; }
         public DbSet<ReservationModel> ReservationModel { get; set; }
         public DbSet<SherbimiModel> Sherbimi { get; set; }
@@ -36,9 +35,6 @@ namespace hsm_lab1.Database
 
             modelBuilder.Entity<PacientiModel>()
                 .HasKey(i => i.Id_P);
-
-            modelBuilder.Entity<RecepsionistiModel>()
-                .HasKey(i => i.Id_r);
 
             modelBuilder.Entity<SherbimiModel>()
               .HasKey(i => i.Id_S);

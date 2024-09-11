@@ -53,9 +53,15 @@ const Doktori = () => {
   const [records, setRecords] = useState([]);
   const [reservations, setReservations] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showAddRecordModal, setShowAddRecordModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [nurses, setNurses] = useState({});
-
+  const [newRecord, setNewRecord] = useState({
+    diagnoza: '',
+    receta: '',
+    rezultatet: '',
+    id_P: '',
+  });
 
   const handleClose = () => setShowModal(false);
   const handleShow = (patient) => {
@@ -63,69 +69,100 @@ const Doktori = () => {
     setShowModal(true);
   };
 
+  const handleAddRecordClose = () => setShowAddRecordModal(false);
+  const handleAddRecordShow = () => setShowAddRecordModal(true);
+
   const handleSelectTab = (key) => setActiveTab(key);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewRecord({ ...newRecord, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5038/api/Dashboard/doctor/records', newRecord, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      toast.success('Record added successfully');
+      setShowAddRecordModal(false);
+      // Refresh records
+      const recordsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/records', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      setRecords(recordsResponse.data);
+    } catch (error) {
+      console.error('Error adding record:', error.response ? error.response.data : error.message);
+      toast.error('Error adding record');
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-  
         // Fetch reservations
         const reservationsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/reservations', {
-          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         setReservations(reservationsResponse.data);
-  
+
         // Fetch records
         const recordsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/records', {
-          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         setRecords(recordsResponse.data);
-  
+
         // Collect patient IDs from reservations and records
         const patientIds = new Set([
           ...reservationsResponse.data.map(r => r.patient),
           ...recordsResponse.data.map(r => r.id_P)
         ]);
-  
+
         if (patientIds.size === 0) {
           setPatients([]);
           return;
         }
-  
+
         // Fetch patients based on collected IDs
         const patientsResponse = await axios.get('http://localhost:5038/api/PacientiModels', {
-          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
+          headers: { 'Authorization': `Bearer ${token}` }
         });
-  
+
         // Filter patients to only those with IDs in patientIds
         const filteredPatients = patientsResponse.data.filter(patient => patientIds.has(patient.id_P));
         setPatients(filteredPatients);
-  
+
         // Fetch nurses for the week
         const nursesResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/nurses', {
-          headers: { 'Authorization': `Bearer ${token}` } // Fixed the template literal here
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         setNurses(nursesResponse.data);
-  
+
       } catch (error) {
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         toast.error('Error fetching data');
       }
     };
-  
+
     fetchData();
   }, []);
-   // Check user role
-   const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
-  
-   if (userRole !== 'doktor') {
-     return <h2>Unauthorized: You do not have access to this page.</h2>;
-   }
- 
-  
 
+  // Check user role
+  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
 
+  if (userRole !== 'doktor') {
+    return (
+      <div className="text-center mt-5">
+        <h2>Unauthorized: You do not have access to this page.</h2>
+        <h3>
+         Click <a href="./Home"> here </a>to go to our home page
+        </h3>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -181,7 +218,7 @@ const Doktori = () => {
                           <Table striped bordered hover variant="light">
                             <thead>
                               <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Emri</th>
                                 <th>Email</th>
                                 <th>Telefoni</th>
@@ -191,7 +228,7 @@ const Doktori = () => {
                             <tbody>
                               {patients.length > 0 ? patients.map((patient, index) => (
                                 <tr key={patient.id_P}>
-                                  <td>{index + 1}</td>
+                                  <td>{patient.id_P}</td>
                                   <td>{patient.emri}</td>
                                   <td>{patient.email}</td>
                                   <td>{patient.numriTel}</td>
@@ -205,40 +242,45 @@ const Doktori = () => {
                         </Card.Body>
                       </Card>
                     </Tab.Pane>
-
                     <Tab.Pane eventKey="records">
-                      <Card className="shadow-sm mb-4">
-                        <Card.Header>
+                             <Card className="shadow-sm mb-4">
+                            <Card.Header>
                           <h2>Rekordet</h2>
-                        </Card.Header>
-                        <Card.Body>
-                          <Table striped bordered hover variant="light">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>ID Rekordi</th>
-                                <th>Diagnoza</th>
-                                <th>Receta</th>
-                                <th>Rezultatet</th>
-                                <th>Pacienti</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {records.length > 0 ? records.map((record, index) => (
-                                <tr key={record.id_Rek}>
-                                  <td>{index + 1}</td>
-                                  <td>{record.id_Rek}</td>
-                                  <td>{record.diagnoza}</td>
-                                  <td>{record.receta}</td>
-                                  <td>{record.rezultatet}</td>
-                                  <td>{patients.find(p => p.id_P === record.id_P)?.emri || 'Unknown'}</td>
-                                </tr>
-                              )) : <tr><td colSpan="6">Loading...</td></tr>}
-                            </tbody>
-                          </Table>
-                        </Card.Body>
-                      </Card>
-                    </Tab.Pane>
+                             {/* Add a container for button and table */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                               <div></div> {/* Empty div to push the button to the right */}
+                       <Button variant="primary" onClick={handleAddRecordShow}>Shto Rekord</Button>
+                                   </div>
+                                 </Card.Header>
+                     <Card.Body>
+                              <Table striped bordered hover variant="light">
+                      <thead>
+                        <tr>
+                        <th>#</th>
+                        <th>ID Rekordi</th>
+                        <th>Diagnoza</th>
+                         <th>Receta</th>
+                          <th>Rezultatet</th>
+                          <th>Pacienti</th>
+                       </tr>
+                       </thead>
+                     <tbody>
+          {records.length > 0 ? records.map((record, index) => (
+            <tr key={record.id_Rek}>
+              <td>{index + 1}</td>
+              <td>{record.id_Rek}</td>
+              <td>{record.diagnoza}</td>
+              <td>{record.receta}</td>
+              <td>{record.rezultatet}</td>
+              <td>{patients.find(p => p.id_P === record.id_P)?.emri || 'Unknown'}</td>
+            </tr>
+          )) : <tr><td colSpan="6">Loading...</td></tr>}
+        </tbody>
+      </Table>
+    </Card.Body>
+  </Card>
+</Tab.Pane>
+
 
                     <Tab.Pane eventKey="reservations">
                       <Card className="shadow-sm mb-4">
@@ -270,35 +312,33 @@ const Doktori = () => {
                           </Table>
                         </Card.Body>
                       </Card>
-                      </Tab.Pane>
-                      
-                      <Tab.Pane eventKey="nurses">
-  <Card className="shadow-sm mb-4">
-    <Card.Header>
-      <h2>Nurses for the Week</h2>
-    </Card.Header>
-    <Card.Body>
-      <Table striped bordered hover variant="light">
-        <thead>
-          <tr>
-            <th>Day</th>
-            <th>Nurse</th>  {/* Only one nurse */}
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(nurses).map(([day, nurseList], index) => (
-            <tr key={index}>
-              <td>{day}</td>
-              <td>{nurseList?.[0]?.emri || 'N/A'} {nurseList?.[0]?.mbiemri || ''}</td> {/* Display only Nurse 1 */}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Card.Body>
-  </Card>
-</Tab.Pane>
+                    </Tab.Pane>
 
-
+                    <Tab.Pane eventKey="nurses">
+                      <Card className="shadow-sm mb-4">
+                        <Card.Header>
+                          <h2>Nurses for the Week</h2>
+                        </Card.Header>
+                        <Card.Body>
+                          <Table striped bordered hover variant="light">
+                            <thead>
+                              <tr>
+                                <th>Day</th>
+                                <th>Nurse</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {Object.entries(nurses).map(([day, nurseList], index) => (
+                                <tr key={index}>
+                                  <td>{day}</td>
+                                  <td>{nurseList?.[0]?.emri || 'N/A'} {nurseList?.[0]?.mbiemri || ''}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+                    </Tab.Pane>
 
                   </Tab.Content>
                 </Tab.Container>
@@ -312,8 +352,8 @@ const Doktori = () => {
       <Modal 
         show={showModal} 
         onHide={handleClose}
-        dialogClassName="modal-dialog-centered" /* Ensures Bootstrap centering */
-        centered /* Additional Bootstrap prop to ensure centering */
+        dialogClassName="modal-dialog-centered"
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Detajet e Pacientit</Modal.Title>
@@ -336,6 +376,74 @@ const Doktori = () => {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Mbyll</Button>
         </Modal.Footer>
+      </Modal>
+
+      {/* Add Record Modal */}
+      <Modal 
+        show={showAddRecordModal} 
+        onHide={handleAddRecordClose}
+        dialogClassName="modal-dialog-centered"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Shto Rekord</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="diagnoza" className="form-label">Diagnoza</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                id="diagnoza" 
+                name="diagnoza" 
+                value={newRecord.diagnoza} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="receta" className="form-label">Receta</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                id="receta" 
+                name="receta" 
+                value={newRecord.receta} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="rezultatet" className="form-label">Rezultatet</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                id="rezultatet" 
+                name="rezultatet" 
+                value={newRecord.rezultatet} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="id_P" className="form-label">Pacienti ID</label>
+              <input 
+                type="text" 
+                className="form-control" 
+                id="id_P" 
+                name="id_P" 
+                value={newRecord.id_P} 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleAddRecordClose}>Mbyll</Button>
+              <Button variant="primary" type="submit">Ruaj</Button>
+            </Modal.Footer>
+          </form>
+        </Modal.Body>
       </Modal>
     </>
   );

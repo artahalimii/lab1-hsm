@@ -1,23 +1,4 @@
-// import React from 'react';
-// import './Navbar.css';
 
-// const Header = () => {
-//   return (
-//     <nav className="navbar">
-//     <div className="container">
-//     <h1 className="navbar__logo" title="Hospital Management System">HMS</h1>
-//       <ul className="navbar__list">
-//         <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
-//         <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
-//         <li className="navbar__item"><a href="/" className="navbar__link">Recepsionisti</a></li>
-//         <li className="navbar__item"><a href="/" className="navbar__link">Pacienti</a></li>
-//       </ul>
-//     </div>
-//   </nav>
-// );
-// };
-
-// export default Header;
 import React, { useState } from 'react';
 import '../CSS/Navbar.css';
 
@@ -41,7 +22,7 @@ const Header = () => {
         <ul className="navbar__list">
         <li className="navbar__item"><a href="/Home" className="navbar__link">Home</a></li>
           <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
-          <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
+          <li className="navbar__item"><a href="/InfCrud" className="navbar__link">Infermieri</a></li>
           <li className="navbar__item"><a href="/ReservationCrud" className="navbar__link">Rezervimet</a></li>
           <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
           <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi</a></li>

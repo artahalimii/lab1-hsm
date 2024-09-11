@@ -209,10 +209,10 @@ const PacientiCRUD = () => {
             <Button variant="outline-success" onClick={() => setShowSub(true)}>Add Patient</Button>
           </Col>
         </Row>
-      </Container>
+      </Container><br/>
       <Modal show={showSub} onHide={() => setShowSub(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Patient</Modal.Title>
+          <Modal.Title>Add Patient</Modal.Title> 
         </Modal.Header>
         <Modal.Body>
           <input type='text' className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -255,8 +255,8 @@ const PacientiCRUD = () => {
                 <td>{item.ankesa}</td>
                 <td>{item.userId}</td>
                 <td>
-                  <Button variant="outline-warning" className="me-2" onClick={() => handleEdit(item.id_P)}>Edit</Button>
-                  <Button variant="outline-danger" onClick={() => handleDelete(item.id_P)}>Delete</Button>
+                  <Button variant="success" className="me-2" onClick={() => handleEdit(item.id_P)}>Edit</Button>
+                  <Button variant="outline-light" onClick={() => handleDelete(item.id_P)}>Delete</Button>
                 </td>
               </tr>
             ))}

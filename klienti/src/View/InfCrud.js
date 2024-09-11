@@ -7,11 +7,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import './App.css';
+import '../App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './CSS/Navbar.css';
-import { getAuthHeader, decodeToken } from './View/authService';
+import '../CSS/Navbar.css';
+import { getAuthHeader, decodeToken } from '../View/authService';
 
 // import DatePicker from 'react-datepicker';
 // import 'react-datepicker/dist/react-datepicker.css';import React, { useState } from 'react';
@@ -52,42 +52,44 @@ const InfCrud = () => {
     const [editDepartamenti, setEditDepartamenti] = useState('');
     const [editvitetPune, setEditvitetPune] = useState('');
     const [editFoto, setEditFoto] = useState('');
-
     useEffect(() => {
         getData();
     }, []);
-
-
+    
+    // Get token and set headers
+    const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+    
+    const getAuthHeader = () => {
+        return {
+            'Authorization': `Bearer ${token}` // Add the Authorization header
+        };
+    };
+    
     const getData = async () => {
-        const token = localStorage.getItem('token');
         const decoded = decodeToken(token);
     
         if (!decoded) {
-          setError('Token has expired or is invalid');
-          return;
+            setError('Token has expired or is invalid');
+            return;
         }
     
         try {
-          const response = await axios.get('http://localhost:5038/api/InfermjeriModels', {
-            headers: getAuthHeader(),
-          });
-          setData(response.data);
+            const response = await axios.get('http://localhost:5038/api/InfermjeriModels', {
+                headers: getAuthHeader(),
+            });
+            setData(response.data);
         } catch (error) {
-          setError('Failed to fetch data');
-          console.error('Error fetching data:', error);
+            setError('Failed to fetch data');
+            console.error('Error fetching data:', error.response ? error.response.data : error.message);
         }
-      };
+    };
     
-      useEffect(() => {
-        getData();
-      }, []);
-    
-
     // Basic email validation using regex
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
+    
     const isValidPervoja = (vitetPune) => {
         if (vitetPune === null) {
             return true;
@@ -95,48 +97,32 @@ const InfCrud = () => {
         const pervojaRegex = /^[0-9]\d*$/;
         return pervojaRegex.test(vitetPune.toString());
     };
-
+    
     const handleEdit = (id_i) => {
         handleShow();
-        axios.get(`http://localhost:5038/api/InfermjeriModels/${id_i}`)
-            .then((result) => {
-                const { emri, mbiemri, dataELindjes, email, numriTel, gjinia, departamenti, vitetPune, photoFile } = result.data;
-                setEditName(emri);
-                setEditSurname(mbiemri);
-                setEditDate(dataELindjes);
-                setEditEmail(email);
-                setEditnumriTel(numriTel);
-                setEditGjinia(gjinia);
-                setEditDepartamenti(departamenti);
-                setEditvitetPune(vitetPune);
-                setEditFoto(photoFile);
-                setEditId(id_i);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-
-    const handleDelete = (id_i) => {
-        if (window.confirm("Are you sure you want to delete this nurse?") == true) {
-            axios.delete(`http://localhost:5038/api/InfermjeriModels/${id_i}`)
-                .then((result) => {
-                    if (result.status === 200) {
-                        toast.success('Nurse deleted successfully!');
-                        getData(); // Refresh the data after successful deletion
-                    }
-                })
-                .catch((error) => {
-                    toast.error('Error deleting nurse');
-                    console.error('Error deleting nurse:', error);
-                });
-        }
-    }
-
-
+        axios.get(`http://localhost:5038/api/InfermjeriModels/${id_i}`, {
+            headers: getAuthHeader()
+        })
+        .then((result) => {
+            const { emri, mbiemri, dataELindjes, email, numriTel, gjinia, departamenti, vitetPune, photoFile } = result.data;
+            setEditId(id_i);
+            setEditName(emri);
+            setEditSurname(mbiemri);
+            setEditDate(dataELindjes);
+            setEditEmail(email);
+            setEditnumriTel(numriTel);
+            setEditGjinia(gjinia);
+            setEditDepartamenti(departamenti);
+            setEditvitetPune(vitetPune);
+            setEditFoto(photoFile);
+        })
+        .catch((error) => {
+            console.error('Error fetching nurse:', error.response ? error.response.data : error.message);
+        });
+    };
+    
     const handleUpdate = () => {
-        if (!editName || !editSurname || !editDate || !editEmail || !editnumriTel || !editGjinia || !editDepartamenti || !editFoto) {//validimi
+        if (!editName || !editSurname || !editDate || !editEmail || !editnumriTel || !editGjinia || !editDepartamenti || !editFoto) {
             toast.error('Please fill in all fields.');
             return;
         }
@@ -147,7 +133,8 @@ const InfCrud = () => {
         if (!isValidPervoja(editvitetPune)) {
             toast.error('Please enter a valid number.');
             return;
-        }//validimi
+        }
+        
         const url = `http://localhost:5038/api/InfermjeriModels/${editId}`;
         const data = {
             "ID_i": editId,
@@ -161,22 +148,39 @@ const InfCrud = () => {
             "vitetPune": editvitetPune,
             "PhotoFile": editFoto
         };
-        axios.put(url, data)
+    
+        axios.put(url, data, {
+            headers: getAuthHeader()
+        })
+        .then((result) => {
+            handleClose();
+            getData();
+            clear();
+            toast.success('Update successful');
+        })
+        .catch((error) => {
+            console.error('Error updating nurse:', error.response ? error.response.data : error.message);
+        });
+    };
+    
+    const handleDelete = (id_i) => {
+        if (window.confirm("Are you sure you want to delete this nurse?")) {
+            axios.delete(`http://localhost:5038/api/InfermjeriModels/${id_i}`, {
+                headers: getAuthHeader()
+            })
             .then((result) => {
-                handleClose();
-                getData();
-                clear();
-                toast.success('Update u krye me sukses');
+                    getData(); 
+                    toast.success('Nurse deleted successfully!');
             })
             .catch((error) => {
-                // Handle error
-                console.error('Error adding nurse:', error);
+                toast.error('Error deleting nurse');
+                console.error('Error deleting nurse:', error.response ? error.response.data : error.message);
             });
-    }
-
-
+        }
+    };
+    
     const handleSave = () => {
-        if (!name || !surname || !date || !email || !numriTel || !gjinia || !departamenti || !foto) {//validimi
+        if (!name || !surname || !date || !email || !numriTel || !gjinia || !departamenti || !foto) {
             toast.error('Please fill in all fields.');
             return;
         }
@@ -187,7 +191,8 @@ const InfCrud = () => {
         if (!isValidPervoja(vitetPune)) {
             toast.error('Please enter a valid number.');
             return;
-        }//validimi
+        }
+    
         const url = "http://localhost:5038/api/InfermjeriModels";
         const data = {
             "Emri": name,
@@ -200,20 +205,22 @@ const InfCrud = () => {
             "vitetPune": vitetPune,
             "PhotoFile": foto
         };
-        axios.post(url, data)
-            .then((result) => {
-                handleCloseSub();
-                getData();
-                clear();
-                toast.success('infermieri/ja u shtua');
-            })
-            .catch((error) => {
-                // Handle error
-                console.error('Error adding nurse:', error);
-            });
+    
+        axios.post(url, data, {
+            headers: getAuthHeader()
+        })
+        .then((result) => {
+            handleCloseSub();
+            getData();
+            clear();
+            toast.success('Nurse added successfully!');
+        })
+        .catch((error) => {
+            console.error('Error adding nurse:', error.response ? error.response.data : error.message);
+            toast.error('Error adding nurse');
+        });
     };
-
-
+    
     const clear = () => {
         setName('');
         setSurname('');
@@ -233,37 +240,19 @@ const InfCrud = () => {
         setEditDepartamenti('');
         setEditvitetPune('');
         setEditFoto('');
-    }
+    };
+    
+    // Check user role
     const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
-  
+    
     if (userRole !== 'admin') {
-      return <h2>Unauthorized: You do not have access to this page.</h2>;
+        return <h2>Unauthorized: You do not have access to this page.</h2>;
     }
-
+    
 
     return (
         
-        <Fragment>
-            <nav className="navbar">
-      <div className="container">
-      {/* <h1 className="navbar__logo" onMouseEnter={handleHover} onMouseLeave={handleHover}>
-          {expanded ? "Hospital Management System" : "HMS"}
-        </h1> */}
-        <h1 className="navbar__logo" onMouseEnter={handleHover} onMouseLeave={handleHover}>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhYYuts7OIowNO0D3K3WVNx9S36WxX664As8fCDTQeXg&s" alt="Logo" className="logo-image" />
-          {expanded ? "ospital Management System" : ""}
-        </h1>
-        <ul className="navbar__list">
-          <li className="navbar__item"><a href="/Doki" className="navbar__link">Doktori</a></li>
-          <li className="navbar__item"><a href="/Infcrud" className="navbar__link">Infermieri</a></li>
-          <li className="navbar__item"><a href="/ReservationCrud" className="navbar__link">Rezervimet</a></li>
-          <li className="navbar__item"><a href="/PacCrud" className="navbar__link">Pacienti</a></li>
-          <li className="navbar__item"><a href="/RekCrud" className="navbar__link">Rekordi
-          </a></li>
-        </ul>
-      </div>
-    </nav>
-            
+        <Fragment> 
             <h1 style={{ textAlign: 'center', color:' rgb(86, 168, 86)' }}>Infermieri</h1>
             <ToastContainer />
             <Container className="mt-5">
@@ -339,7 +328,13 @@ const InfCrud = () => {
                                             <td>{item.gjinia}</td>
                                             <td>{item.departamenti}</td>
                                             <td>{item.vitetPune}</td>
-                                            <td>{item.photoFile}</td>
+                                            <td>
+                                          <img 
+                                           src={item.photoFile} 
+                                           alt="Doctor" 
+                                            style={{ width: '100px', height: '100px', objectFit: 'cover' }} 
+                                                   />
+                                            </td>
                                             <td>
                                                 <Button variant="success" onClick={() => handleEdit(item.id_i)}>Edit</Button> &nbsp;
                                                 <Button variant="outline-light" onClick={() => handleDelete(item.id_i)}>Delete</Button>

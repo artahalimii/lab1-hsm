@@ -25,7 +25,7 @@ namespace hsm_lab1.Controllers
 
         // Get logged-in doctor's reservations
         [HttpGet("doctor/reservations")]
-        [Authorize(Roles = "doktor")]
+        [Authorize(Roles = "doktor,patient")]
         public async Task<IActionResult> GetDoctorReservations()
         {
             var userId = _userManager.GetUserId(User);
@@ -58,7 +58,54 @@ namespace hsm_lab1.Controllers
 
             return Ok(records);
         }
-        // Get nurses for each day of the week
+        // Get nurses for each day of the week\
+
+        [HttpPost("doctor/records")]
+        [Authorize(Roles = "doktor")]
+        public async Task<IActionResult> AddRecord([FromBody] RekordModel newRecord)
+        {
+            if (newRecord == null)
+            {
+                return BadRequest("Record data is required.");
+            }
+            // Check if all required fields are provided
+            if (string.IsNullOrEmpty(newRecord.Diagnoza) ||
+                string.IsNullOrEmpty(newRecord.Receta) ||
+                string.IsNullOrEmpty(newRecord.Rezultatet) ||
+                newRecord.Id_P <= 0)
+            {
+                return BadRequest("Please provide all required fields: Diagnoza, Receta, Rezultatet, and Id_P.");
+            }
+
+            // Set the doctor ID automatically
+            var userId = _userManager.GetUserId(User);
+            var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.UserId == userId);
+
+            if (doctor == null)
+            {
+                return NotFound("Doctor not found.");
+            }
+
+            // Set the DoctorId for the new record
+            newRecord.DoctorId = doctor.Id;
+
+            // Add the new record to the database
+            _context.Rekord.Add(newRecord);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle database update exceptions
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+
+            // Return a 201 Created response with the location of the newly created resource
+            return CreatedAtAction(nameof(GetDoctorRecords), new { id = newRecord.Id_Rek }, newRecord);
+        }
+
         [HttpGet("doctor/nurses")]
         [Authorize(Roles = "doktor")]
         public async Task<IActionResult> GetNursesForWeek()
@@ -109,6 +156,37 @@ namespace hsm_lab1.Controllers
 
             return Ok(reservations);
         }
+
+        [HttpPost("patient/reservations")]
+        [Authorize(Roles = "patient")]
+        public async Task<IActionResult> CreateReservation([FromBody] ReservationModel request)
+        {
+            var userId = _userManager.GetUserId(User);
+            var patient = await _context.Pacienti.FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (patient == null)
+                return NotFound("Patient not found");
+
+            // Find the doctor by name
+            var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.Id == request.Doctor); // Adjust property name if needed
+
+            if (doctor == null)
+                return NotFound("Doctor not found");
+
+            var reservation = new ReservationModel
+            {
+                ReservationDate = request.ReservationDate,
+                ReservationTime = request.ReservationTime,
+                Patient = patient.Id_P,
+                Doctor = doctor.Id // Adjust the property name if needed
+            };
+
+            _context.ReservationModel.Add(reservation);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetPatientReservations), new { id = reservation.ReservationId }, reservation);
+        }
+
 
         // Get logged-in patient's records
         [HttpGet("patient/records")]

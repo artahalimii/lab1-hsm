@@ -106,10 +106,8 @@ const RekCrud = () => {
     if (window.confirm("Are you sure you want to delete this rekord?") == true) {
       axios.delete(`http://localhost:5038/api/RekordModels/${id_Rek}`)
         .then((result) => {
-          if (result.status === 200) {
-            toast.success('Rekord deleted successfully!');
-            getData(); // Refresh the data after successful deletion
-          }
+           getData(); 
+            toast.success('Rekord deleted successfully!');  
         })
         .catch((error) => {
           toast.error('Error deleting Rekord');
@@ -250,11 +248,8 @@ const RekCrud = () => {
                   return (
                     <tr key={index}>
                       <td>{index+1}</td>
-                     <td> <Button variant="outline-light" onClick={() => handleShowPaci(item.pacienti)}>{item.id_P}</Button>
-                    </td>
-                    <td>
-                      <Button variant="outline-light" onClick={() => handleShowDoki(item.doktori)}>{item.doctorId}</Button>
-                    </td>
+                    <td><Button variant="outline-light" onClick={() => handleShowPaci(item.pacienti)}>{item.pacienti.emri}</Button></td>
+                    <td><Button variant="outline-light" onClick={() => handleShowDoki(item.doktori)}>{item.doktori.emri}</Button></td>
                       <td>{item.diagnoza}</td>
                       <td>{item.receta}</td>
                       <td>{item.rezultatet}</td>

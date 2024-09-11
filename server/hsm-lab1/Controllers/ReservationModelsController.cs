@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using hsm_lab1.Database;
 using hsm_lab1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace hsm_lab1.Controllers
 {
@@ -41,6 +42,8 @@ namespace hsm_lab1.Controllers
 
         // GET: api/ReservationModels/5
         [HttpGet("{id}")]
+
+        [Authorize(Roles = "admin,patient")]
         public async Task<ActionResult<ReservationModel>> GetReservationModel(int id)
         {
             var reservationModel = await _context.ReservationModel
@@ -58,6 +61,7 @@ namespace hsm_lab1.Controllers
 
         // PUT: api/ReservationModels/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> PutReservationModel(int id, ReservationModel reservationModel)
         {
             if (id != reservationModel.ReservationId)
@@ -112,6 +116,7 @@ namespace hsm_lab1.Controllers
         // POST: api/ReservationModels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "admin,patient")]
         public async Task<ActionResult<ReservationModel>> PostReservationModel(ReservationModel reservationModel)
         {
             if (_context.ReservationModel == null)
@@ -144,6 +149,7 @@ namespace hsm_lab1.Controllers
 
         // DELETE: api/ReservationModels/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteReservationModel(int id)
         {
             var reservationModel = await _context.ReservationModel
