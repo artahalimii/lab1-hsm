@@ -13,7 +13,7 @@ namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Authorize(Roles = "admin")]
     public class SherbimiModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;
@@ -37,7 +37,7 @@ namespace hsm_lab1.Controllers
         // GET: api/SherbimiModels/5
         [HttpGet("{id}")]
 
-        [Authorize(Roles = "admin")]
+        
         public async Task<ActionResult<SherbimiModel>> GetSherbimiModel(int id)
         {
           if (_context.Sherbimi == null)
@@ -58,7 +58,7 @@ namespace hsm_lab1.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
 
-        [Authorize(Roles = "admin")]
+        
         public async Task<IActionResult> PutSherbimiModel(int id, SherbimiModel sherbimiModel)
         {
             if (id != sherbimiModel.Id_S)
@@ -90,7 +90,6 @@ namespace hsm_lab1.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
 
-        [Authorize(Roles = "admin")]
         public async Task<ActionResult<SherbimiModel>> PostSherbimiModel(SherbimiModel sherbimiModel)
         {
           if (_context.Sherbimi == null)
@@ -106,7 +105,7 @@ namespace hsm_lab1.Controllers
         // DELETE: api/SherbimiModels/5
         [HttpDelete("{id}")]
 
-        [Authorize(Roles = "admin")]
+  
         public async Task<IActionResult> DeleteSherbimiModel(int id)
         {
             if (_context.Sherbimi == null)

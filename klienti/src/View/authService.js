@@ -27,17 +27,29 @@ export const logout = () => {
 
 export const register = async (username, email, password) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/register`, { username, email, password });
+    const role = "patient"; // Automatically set the role to "Patient"
+    const response = await axios.post(`${API_BASE_URL}/register`, {
+      username,
+      email,
+      password,
+      role // Send role as "Patient"
+    });
+
     if (response.status === 200) {
       return true;
     } else {
       return false;
     }
   } catch (error) {
-    console.error('Error during registration:', error);
+    if (error.response) {
+      console.error('Error during registration:', error.response.data);
+    } else {
+      console.error('Error during registration:', error.message);
+    }
     return false;
   }
 };
+
 
 export const getToken = () => {
   return localStorage.getItem('token');

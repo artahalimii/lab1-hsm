@@ -82,19 +82,33 @@ const ReservationCrud = () => {
     getData();
   }, []);
 
+  const token = localStorage.getItem('token');
+  
   const getData = () => {
-    axios.get('http://localhost:5038/api/ReservationModels')
-      .then((result) => {
-        setData(result.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+    axios.get('http://localhost:5038/api/ReservationModels', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then((result) => {
+      setData(result.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleEdit = (reservationId) => {
     handleShow();
-    axios.get(`http://localhost:5038/api/ReservationModels/${reservationId}`)
+    axios.get(`http://localhost:5038/api/ReservationModels/${reservationId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then((result) => {
         const { reservationDate, reservationTime, patient, doctor, doktori, pacienti } = result.data;
         setEditReservationDate(reservationDate);
@@ -108,23 +122,23 @@ const ReservationCrud = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   const handleDelete = (reservationId) => {
-    if (window.confirm("Are you sure you want to delete this reservation?") === true) {
-      axios.delete(`http://localhost:5038/api/ReservationModels/${reservationId}`)
-        .then((result) => {
-          if (result.status === 200) {
-            toast.success('Reservation deleted successfully!');
-            getData(); // Refresh the data after successful deletion
-          }
-        })
-        .catch((error) => {
-          toast.error('Error deleting reservation');
-          console.error('Error deleting reservation:', error);
-        });
+    if (window.confirm("Are you sure you want to delete this reservation?")) {
+      axios.delete(`http://localhost:5038/api/ReservationModels/${reservationId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(() => {
+        toast.success('Reservation deleted successfully!');
+        setData(data.filter(item => item.reservationId !== reservationId));
+      })
+      .catch(error => {
+        toast.error('Error deleting reservation');
+        console.error('Error deleting reservation:', error);
+      });
     }
-  }
+  };
 
   const handleUpdate = () => {
     if (!editReservationDate || !editReservationTime || !editPatient || !editDoctor) {
@@ -141,7 +155,11 @@ const ReservationCrud = () => {
       "DoctorNavigation": editDoktori,
       "PatientNavigation": editPacienti
     };
-    axios.put(url, data)
+    axios.put(url, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then((result) => {
         handleClose();
         getData();
@@ -151,7 +169,7 @@ const ReservationCrud = () => {
       .catch((error) => {
         console.error('Error updating reservation:', error);
       });
-  }
+  };
 
   const handleSave = () => {
     if (!reservationDate || !reservationTime || !patient || !doctor) {
@@ -167,7 +185,11 @@ const ReservationCrud = () => {
       "DoctorNavigation": doktori,
       "PatientNavigation": pacienti
     };
-    axios.post(url, data)
+    axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then((result) => {
         handleCloseSub();
         getData();
@@ -193,10 +215,10 @@ const ReservationCrud = () => {
     setEditDoctor('');
     setEditDoktori({});
     setEditPacienti({});
-  }
+  };
 
-  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
-  
+  const userRole = localStorage.getItem('role');
+
   if (userRole !== 'admin') {
     return <h2>Unauthorized: You do not have access to this page.</h2>;
   }
@@ -248,8 +270,8 @@ const ReservationCrud = () => {
                       <td>{index + 1}</td>
                       <td>{item.reservationDate}</td>
                       <td>{item.reservationTime}</td>
-                      <td><Button variant="outline-light" onClick={() => handleShowPaci(item.patientNavigation)}>{item.patient}</Button></td>
-                      <td><Button variant="outline-light" onClick={() => handleShowDoki(item.doctorNavigation)}>{item.doctor}</Button></td>
+                      <td><Button variant="outline-light" onClick={() => handleShowPaci(item.patientNavigation)}>{item.patientNavigation.emri}</Button></td>
+                      <td><Button variant="outline-light" onClick={() => handleShowDoki(item.doctorNavigation)}>{item.doctorNavigation.emri}</Button></td>
                       <td>
                         <Button variant="success" onClick={() => handleEdit(item.reservationId)}>Edit</Button> &nbsp;
                         <Button variant="outline-light" onClick={() => handleDelete(item.reservationId)}>Delete</Button>

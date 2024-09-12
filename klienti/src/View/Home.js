@@ -38,14 +38,13 @@ const Home = () => {
 
 
     return (
-        <Fragment className='bodyHome' ><Navbar />
+        <div className='bodyHome'>
+            <Navbar />
             <Banner />
             <div className='home-container'>
-                <video src="videoHome.mp4" autoPlay loop muted />
                 
                 <h1><span>Hospital-SM</span></h1>
                 <p><strong>Welcome to our Hospital, where your health is our priority !</strong></p>
-
             </div>
             <div className='body-card'>
                 <div className='container-home'>
@@ -213,11 +212,11 @@ const Home = () => {
                 width="100%"
                 height="450"
                 style={{ border: "0" }}
-                allowfullscreen=""
+                allowFullScreen
                 loading="lazy">
             </iframe>
             <FooterPage />
-        </Fragment>
+            </div>
     );
 };
 

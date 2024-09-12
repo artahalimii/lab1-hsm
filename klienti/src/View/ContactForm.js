@@ -5,13 +5,14 @@ import { faMapMarkerAlt, faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-
 import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const ContactForm = () => {
-  // State to manage form data
+  // State to manage form data and success message
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   });
+  const [successMessage, setSuccessMessage] = useState('');
 
   // Handle form inputs
   const handleChange = (e) => {
@@ -24,37 +25,42 @@ const ContactForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-            e.preventDefault();
-          
-            const token = localStorage.getItem('token');
-            const url = "http://localhost:5038/api/Contact";
-            const data = {
-              
-              ...formData,
-            };
-          
-            try {
-              const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${token}`, 
-                },
-                body: JSON.stringify(data),
-              });
-          
-              if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-              }
-          
-              const result = await response.json();
-              console.log('Success:', result);
-            } catch (error) {
-              console.error('Error:', error.message);
-            }
-          };
-                
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    const url = "http://localhost:5038/api/Contact";
+    const data = {
+      ...formData,
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+      }
+
+      const result = await response.json();
+      console.log('Success:', result);
+      
+      // Set success message and refresh the page
+      setSuccessMessage('Message sent successfully!');
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000); // Adjust timeout as needed
+
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  };
 
   return (
     <div className="container-contactus">
@@ -63,7 +69,7 @@ const ContactForm = () => {
         <div className="contact-info">
           <h3 className="title-contact">Let's get in touch</h3>
           <p className="text">
-               We would love to hear from you!                                                                                                                                 
+            We would love to hear from you!
           </p>
           <br />
 
@@ -74,7 +80,7 @@ const ContactForm = () => {
             </div>
             <div className="information">
               <FontAwesomeIcon icon={faEnvelope} className="icon" />
-               <p>spital@gmail.com</p>
+              <p>spital@gmail.com</p>
             </div>
             <div className="information">
               <FontAwesomeIcon icon={faPhoneAlt} className="icon" />
@@ -117,7 +123,6 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
             />
-            
             <textarea
               className="field area"
               name="message"
@@ -125,11 +130,12 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
             ></textarea>
-            
             <button type="submit" className="button">Send</button>
 
+            {successMessage && <p className="success-message">{successMessage}</p>}
+
             <div className="Login-butoni">
-              You haven't been logged in yet? <a href="/login">Login here</a>
+              You haven't been logged in yet? <a href="/LoginForm">Login here</a>
             </div>
           </form>
         </div>

@@ -285,6 +285,7 @@ const InfCrud = () => {
                         </option>
                         <option value="femer">Femer</option>
                         <option value="mashkull">Mashkull</option>
+                        <option value="other">Other</option>
                     </select>
                     <input type='text' className="form-control mt-3" placeholder="Enter Departamenti" value={departamenti} onChange={(e) => setDepartamenti(e.target.value)} />
                     <input type='number' className="form-control mt-3" placeholder="Enter Vitet Pune" value={vitetPune} onChange={(e) => setvitetPune(parseInt(e.target.value))} />
@@ -380,6 +381,7 @@ const InfCrud = () => {
                         </option>
                         <option value="femer">Femer</option>
                         <option value="mashkull">Mashkull</option>
+                        <option value="other">Other</option>
                     </select>
                     </Col><br />
                     <Col>

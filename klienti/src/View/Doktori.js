@@ -158,7 +158,7 @@ const Doktori = () => {
       <div className="text-center mt-5">
         <h2>Unauthorized: You do not have access to this page.</h2>
         <h3>
-         Click <a href="./Home"> here </a>to go to our home page
+          Click <a href="./Home"> here </a>to go to our home page or <a href="./LoginForm"> here </a> to SignUp
         </h3>
       </div>
     );
@@ -220,7 +220,7 @@ const Doktori = () => {
                               <tr>
                                 <th>ID</th>
                                 <th>Emri</th>
-                                <th>Email</th>
+                                <th>Mbiemri</th>
                                 <th>Telefoni</th>
                                 <th>Veprime</th>
                               </tr>
@@ -230,7 +230,7 @@ const Doktori = () => {
                                 <tr key={patient.id_P}>
                                   <td>{patient.id_P}</td>
                                   <td>{patient.emri}</td>
-                                  <td>{patient.email}</td>
+                                  <td>{patient.mbiemri}</td>
                                   <td>{patient.numriTel}</td>
                                   <td>
                                     <Button variant="info" onClick={() => handleShow(patient)}>Detajet</Button>
@@ -315,30 +315,33 @@ const Doktori = () => {
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="nurses">
-                      <Card className="shadow-sm mb-4">
-                        <Card.Header>
-                          <h2>Nurses for the Week</h2>
-                        </Card.Header>
-                        <Card.Body>
-                          <Table striped bordered hover variant="light">
-                            <thead>
-                              <tr>
-                                <th>Day</th>
-                                <th>Nurse</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {Object.entries(nurses).map(([day, nurseList], index) => (
-                                <tr key={index}>
-                                  <td>{day}</td>
-                                  <td>{nurseList?.[0]?.emri || 'N/A'} {nurseList?.[0]?.mbiemri || ''}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </Table>
-                        </Card.Body>
-                      </Card>
-                    </Tab.Pane>
+  <Card className="shadow-sm mb-4">
+    <Card.Header>
+      <h2>Nurses for the Week</h2>
+    </Card.Header>
+    <Card.Body>
+      <Table striped bordered hover variant="light">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Nurse 1</th>
+            <th>Nurse 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(nurses).map(([day, nurseList], index) => (
+            <tr key={index}>
+              <td>{day}</td>
+              <td>{nurseList?.[0]?.emri || 'N/A'} {nurseList?.[0]?.mbiemri || ''}</td>  {/* Nurse 1 */}
+              <td>{nurseList?.[1]?.emri || 'N/A'} {nurseList?.[1]?.mbiemri || ''}</td>  {/* Nurse 2 */}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Card.Body>
+  </Card>
+</Tab.Pane>
+
 
                   </Tab.Content>
                 </Tab.Container>
@@ -347,7 +350,6 @@ const Doktori = () => {
           </Container>
         </div>
       </div>
-
       {/* Patient Details Modal */}
       <Modal 
         show={showModal} 
@@ -363,9 +365,10 @@ const Doktori = () => {
             <div>
               <h4>Emri: {selectedPatient.emri}</h4>
               <p>Mbiemri: {selectedPatient.mbiemri}</p>
-              <p>Email: {selectedPatient.email}</p>
               <p>Telefoni: {selectedPatient.numriTel}</p>
               <p>Data e Lindjes: {selectedPatient.dataELindjes}</p>
+              <p>Numri Telefonit: {selectedPatient.numriTel}</p>
+              <p>Gjinia: {selectedPatient.gjinia}</p>
               <p>Ankesa: {selectedPatient.ankesa}</p>
               {/* Add more fields as needed */}
             </div>

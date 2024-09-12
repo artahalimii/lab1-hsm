@@ -68,25 +68,30 @@ const RekCrud = () => {
     getData();
   }, []);
 
-  //---
+  // Function to get data with authorization
   const getData = () => {
-    axios.get('http://localhost:5038/api/RekordModels')
+    axios.get('http://localhost:5038/api/RekordModels', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then((result) => {
-        setData(result.data)
+        setData(result.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
-
-
- 
+        console.log(error);
+      });
+  };
 
   const handleEdit = (id_Rek) => {
     handleShow();
-    axios.get(`http://localhost:5038/api/RekordModels/${id_Rek}`)
+    axios.get(`http://localhost:5038/api/RekordModels/${id_Rek}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then((result) => {
-        const { id_P, doctorId, diagnoza, receta, rezultatet,doktori,pacienti} = result.data;
+        const { id_P, doctorId, diagnoza, receta, rezultatet, doktori, pacienti } = result.data;
         setEditId_P(id_P);
         setEditDoctorId(doctorId);
         setEditDiagnoza(diagnoza);
@@ -99,23 +104,25 @@ const RekCrud = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
-
+  };
 
   const handleDelete = (id_Rek) => {
-    if (window.confirm("Are you sure you want to delete this rekord?") == true) {
-      axios.delete(`http://localhost:5038/api/RekordModels/${id_Rek}`)
-        .then((result) => {
-           getData(); 
-            toast.success('Rekord deleted successfully!');  
+    if (window.confirm("Are you sure you want to delete this rekord?") === true) {
+      axios.delete(`http://localhost:5038/api/RekordModels/${id_Rek}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+        .then(() => {
+          getData();
+          toast.success('Rekord deleted successfully!');
         })
         .catch((error) => {
           toast.error('Error deleting Rekord');
           console.error('Error deleting Rekord:', error);
         });
     }
-  }
-
+  };
 
   const handleUpdate = () => {
     if (!editId_P || !editDoctorId || !editDiagnoza || !editReceta || !editRezultatet) {
@@ -124,34 +131,38 @@ const RekCrud = () => {
     }
     const url = `http://localhost:5038/api/RekordModels/${editId_Rek}`;
     const data = {
-      "Id_Rek":editId_Rek,
+      "Id_Rek": editId_Rek,
       "Id_P": editId_P,
       "DoctorId": editDoctorId,
       "Diagnoza": editDiagnoza,
       "Receta": editReceta,
       "Rezultatet": editRezultatet,
-      "Doktori":editDoktori,
-      "Pacienti":editPacienti
+      "Doktori": editDoktori,
+      "Pacienti": editPacienti,
     };
-    axios.put(url, data)
-      .then((result) => {
+
+    axios.put(url, data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(() => {
         handleClose();
         getData();
         clear();
         toast.success('Update u krye me sukses');
       })
       .catch((error) => {
-        // Handle error
-        console.error('Error adding Rekord:', error);
+        console.error('Error updating Rekord:', error);
       });
-  }
-
+  };
 
   const handleSave = () => {
-    if (!id_P || !doctorId || !diagnoza || !receta || !rezultatet ) {
+    if (!id_P || !doctorId || !diagnoza || !receta || !rezultatet) {
       toast.error('Please fill in all fields.');
       return;
     }
+
     const url = "http://localhost:5038/api/RekordModels";
     const data = {
       "Id_P": id_P,
@@ -160,10 +171,15 @@ const RekCrud = () => {
       "Receta": receta,
       "Rezultatet": rezultatet,
       "Doktori": doktori,
-      "Pacienti":pacienti
+      "Pacienti": pacienti,
     };
-    axios.post(url, data)
-      .then((result) => {
+
+    axios.post(url, data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(() => {
         handleCloseSub();
         getData();
         clear();
@@ -174,7 +190,6 @@ const RekCrud = () => {
         console.error('Error adding rekord:', error);
       });
   };
-
 
   const clear = () => {
     setId_P('');
@@ -191,8 +206,9 @@ const RekCrud = () => {
     setEditRezultatet('');
     setEditDoktori({});
     setEditPacienti({});
-  }
-  const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
+  };
+
+  const userRole = localStorage.getItem('role');
   
   if (userRole !== 'admin') {
     return <h2>Unauthorized: You do not have access to this page.</h2>;

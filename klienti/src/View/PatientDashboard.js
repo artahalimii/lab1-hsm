@@ -80,8 +80,10 @@ const PatientDashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Token or patient ID is missing');
 
-      await axios.post('http://localhost:5038/api/ReservationModels', {
-        ...reservationData,
+      await axios.post('http://localhost:5038/api/Dashboard/patient/reservations/post', {
+        reservationDate: reservationData.reservationDate,
+        reservationTime: reservationData.reservationTime,
+        Doctor: reservationData.doctorId, // Change doctorId to Doctor
       }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -134,7 +136,7 @@ const PatientDashboard = () => {
       <div className="text-center mt-5">
         <h2>Unauthorized: You do not have access to this page.</h2>
         <h3>
-          Click <a href="./Home"> here </a>to go to our home page
+          Click <a href="./Home"> here </a>to go to our home page or <a href="./LoginForm"> here </a> to SignUp
         </h3>
       </div>
     );
@@ -202,7 +204,7 @@ const PatientDashboard = () => {
                           <h2>My Reservations</h2>
                         </Card.Header>
                         <Card.Body>
-                          <Table striped bordered hover variant="light">
+                        <Table striped bordered hover variant="light">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -219,7 +221,7 @@ const PatientDashboard = () => {
                                   <td>{reservation.reservationId}</td>
                                   <td>{reservation.reservationDate}</td>
                                   <td>{reservation.reservationTime}</td>
-                                  <td>{doctors[reservation.doctor] || 'Unknown'}</td>
+                                  <td>{doctors[reservation.doctor] || 'Unknown'}</td> {/* Adjusted to match the backend property */}
                                 </tr>
                               )) : <tr><td colSpan="5">No Reservations</td></tr>}
                             </tbody>
@@ -253,7 +255,7 @@ const PatientDashboard = () => {
                                   <td>{record.diagnoza}</td>
                                   <td>{record.receta}</td>
                                   <td>{record.rezultatet}</td>
-                                  <td>{doctors[record.doctorId] || 'Unknown'}</td>
+                                  <td>{doctors[record.doctorId] || 'Unknown'}</td> {/* Adjusted to match the backend property */}
                                 </tr>
                               )) : <tr><td colSpan="6">No Records</td></tr>}
                             </tbody>
@@ -326,3 +328,4 @@ const PatientDashboard = () => {
 };
 
 export default PatientDashboard;
+

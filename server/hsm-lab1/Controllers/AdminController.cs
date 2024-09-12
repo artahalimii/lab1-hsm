@@ -157,7 +157,7 @@ namespace hsm_lab1.Controllers
             return Ok(reservations);
         }
 
-        [HttpPost("patient/reservations")]
+        [HttpPost("patient/reservations/post")]
         [Authorize(Roles = "patient")]
         public async Task<IActionResult> CreateReservation([FromBody] ReservationModel request)
         {
@@ -168,7 +168,8 @@ namespace hsm_lab1.Controllers
                 return NotFound("Patient not found");
 
             // Find the doctor by name
-            var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.Id == request.Doctor); // Adjust property name if needed
+            var doctor = await _context.Doktori.FirstOrDefaultAsync(d => d.Id == request.Doctor);
+            // Adjust property name if needed
 
             if (doctor == null)
                 return NotFound("Doctor not found");

@@ -13,7 +13,7 @@ namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize(Roles = "admin")]
     public class RekordModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;
@@ -44,7 +44,7 @@ namespace hsm_lab1.Controllers
         // GET: api/RekordModels/5
         [HttpGet("{id}")]
 
-        [Authorize(Roles = "admin,doktor")]
+       
         public async Task<ActionResult<RekordModel>> GetRekordModel(int id)
         {
             var rekordModel = await _context.Rekord
@@ -63,7 +63,7 @@ namespace hsm_lab1.Controllers
 
         // PUT: api/RekordModels/
         [HttpPut("{id}")]
-        [Authorize(Roles = "admin,doktor")]
+        
         public async Task<IActionResult> PutRekordModel(int id, RekordModel rekordModel)
         {
             if (id != rekordModel.Id_Rek)
@@ -120,7 +120,6 @@ namespace hsm_lab1.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
 
-        [Authorize(Roles = "admin,doktor")]
         public async Task<ActionResult<RekordModel>> PostRekordModel(RekordModel rekordModel)
         {
             if (_context.Rekord == null)
@@ -154,7 +153,7 @@ namespace hsm_lab1.Controllers
 
         // DELETE: api/RekordModels/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
+        
         public async Task<IActionResult> DeleteRekordModel(int id)
         {
             var rekordModel = await _context.Rekord

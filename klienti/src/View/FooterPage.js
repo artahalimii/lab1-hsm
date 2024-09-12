@@ -22,8 +22,8 @@ export class FooterPage extends React.Component {
                                 <li><a href="./Home" className='footer-link'>Home</a></li>
                                 <li><a href="./about" className='footer-link'>About Us</a></li>
                                 <li><a href="/Register" className='footer-link'>Refer a Patient</a></li>
-                                <li><a href="/privacy" className='footer-link'>Privacy Policy</a></li>
-                                <li><a href="./ContactUs" className='footer-link'>Contact Us</a></li>
+                                <li><a href="./Reviews" className='footer-link'>Reviews </a></li>
+                                <li><a href="./about#contactUs" className='footer-link'>Contact Us</a></li>
                             </ul>
                         </Col>
                         <Col md="3">

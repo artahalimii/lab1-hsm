@@ -67,7 +67,7 @@ function Navbar() {
           </a>
         </li>
         <li>
-          <a href=".#reviews" className="navbar-links">
+          <a href="./Reviews" className="navbar-links">
             Reviews
           </a>
         </li>

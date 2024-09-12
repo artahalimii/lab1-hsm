@@ -17,6 +17,7 @@ import AboutUs from './View/About';
 import ContactForm from './View/ContactForm';
 import PatientDashboard from './View/PatientDashboard';
 import ContactCRUD from './View/ContactCrud';
+import Reviews from './View/Reviews';
 function App() {
   const CRUDPaths = ['/Doki', '/InfCrud', '/RekCrud', '/PacCrud', '/ReservationCrud','/ServCrud'];
 
@@ -56,6 +57,7 @@ function RouteRender() {
          <Route path="/Contact" element={<ContactForm />} /> 
          <Route path="/PatientDashboard" element={<PatientDashboard />} /> 
          <Route path="/ContactCrud" element={<ContactCRUD />} /> 
+         <Route path="/Reviews" element={<Reviews />} /> 
       </Routes>
     </>
   );

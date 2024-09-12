@@ -193,6 +193,7 @@ const PacientiCRUD = () => {
     setEditComplaint('');
     setEditUserId('');
   };
+
   const userRole = localStorage.getItem('role'); // Make sure the role is stored in localStorage during login
   
   if (userRole !== 'admin') {
@@ -219,7 +220,12 @@ const PacientiCRUD = () => {
           <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={surname} onChange={(e) => setSurname(e.target.value)} />
           <input type='date' className="form-control mt-3" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
           <input type='text' className="form-control mt-3" placeholder="Enter Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
-          <input type='text' className="form-control mt-3" placeholder="Enter Gender" value={gender} onChange={(e) => setGender(e.target.value)} />
+          <select className="form-control mt-3" value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value="">Select Gender</option>
+            <option value="Femer">Femer</option>
+            <option value="Mashkull">Mashkull</option>
+            <option value="Other">Other</option>
+          </select>
           <input type='text' className="form-control mt-3" placeholder="Enter Complaint" value={complaint} onChange={(e) => setComplaint(e.target.value)} />
           <input type='text' className="form-control mt-3" placeholder="Enter UserId" value={userId} onChange={(e) => setUserId(e.target.value)} />
         </Modal.Body>
@@ -272,7 +278,12 @@ const PacientiCRUD = () => {
           <input type='text' className="form-control mt-3" placeholder="Enter Surname" value={editSurname} onChange={(e) => setEditSurname(e.target.value)} />
           <input type='date' className="form-control mt-3" value={editBirthDate} onChange={(e) => setEditBirthDate(e.target.value)} />
           <input type='text' className="form-control mt-3" placeholder="Enter Phone Number" value={editPhone} onChange={(e) => setEditPhone(e.target.value)} />
-          <input type='text' className="form-control mt-3" placeholder="Enter Gender" value={editGender} onChange={(e) => setEditGender(e.target.value)} />
+          <select className="form-control mt-3" value={editGender} onChange={(e) => setEditGender(e.target.value)}>
+            <option value="">Select Gender</option>
+            <option value="Femer">Femer</option>
+            <option value="Mashkull">Mashkull</option>
+            <option value="Other">Other</option>
+          </select>
           <input type='text' className="form-control mt-3" placeholder="Enter Complaint" value={editComplaint} onChange={(e) => setEditComplaint(e.target.value)} />
           <input type='text' className="form-control mt-3" placeholder="Enter UserId" value={editUserId} onChange={(e) => setEditUserId(e.target.value)} />
         </Modal.Body>
@@ -286,3 +297,4 @@ const PacientiCRUD = () => {
 };
 
 export default PacientiCRUD;
+
