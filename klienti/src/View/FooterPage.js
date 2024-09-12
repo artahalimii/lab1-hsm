@@ -21,7 +21,7 @@ export class FooterPage extends React.Component {
                             <ul className="list-unstyled">
                                 <li><a href="./Home" className='footer-link'>Home</a></li>
                                 <li><a href="./about" className='footer-link'>About Us</a></li>
-                                <li><a href="/Register" className='footer-link'>Refer a Patient</a></li>
+                                <li><a href="/RegisterForm" className='footer-link'>Refer a Patient</a></li>
                                 <li><a href="./Reviews" className='footer-link'>Reviews </a></li>
                                 <li><a href="./about#contactUs" className='footer-link'>Contact Us</a></li>
                             </ul>
@@ -38,7 +38,7 @@ export class FooterPage extends React.Component {
                         <Col md="3">
                             <h5 className="footer-title">Book an Appointment</h5>
                             <p>Reclaim your health and peace of mind.</p>
-                            <a href="/appointment" className="btn btn-danger">Call Us Today</a>
+                            <a href="/Contact" className="btn btn-danger">Contact Us Today</a>
                         </Col>
                     </Row>
                     <Row className="social-icons">

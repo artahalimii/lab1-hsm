@@ -88,6 +88,15 @@ const Doktori = () => {
       });
       toast.success('Record added successfully');
       setShowAddRecordModal(false);
+      
+      // Reset form fields to empty values after successful submission
+      setNewRecord({
+        diagnoza: '',
+        receta: '',
+        rezultatet: '',
+        id_P: '',
+      });
+  
       // Refresh records
       const recordsResponse = await axios.get('http://localhost:5038/api/Dashboard/doctor/records', {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -98,6 +107,7 @@ const Doktori = () => {
       toast.error('Error adding record');
     }
   };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -382,72 +392,77 @@ const Doktori = () => {
       </Modal>
 
       {/* Add Record Modal */}
-      <Modal 
-        show={showAddRecordModal} 
-        onHide={handleAddRecordClose}
-        dialogClassName="modal-dialog-centered"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Shto Rekord</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="diagnoza" className="form-label">Diagnoza</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                id="diagnoza" 
-                name="diagnoza" 
-                value={newRecord.diagnoza} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="receta" className="form-label">Receta</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                id="receta" 
-                name="receta" 
-                value={newRecord.receta} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="rezultatet" className="form-label">Rezultatet</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                id="rezultatet" 
-                name="rezultatet" 
-                value={newRecord.rezultatet} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="id_P" className="form-label">Pacienti ID</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                id="id_P" 
-                name="id_P" 
-                value={newRecord.id_P} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleAddRecordClose}>Mbyll</Button>
-              <Button variant="primary" type="submit">Ruaj</Button>
-            </Modal.Footer>
-          </form>
-        </Modal.Body>
-      </Modal>
+    {/* Add Record Modal */}
+<Modal 
+  show={showAddRecordModal} 
+  onHide={handleAddRecordClose}
+  dialogClassName="modal-dialog-centered"
+  centered
+>
+  <Modal.Header closeButton>
+    <Modal.Title>Shto Rekord</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="diagnoza" className="form-label">Diagnoza</label>
+        <input 
+          type="text" 
+          className="form-control" 
+          id="diagnoza" 
+          name="diagnoza" 
+          value={newRecord.diagnoza} 
+          onChange={handleChange} 
+          required 
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="receta" className="form-label">Receta</label>
+        <input 
+          type="text" 
+          className="form-control" 
+          id="receta" 
+          name="receta" 
+          value={newRecord.receta} 
+          onChange={handleChange} 
+          required 
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="rezultatet" className="form-label">Rezultatet</label>
+        <input 
+          type="text" 
+          className="form-control" 
+          id="rezultatet" 
+          name="rezultatet" 
+          value={newRecord.rezultatet} 
+          onChange={handleChange} 
+          required 
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="id_P" className="form-label">Pacienti</label>
+        <select
+          className="form-select"
+          id="id_P"
+          name="id_P"
+          value={newRecord.id_P}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Zgjidh pacientin</option>
+          {patients.map((patient) => (
+            <option key={patient.id_P} value={patient.id_P}>
+              {patient.emri} {patient.mbiemri}
+            </option>
+          ))}
+        </select>
+      </div>
+      <Button type="submit" variant="primary">Shto</Button>
+    </form>
+  </Modal.Body>
+</Modal>
+
     </>
   );
 };

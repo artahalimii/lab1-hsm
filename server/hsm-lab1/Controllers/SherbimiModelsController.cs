@@ -13,7 +13,7 @@ namespace hsm_lab1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "admin,doktor,patient")]
+  
     public class SherbimiModelsController : ControllerBase
     {
         private readonly HospitalDbContext _context;
@@ -25,7 +25,6 @@ namespace hsm_lab1.Controllers
 
         // GET: api/SherbimiModels
         [HttpGet]
-        [Authorize(Roles = "admin,doktor,patient")]
         public async Task<ActionResult<IEnumerable<SherbimiModel>>> GetSherbimi()
         {
           if (_context.Sherbimi == null)

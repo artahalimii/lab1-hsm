@@ -93,6 +93,7 @@ const ServCrud = () => {
     }
     const url = `http://localhost:5038/api/SherbimiModels/${editId}`;
     const dataToSend = {
+      id_S: editId,
       Emri: editName,
       Pershkrimi: editPershkrimi,
       Stafi: editStafi
