@@ -15,7 +15,11 @@ const Services = () => {
   }, []);
 
   const fetchServices = () => {
-    axios.get('http://localhost:5038/api/SherbimiModels')
+    axios.get('http://localhost:5038/api/SherbimiModels', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((response) => {
         setServices(response.data);
       })

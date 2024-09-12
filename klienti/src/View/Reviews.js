@@ -4,6 +4,7 @@ import FooterPage from './FooterPage';
 import Navbar from '../components/Navbar';
 import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
+import videoSrc from '../components/Images/videoHome.mp4';
 
 const Reviews = () => {
     // Example reviews data, you can fetch this from a server in real implementation
@@ -80,6 +81,19 @@ const Reviews = () => {
                     ))}
                 </div>
             </div>
+            <div className='home-container'>
+                <h1>Explore our hospital and the care we provide!</h1>
+                 <video
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    controls
+                    style={{ width: '100%', height: 'auto' }}
+                >
+                    Your browser does not support the video tag.
+                </video> 
+            </div>
 
             <div className='leave-review'>
                 <h2>Log in for more</h2>
@@ -87,7 +101,7 @@ const Reviews = () => {
                     <button className='button-1'>Log in </button>
                 </Link>
             </div>
-
+            
             <FooterPage />
         </Fragment>
     );

@@ -5,20 +5,15 @@ import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
-import ReservationModal from '../View/ReservationModal';
+
 
 import Button from 'react-bootstrap/Button';
 const Home = () => {
 
     const [fullImgSrc, setFullImgSrc] = useState(null);
-    const [showReservationModal, setShowReservationModal] = useState(false);
+  
 
-    const handleReservationSubmit = (reservationData) => {
-        // Submit reservation data to the backend
-        console.log('Submitting reservation:', reservationData);
-        // Close the modal after submission
-        setShowReservationModal(false);
-    };
+    
     const handleLogout = () => {
         // Clear any user session data, such as tokens or user information stored in local storage
         localStorage.removeItem('token');
@@ -41,11 +36,12 @@ const Home = () => {
         <div className='bodyHome'>
             <Navbar />
             <Banner />
+            <hr></hr>
             <div className='home-container'>
-                
                 <h1><span>Hospital-SM</span></h1>
                 <p><strong>Welcome to our Hospital, where your health is our priority !</strong></p>
             </div>
+            <hr></hr>
             <div className='body-card'>
                 <div className='container-home'>
                     <div className='card-home'>
@@ -72,7 +68,7 @@ const Home = () => {
                         </div>
                         <div className='content-home'>
                             <h2>Latest Equipmens</h2>
-                            <p>Dental Care of SunRiseCare Hospital is your home for affordable dentistry and exceptional service in Prishtine, Kosove.</p>
+                            <p>Dental Care of our Hospital is your home for affordable dentistry and exceptional service in Prishtine, Kosove.</p>
                         </div>
                     </div>
                     <div className='card-home'>

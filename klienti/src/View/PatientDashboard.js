@@ -89,6 +89,9 @@ const PatientDashboard = () => {
       });
 
       toast.success('Reservation made successfully');
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
       setShowReservationModal(false);
     } catch (error) {
       console.error('Error making reservation:', error.response ? error.response.data : error.message);

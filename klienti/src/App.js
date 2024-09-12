@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import CRUD from './View/CRUD';
 import InfCrud from './View/InfCrud';
 import PacCrud from './View/PacCrud';
@@ -42,6 +42,7 @@ function RouteRender() {
     <>
       {shouldShowHeader && <Header />}
       <Routes>
+        <Route path="/" element={<Navigate to="/Home" />} />
         <Route path="/Doki" element={<CRUD />} />
         <Route path="/InfCrud" element={<InfCrud />} />
         <Route path="/RekCrud" element={<RekCrud />} />

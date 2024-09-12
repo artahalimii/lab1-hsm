@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\ccc\\onedrive\\desktop\\lab1-\\lab1-hsm-1\\server\\hsm-lab1\\controllers\\sherbimimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\sherbimimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\ccc\\onedrive\\desktop\\lab1-\\lab1-hsm-1\\server\\hsm-lab1\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\ccc\\onedrive\\desktop\\lab1-\\lab1-hsm-1\\server\\hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\rekordmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\ccc\\onedrive\\desktop\\lab1-\\lab1-hsm-1\\server\\hsm-lab1\\controllers\\sherbimimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|solutionrelative:hsm-lab1\\controllers\\sherbimimodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6807B26-5FDF-426D-8A47-0AE3DB4504F0}|hsm-lab1\\hsm-lab1.csproj|c:\\users\\ccc\\onedrive\\desktop\\lab1-\\lab1-hsm-1\\server\\hsm-lab1\\controllers\\reservationmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -130,7 +130,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,13 +146,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "SherbimiModelsController.cs",
               "DocumentMoniker": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Controllers\\SherbimiModelsController.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\SherbimiModelsController.cs",
-              "ToolTip": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Controllers\\SherbimiModelsController.cs",
-              "RelativeToolTip": "hsm-lab1\\Controllers\\SherbimiModelsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAEAAAA",
+              "ToolTip": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Controllers\\SherbimiModelsController.cs*",
+              "RelativeToolTip": "hsm-lab1\\Controllers\\SherbimiModelsController.cs*",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAswGwAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-12T01:36:53.993Z",
               "EditorCaption": ""
@@ -167,12 +167,11 @@
               "RelativeToolTip": "hsm-lab1\\Controllers\\ReservationModelsController.cs",
               "ViewState": "AQIAAJ4AAAAAAAAAAAAAALAAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T23:02:44.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T23:02:44.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RekordModelsController.cs",
               "DocumentMoniker": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Controllers\\RekordModelsController.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Controllers\\RekordModelsController.cs",
@@ -180,12 +179,11 @@
               "RelativeToolTip": "hsm-lab1\\Controllers\\RekordModelsController.cs",
               "ViewState": "AQIAAKsAAAAAAAAAAAAmwA8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-09T22:46:35.396Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-09T22:46:35.396Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ReservationModel.cs",
               "DocumentMoniker": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Models\\ReservationModel.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\ReservationModel.cs",
@@ -193,12 +191,11 @@
               "RelativeToolTip": "hsm-lab1\\Models\\ReservationModel.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAuwBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T21:34:53.148Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-05T21:34:53.148Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\ccc\\OneDrive\\Desktop\\Lab1-\\lab1-hsm-1\\server\\hsm-lab1\\Models\\User.cs",
               "RelativeDocumentMoniker": "hsm-lab1\\Models\\User.cs",
@@ -219,8 +216,7 @@
               "RelativeToolTip": "hsm-lab1\\Controllers\\AdminController.cs",
               "ViewState": "AQIAAJ4AAAAAAAAAAAAuwKoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-06T00:21:23.91Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-06T00:21:23.91Z"
             },
             {
               "$type": "Document",
@@ -232,8 +228,7 @@
               "RelativeToolTip": "hsm-lab1\\Controllers\\AccountCotroller.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T18:11:18.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-08T18:11:18.676Z"
             },
             {
               "$type": "Document",
@@ -245,8 +240,7 @@
               "RelativeToolTip": "hsm-lab1\\Program.cs",
               "ViewState": "AQIAAGYAAAAAAAAAAAAmwHwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T22:56:47.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-05T22:56:47.784Z"
             },
             {
               "$type": "Document",
@@ -258,8 +252,7 @@
               "RelativeToolTip": "hsm-lab1\\Controllers\\PacientiModelsController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T19:57:59.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-08T19:57:59.354Z"
             },
             {
               "$type": "Document",

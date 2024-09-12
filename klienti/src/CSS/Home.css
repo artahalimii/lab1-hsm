@@ -2,15 +2,7 @@
   background-color: white;
 }
 
-video {
-  margin-top: -1%;
-  width: 100%;
-  z-index: -1;
-  filter: brightness(60%);
-  opacity: 0.7;
-  object-fit: fill;
-  padding: 0px;
-}
+
 
 .home-container {
   height: 100vh;
@@ -18,11 +10,18 @@ video {
   display: flex;
   flex-direction: column;
   align-items: center;
-  object-fit: fill;
+  justify-content: center; /* Center vertically */
+  padding: 200px 0; /* Add top and bottom padding */
+  background-color: white;
 }
 
-.home-container>h1 {
-  margin-top: -420px;
+.home-container > h1,
+.home-container > p {
+  text-align: center;
+}
+
+.home-container > p {
+  margin-top: 20px; /* Add space between h1 and p */
 }
 h3 {
   font-size: 40px;
@@ -44,7 +43,7 @@ h3 {
   transform: scaleX(0); /* Initially hide the underline */
 }
 
-h3:hover::after {
+h3:hover{
   transform: scaleX(1); /* Scale up the underline on hover */
 }
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -187,7 +186,7 @@ span:hover {
   padding-top: 30px;
   background-color: transparent;
   border: 4px solid white;
-  color: navy;
+  /* color: navy; */
   transition: 0.3s ease-out;
   box-sizing: content-box;
   height: 60px;
